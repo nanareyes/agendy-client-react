@@ -55,7 +55,7 @@ const LeyendaError = styled.p`
     font-size: 12px;
     margin-bottom: 0;
     color: ${colores.error};
-    //display: none;
+    display: none;
 
 `;
 
@@ -65,7 +65,7 @@ const IconoValidacion = styled(FontAwesomeIcon)`
     bottom: 14px;
     z-index: 100;
     font-size: 16px;
-    //opacity: 0;
+    opacity: 0;
 
 `;
 
@@ -79,6 +79,56 @@ const ContenedorTerminos = styled.div`
 
 const ContenedorBotonCentrado = styled.div`
     display: flex;
-    justify-content: column;
+    flex-direction: column;
+    align-items: center;
+    grid-column:span 2;
 `;
-export {Formulario, Label,GrupoInput,Input,LeyendaError,IconoValidacion,ContenedorBotonCentrado,ContenedorTerminos};
+const Boton = styled.button`
+    height: 45px;
+    Line-height:45px;
+    width:30%;
+    background:#000;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: 1s ease all;
+
+    &:hover{
+        box-shadow: 3px 0px 30px rgba(163,163,163, 1);
+    }
+`;
+const MensajeExito = styled.p`
+    font-size: 14px;
+    color: ${colores.exito};
+    display: none;
+    `;
+const MensajeError = styled.p`
+    height: 45px;
+    line-height: 45px;
+    background: #f66060;
+    padding: 0px 15px;
+    border-radius: 3px;
+    grid-column: span 2;
+    p{
+        margin: 0;
+    }
+    b{
+        margin-left: 10px;
+    }
+    
+`;
+export {Formulario, 
+    Label, 
+    GrupoInput, 
+    Input, 
+    LeyendaError, 
+    IconoValidacion, 
+    ContenedorBotonCentrado, 
+    ContenedorTerminos, 
+    Boton,
+    MensajeExito,
+    MensajeError
+
+};
