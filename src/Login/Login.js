@@ -1,36 +1,14 @@
 /* eslint-disable react/jsx-no-undef */
-import React,{useState} from 'react';
+import React from 'react';
 import { Form, FormGroup, Col, Input, Label, Button } from 'reactstrap';
-import axios from 'axios';
-import { useNavigate } from "react-router-dom";
-import './User.css';
+import {useLogin} from './controller';
 
-function User(props) {
-  let navigate = useNavigate();
-
-  const [inputEmail, setInputEmail] = useState('');
-  const [inputPassword, setInputPassword] = useState('');
-
-  const loginHandler = (e) => {
-    e.preventDefault();
-    // console.log('aquí funciona el boton',inputEmail,inputPassword)
-
-
-    axios.post('https://agendy-api.herokuapp.com/login', {
-      email: inputEmail,
-      password: inputPassword
-    })
-    .then(function (response) {
-        console.log('login exitoso')
-        navigate("home");
-    })
-    .catch(function (error) {
-      // console.log(error);
-      console.log('Usuario no registrado')
-      alert('Usuario no registrado')
-    });
-
-  }
+function Login(props) {
+  const {
+    setInputEmail,
+    setInputPassword,
+    loginHandler,
+  } = useLogin();
 
   return (
     <React.Fragment>
@@ -84,4 +62,4 @@ function User(props) {
   )
 }
 
-export { User }
+export { Login }
