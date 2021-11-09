@@ -1,10 +1,13 @@
 /* eslint-disable react/jsx-no-undef */
 import React,{useState} from 'react';
-import { Form, FormGroup, Col, Row, Input, Label, Button } from 'reactstrap';
+import { Form, FormGroup, Col, Input, Label, Button } from 'reactstrap';
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 import './User.css';
 
 function User(props) {
+  let navigate = useNavigate();
+
   const [inputEmail, setInputEmail] = useState('');
   const [inputPassword, setInputPassword] = useState('');
 
@@ -19,10 +22,12 @@ function User(props) {
     })
     .then(function (response) {
         console.log('login exitoso')
+        navigate("home");
     })
     .catch(function (error) {
       // console.log(error);
       console.log('Usuario no registrado')
+      alert('Usuario no registrado')
     });
 
   }
