@@ -55,7 +55,7 @@ function Login(props) {
           </Button>
         </Col>
         <Col>
-        <a href="/">crear tu cuenta</a>
+        <a href="/register">crear tu cuenta</a>
         </Col>
       </Form>
     </React.Fragment>
