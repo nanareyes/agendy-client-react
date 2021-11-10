@@ -1,11 +1,16 @@
 import React from "react";
+import { NavBar } from '../NavBar/NavBar';
 
 const Home = () => {
-    return (
-        <p>
-            Bienvenido a Agendy
-        </p>
-    );
+  return (
+    <div>
+      <NavBar/>
+      <p>
+        Bienvenido a Agendy
+      </p>
+    </div>
+
+  );
 }
 
 
