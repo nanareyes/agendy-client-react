@@ -16,116 +16,121 @@ function Register(props) {
 
   return (
     <React.Fragment>
-      <Logo />
-      <Form inline>
+      <Row>
         <Col>
-          <FormGroup floating>
-            <Input
-              id="Name"
-              name="name"
-              placeholder="Name"
-              type="name"
-              onChange={(e) =>
-                setInputName(e.target.value)
-              }
-            />
-            <Label for="exampleEmail">
-              Nombres
-            </Label>
-          </FormGroup>
-          {' '}
-          <FormGroup floating>
-            <Input
-              id="exampleEmail"
-              name="email"
-              placeholder="Email"
-              type="email"
-              onChange={(e) =>
-                setInputEmail(e.target.value)
-              }
-            />
-            <Label for="exampleEmail">
-              Correo
-            </Label>
-          </FormGroup>
-          {' '}
-          <FormGroup floating>
-            <Input
-              id="examplePassword"
-              name="password"
-              placeholder="Password"
-              type="password"
-              onChange={(e) =>
-                setInputPassword(e.target.value)}
-            />
-            <Label for="examplePassword">
-              Contraseña
-            </Label>
-          </FormGroup>
-          {' '}
-          <FormGroup floating>
-            <Input
-              id="examplePassword2"
-              name="password2"
-              placeholder="Password2"
-              type="password"
-              onChange={(e) =>
-                setInputPassword2(e.target.value)}
-            />
-            <Label for="examplePassword">
-              Confirmar contraseña
-            </Label>
-          </FormGroup>
+          <Logo />
         </Col>
-        <Row>
-          <Col>
-            <FormGroup check>
-              <Input
-              id="TypeCliente"
-              name="TypeCliente"
-              placeholder="TypeCliente"
-              type="radio"
-              onChange={(e) =>
-                setInputType(e.target.value)}
-              />
+        <Col>
+          <Form inline>
+            <Col>
+              <FormGroup floating>
+                <Input
+                  id="Name"
+                  name="name"
+                  placeholder="Name"
+                  type="name"
+                  onChange={(e) =>
+                    setInputName(e.target.value)
+                  }
+                />
+                <Label for="exampleEmail">
+                  Nombres
+                </Label>
+              </FormGroup>
               {' '}
-              <Label check>
-                Soy Cliente
-              </Label>
-            </FormGroup>
-          </Col>
-          <Col>
-            <FormGroup check>
-            <Input
-              id="TypeCliente"
-              name="TypeCliente"
-              placeholder="TypeCliente"
-              type="radio"
-              onChange={(e) =>
-                setInputType(e.target.value)}
-              />
+              <FormGroup floating>
+                <Input
+                  id="exampleEmail"
+                  name="email"
+                  placeholder="Email"
+                  type="email"
+                  onChange={(e) =>
+                    setInputEmail(e.target.value)
+                  }
+                />
+                <Label for="exampleEmail">
+                  Correo
+                </Label>
+              </FormGroup>
               {' '}
-              <Label check>
-                Soy Estilista
-              </Label>
-            </FormGroup>
-          </Col>
-        </Row>
-        <br />
-        <Col>
-          <Button className="register" onClick={onRegister}>
-            Registrarme
-          </Button>
+              <FormGroup floating>
+                <Input
+                  id="examplePassword"
+                  name="password"
+                  placeholder="Password"
+                  type="password"
+                  onChange={(e) =>
+                    setInputPassword(e.target.value)}
+                />
+                <Label for="examplePassword">
+                  Contraseña
+                </Label>
+              </FormGroup>
+              {' '}
+              <FormGroup floating>
+                <Input
+                  id="examplePassword2"
+                  name="password2"
+                  placeholder="Password2"
+                  type="password"
+                  onChange={(e) =>
+                    setInputPassword2(e.target.value)}
+                />
+                <Label for="examplePassword">
+                  Confirmar contraseña
+                </Label>
+              </FormGroup>
+            </Col>
+            <Row>
+              <Col>
+                <FormGroup check>
+                  <Input
+                    id="TypeCliente"
+                    name="TypeCliente"
+                    placeholder="TypeCliente"
+                    type="radio"
+                    onChange={(e) =>
+                      setInputType(e.target.value)}
+                  />
+                  {' '}
+                  <Label check>
+                    Soy Cliente
+                  </Label>
+                </FormGroup>
+              </Col>
+              <Col>
+                <FormGroup check>
+                  <Input
+                    id="TypeCliente"
+                    name="TypeCliente"
+                    placeholder="TypeCliente"
+                    type="radio"
+                    onChange={(e) =>
+                      setInputType(e.target.value)}
+                  />
+                  {' '}
+                  <Label check>
+                    Soy Estilista
+                  </Label>
+                </FormGroup>
+              </Col>
+            </Row>
+            <br />
+            <Col>
+              <Button className="register" onClick={onRegister}>
+                Registrarme
+              </Button>
+            </Col>
+            <br />
+            <Col>
+              <Button className="google" onClick={''}>
+                <i class="bi bi-google"></i>
+                <span className="google mx-3">Registrarme con google</span>
+              </Button>
+            </Col>
+          </Form>
         </Col>
-        <br />
-        <Col>
-          <Button className="google" onClick={''}>
-            <i class="bi bi-google"></i>
-            <span className="google mx-3">Registrarme con google</span>
-          </Button>
-        </Col>
-      </Form>
-
+      </Row>
     </React.Fragment>
   )
 }
