@@ -2,7 +2,8 @@
 import React from 'react';
 import { Form, FormGroup, Col, Input, Label, Button } from 'reactstrap';
 import {useLogin} from './controller';
-import { LoginWithGoogle } from './LoginWithGoogle';
+// import { LoginWithGoogle } from './LoginWithGoogle';
+import {LoginAuth0} from './LoginAuth0';
 
 function Login(props) {
   const {
@@ -52,7 +53,7 @@ function Login(props) {
         <a href="/"> ! olvidé mi contraseña ¡</a>
         </Col>
         <Col>
-        <LoginWithGoogle />
+        <LoginAuth0 />
         {/* <Button className="google" onClick={''}>
         <i class="bi bi-google"></i>
         <span className="google mx-3">Continuar con google</span>

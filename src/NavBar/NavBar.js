@@ -1,8 +1,15 @@
 import React from "react";
 import { NavbarBrand, Navbar, Nav,NavLink, NavItem, NavbarToggler, Collapse, DropdownMenu, DropdownItem, DropdownToggle, UncontrolledDropdown} from 'reactstrap';
 import logo1 from '../assets/logo1.png'
+import { useAuth0 } from "@auth0/auth0-react";
 
 const NavBar = () => {
+  const {user,logout} = useAuth0();
+  const onLogout = ()=> {
+    logout({
+      returnTo: window.location.origin,
+    })
+  }
     return (
       <React.Fragment>
       <div>
@@ -45,13 +52,13 @@ const NavBar = () => {
                 caret
                 nav
               >
-                Bienvenid@ a Agendy
+                Bienvenid@ a Agendy {user ? user.given_name : ''}
               </DropdownToggle>
               <DropdownMenu right>
                 <DropdownItem>
                   Mi perfil
                 </DropdownItem>
-                <DropdownItem>
+                <DropdownItem onClick={onLogout}>
                   Salir
                 </DropdownItem>
               </DropdownMenu>

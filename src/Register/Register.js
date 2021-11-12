@@ -2,6 +2,7 @@ import React from 'react';
 import { Form, FormGroup, Col, Input, Label, Button, Row } from 'reactstrap';
 import { Logo } from '../Logo/Logo';
 import { useRegister } from './controller';
+import { RegisterAuth0 } from './RegisterAuth0';
 
 
 function Register(props) {
@@ -123,10 +124,7 @@ function Register(props) {
             </Col>
             <br />
             <Col>
-              <Button className="google" onClick={''}>
-                <i class="bi bi-google"></i>
-                <span className="google mx-3">Registrarme con google</span>
-              </Button>
+            <RegisterAuth0 />
             </Col>
           </Form>
         </Col>

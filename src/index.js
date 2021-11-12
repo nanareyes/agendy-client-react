@@ -6,11 +6,14 @@ import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { BrowserRouter } from "react-router-dom";
+import {Auth0ProviderWithHistory} from './libs/auth0-provider-with-history'
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
+      <Auth0ProviderWithHistory>
       <App />
+      </Auth0ProviderWithHistory>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
