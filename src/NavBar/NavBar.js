@@ -8,6 +8,7 @@ import logo1 from '../assets/logo1.png'
 const NavBar = () => {
   const [user, setUser] = useRecoilState(userState);
   const navigate = useNavigate();
+  console.info('user en NavBar', user);
 
   const userName = user.loginType === 'GOOGLE' ? user.givenName : user.name;
 
