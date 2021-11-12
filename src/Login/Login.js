@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-no-undef */
 import React from 'react';
 import { Form, FormGroup, Col, Input, Label, Button } from 'reactstrap';
-import {useLogin} from './controller';
-// import { LoginWithGoogle } from './LoginWithGoogle';
+import { useLogin } from './controller';
+import { LoginWithGoogle } from './LoginWithGoogle';
 
 function Login(props) {
   const {
@@ -21,7 +21,7 @@ function Login(props) {
               name="email"
               placeholder="Email"
               type="email"
-              onChange={(e)=>
+              onChange={(e) =>
                 setInputEmail(e.target.value)
               }
             />
@@ -35,30 +35,27 @@ function Login(props) {
               name="password"
               placeholder="Password"
               type="password"
-              onChange={(e)=>
-              setInputPassword(e.target.value)}
+              onChange={(e) =>
+                setInputPassword(e.target.value)}
             />
             <Label for="examplePassword">
               Contraseña
             </Label>
           </FormGroup>
           <div>
-          <Button className="login"  onClick={loginHandler}>
-            Iniciar Sesión
-          </Button>
+            <Button className="login" onClick={loginHandler}>
+              Iniciar Sesión
+            </Button>
           </div>
         </Col>
         <Col>
-        <a href="/"> ! olvidé mi contraseña ¡</a>
+          <a href="/"> ! olvidé mi contraseña ¡</a>
         </Col>
         <Col>
-        {/* <Button className="google" onClick={''}>
-        <i class="bi bi-google"></i>
-        <span className="google mx-3">Continuar con google</span>
-          </Button> */}
+          <LoginWithGoogle />
         </Col>
         <Col>
-        <a href="/register">crear tu cuenta</a>
+          <a href="/register">crear tu cuenta</a>
         </Col>
       </Form>
     </React.Fragment>
