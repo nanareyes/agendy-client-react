@@ -1,12 +1,23 @@
 import React from "react";
 import { NavbarBrand, Navbar, Nav, NavLink, NavItem, NavbarToggler, Collapse, DropdownMenu, DropdownItem, DropdownToggle, UncontrolledDropdown } from 'reactstrap';
+import { useNavigate } from "react-router-dom";
 import { useRecoilState } from 'recoil';
 import { userState } from "../atoms";
 import logo1 from '../assets/logo1.png'
 
 const NavBar = () => {
-  const [user] = useRecoilState(userState);
+  const [user, setUser] = useRecoilState(userState);
+  const navigate = useNavigate();
+
   const userName = user.loginType === 'GOOGLE' ? user.givenName : user.name;
+
+  const onLogout = () => {
+    // Para salir, se actualiza el userState, seteando
+    // isAuthenticated en false y rediriengo al landing page
+    setUser({isAuthenticaded: false});
+    navigate("/");
+  };
+
   return (
     <React.Fragment>
       <div>
@@ -55,7 +66,7 @@ const NavBar = () => {
                   <DropdownItem>
                     Mi perfil
                   </DropdownItem>
-                  <DropdownItem onClick={() => { }}>
+                  <DropdownItem onClick={onLogout}>
                     Salir
                   </DropdownItem>
                 </DropdownMenu>
