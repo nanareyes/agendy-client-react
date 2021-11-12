@@ -1,11 +1,28 @@
 import React from "react";
 import GoogleLogin from 'react-google-login';
+import { useNavigate } from "react-router-dom";
+import { useRecoilState } from 'recoil';
+import {userState} from '../atoms';
 
 function LoginWithGoogle() {
+  // No se utiliza el estado local del componente sino
+  // el estado de recoil. Asi es posible reusarlo en 
+  // otros componentes, como NavBar
+  const [user, setUSer] = useRecoilState(userState);
+  const navigate = useNavigate();
 
   const onGoogleLogin = (response) => {
     console.log(response);
     console.log(response.profileObj);
+    // ACtualiza los datos del usuario en el state
+    setUSer({
+      isAuthenticaded: true,
+      loginType: 'GOOGLE',
+      ...response.profileObj
+    });
+    console.info("user", user);
+    // Lo envia al home
+    navigate("/home");
   }
 
   const onGoogleLoginError = (response) => {

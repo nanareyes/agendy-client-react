@@ -1,9 +1,12 @@
 import React from "react";
 import { NavbarBrand, Navbar, Nav, NavLink, NavItem, NavbarToggler, Collapse, DropdownMenu, DropdownItem, DropdownToggle, UncontrolledDropdown } from 'reactstrap';
+import { useRecoilState } from 'recoil';
+import { userState } from "../atoms";
 import logo1 from '../assets/logo1.png'
 
 const NavBar = () => {
-  const userName = '';
+  const [user] = useRecoilState(userState);
+  const userName = user.loginType === 'GOOGLE' ? user.givenName : user.name;
   return (
     <React.Fragment>
       <div>
@@ -52,7 +55,7 @@ const NavBar = () => {
                   <DropdownItem>
                     Mi perfil
                   </DropdownItem>
-                  <DropdownItem onClick={() => {}}>
+                  <DropdownItem onClick={() => { }}>
                     Salir
                   </DropdownItem>
                 </DropdownMenu>
