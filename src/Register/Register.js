@@ -2,6 +2,7 @@ import React from 'react';
 import { Form, FormGroup, Col, Input, Label, Button, Row } from 'reactstrap';
 import { Logo } from '../Logo/Logo';
 import { useRegister } from './controller';
+import { LoginWithGoogle } from '../Login/LoginWithGoogle';
 
 function Register(props) {
   const {
@@ -119,6 +120,9 @@ function Register(props) {
               <Button className="register" onClick={onRegister}>
                 Registrarme
               </Button>
+            </Col>
+            <Col>
+              <LoginWithGoogle isSignUp={true} />
             </Col>
             <br />
             <Col>
