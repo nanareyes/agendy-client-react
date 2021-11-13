@@ -16,7 +16,7 @@ const useRegister = () => {
     // console.log('aquí funciona el boton',inputNombres, inputEmail,inputPassword, inputPassword2)
 
 
-    axios.post('https://agendy-api.herokuapp.com/api/nuevo-user', {
+    axios.post('https://agendy-api.herokuapp.com/api/new-user', {
       name: inputName,
       email: inputEmail,
       password: inputPassword,

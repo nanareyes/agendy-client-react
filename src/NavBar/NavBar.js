@@ -1,9 +1,10 @@
 import React from "react";
-import { NavbarBrand, Navbar, Nav, NavLink, NavItem, NavbarToggler, Collapse, DropdownMenu, DropdownItem, DropdownToggle, UncontrolledDropdown } from 'reactstrap';
-import { useNavigate } from "react-router-dom";
+import { NavbarBrand, Row, Navbar, Nav, NavLink, NavItem, NavbarToggler, Collapse, DropdownMenu, DropdownItem, DropdownToggle, UncontrolledDropdown, CardImg } from 'reactstrap';
+import { useNavigate, Link } from "react-router-dom";
 import { useRecoilState } from 'recoil';
 import { userState } from "../atoms";
 import logo1 from '../assets/logo1.png'
+import { AvatarUser } from "./AvatarUser";
 
 const NavBar = () => {
   const [user, setUser] = useRecoilState(userState);
@@ -15,7 +16,7 @@ const NavBar = () => {
   const onLogout = () => {
     // Para salir, se actualiza el userState, seteando
     // isAuthenticated en false y rediriengo al landing page
-    setUser({isAuthenticaded: false});
+    setUser({ isAuthenticaded: false });
     navigate("/");
   };
 
@@ -26,6 +27,7 @@ const NavBar = () => {
           color="light"
           expand="md"
           light
+
         >
           <NavbarBrand href="/">
             <img src={logo1} className="App-logo" alt="logo" />
@@ -64,14 +66,17 @@ const NavBar = () => {
                   Bienvenid@ a Agendy {userName}
                 </DropdownToggle>
                 <DropdownMenu right>
-                  <DropdownItem>
-                    Mi perfil
+                  <DropdownItem >
+                    <Link to="/profile">Mi perfil</Link>
                   </DropdownItem>
                   <DropdownItem onClick={onLogout}>
                     Salir
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
+              <Row>
+                <AvatarUser />
+              </Row>
             </Nav>
           </Collapse>
         </Navbar>
