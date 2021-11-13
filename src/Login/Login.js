@@ -2,6 +2,7 @@
 import React from 'react';
 import { Form, FormGroup, Col, Input, Label, Button } from 'reactstrap';
 import {useLogin} from './controller';
+import { LoginWithGoogle } from './LoginWithGoogle';
 
 function Login(props) {
   const {
@@ -28,7 +29,6 @@ function Login(props) {
               Correo
             </Label>
           </FormGroup>
-          {' '}
           <FormGroup floating>
             <Input
               id="examplePassword"
@@ -42,17 +42,21 @@ function Login(props) {
               Contraseña
             </Label>
           </FormGroup>
-          {' '}
+          <div>
           <Button className="login"  onClick={loginHandler}>
             Iniciar Sesión
           </Button>
+          </div>
         </Col>
-        <a href="/"> ! olvidé mi contraseña ¡</a>
         <Col>
-        <Button className="google" onClick={''}>
+        <a href="/"> ! olvidé mi contraseña ¡</a>
+        </Col>
+        <Col>
+        <LoginWithGoogle />
+        {/* <Button className="google" onClick={''}>
         <i class="bi bi-google"></i>
         <span className="google mx-3">Continuar con google</span>
-          </Button>
+          </Button> */}
         </Col>
         <Col>
         <a href="/register">crear tu cuenta</a>

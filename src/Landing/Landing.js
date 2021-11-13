@@ -1,18 +1,23 @@
 /* eslint-disable react/jsx-no-undef */
 import React from 'react';
-import {Login} from '../Login/Login'
+import { Row, Col } from 'reactstrap';
+import { Login } from '../Login/Login'
 import logo from '../logo.svg'
+
 
 function Landing(props) {
   return (
     <React.Fragment>
-      <div className="App">
-        <header className="App-header">
+      <Row>
+        <Col>
           <img src={logo} className="App-logo" alt="logo" />
+        </Col>
+        <Col>
           <Login />
-        </header>
-      </div>
+        </Col>
+      </Row>
     </React.Fragment>
+
   )
 }
 
