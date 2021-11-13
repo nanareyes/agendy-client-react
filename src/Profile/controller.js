@@ -14,10 +14,14 @@ const useProfile = () => {
   const [inputDirection, setInputDirection] = useState(user.direction);
   const [inputCity, setInputCity] = useState(user.city);
 
-  const onProfile = (e) => {
+  const userName = user.loginType === 'GOOGLE' ? user.givenName : user.name;
+
+  const onSubmitProfile = (e) => {
+    console.log(user);
     e.preventDefault();
 
-    axios.post('https://agendy-api.herokuapp.com/user/:id', {
+
+    axios.put(`https://agendy-api.herokuapp.com/user/${user._id}`, {
       dateOfBirth: inputDateOfBirth,
       photo: inputPhone,
       direction: inputDirection,
@@ -35,11 +39,16 @@ const useProfile = () => {
 }
 
   return {
+    userName,
+    inputDateOfBirth,
+    inputPhone,
+    inputDirection,
+    inputCity,
     setInputDateOfBirth,
     setInputPhone,
     setInputDirection,
     setInputCity,
-    onProfile,
+    onSubmitProfile,
   }
 };
 

@@ -5,11 +5,15 @@ import { useProfile } from './controller';
 
 function EditProfile(props) {
   const {
+    inputDateOfBirth,
+    inputPhone,
+    inputDirection,
+    inputCity,
     setInputDateOfBirth,
     setInputPhone,
     setInputDirection,
     setInputCity,
-    onProfile,
+    onSubmitProfile,
   } = useProfile();
 
   // const photeSelecte = (e) => {
@@ -39,7 +43,7 @@ function EditProfile(props) {
                       name="dateOfBirth"
                       placeholder="dateOfBirth"
                       type="dateOfBirth"
-                      value= {setInputDateOfBirth}
+                      value= {inputDateOfBirth}
                       onChange={(e) =>
                         setInputDateOfBirth(e.target.value)
                       }
@@ -54,7 +58,7 @@ function EditProfile(props) {
                       name="phone"
                       placeholder="phone"
                       type="phone"
-                      value= {setInputPhone}
+                      value= {inputPhone}
                       onChange={(e) =>
                         setInputPhone(e.target.value)
                       }
@@ -69,7 +73,7 @@ function EditProfile(props) {
                       name="direction"
                       placeholder="direction"
                       type="direction"
-                      value={setInputDirection}
+                      value={inputDirection}
                       onChange={(e) =>
                         setInputDirection(e.target.value)
                       }
@@ -84,7 +88,7 @@ function EditProfile(props) {
                       name="city"
                       placeholder="city"
                       type="city"
-                      value={setInputCity}
+                      value={inputCity}
                       onChange={(e) =>
                         setInputCity(e.target.value)
                       }
@@ -94,7 +98,7 @@ function EditProfile(props) {
                     </Label>
                   </FormGroup>
                 </Col>
-                <Button className="editProfile" onClick={onProfile} style={{
+                <Button className="editProfile" onClick={onSubmitProfile} style={{
                       backgroundColor: '#E9478A',
                       color: '#ffff'
                     }}>

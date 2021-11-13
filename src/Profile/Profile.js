@@ -1,17 +1,20 @@
 import React from "react";
 import { NavBar } from '../NavBar/NavBar';
 import { EditProfile } from "./EditProfile";
+import { useProfile } from "./controller";
 
 
 const Profile = () => {
+  const {
+    userName } = useProfile();
   console.log('profile')
 
   return (
     <div>
-      <NavBar/>
+      <NavBar />
       <p>
-        Perfil de 
-        <EditProfile/>
+        Perfil de {userName}
+        <EditProfile />
 
       </p>
     </div>

@@ -1,24 +1,17 @@
 import React from "react";
 import { NavbarBrand, Row, Navbar, Nav, NavLink, NavItem, NavbarToggler, Collapse, DropdownMenu, DropdownItem, DropdownToggle, UncontrolledDropdown, CardImg } from 'reactstrap';
-import { useNavigate, Link } from "react-router-dom";
-import { useRecoilState } from 'recoil';
-import { userState } from "../atoms";
-import logo1 from '../assets/logo1.png'
+import { Link } from "react-router-dom";
 import { AvatarUser } from "./AvatarUser";
+import { useNavBar } from "./controller";
+import logo1 from '../assets/logo1.png'
+
 
 const NavBar = () => {
-  const [user, setUser] = useRecoilState(userState);
-  const navigate = useNavigate();
-  console.info('user en NavBar', user);
+  const  {
+    userName,
+    onLogout
+  } = useNavBar();
 
-  const userName = user.loginType === 'GOOGLE' ? user.givenName : user.name;
-
-  const onLogout = () => {
-    // Para salir, se actualiza el userState, seteando
-    // isAuthenticated en false y rediriengo al landing page
-    setUser({ isAuthenticaded: false });
-    navigate("/");
-  };
 
   return (
     <React.Fragment>
