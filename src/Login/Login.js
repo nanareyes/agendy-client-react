@@ -25,7 +25,7 @@ function Login(props) {
   }
 
   const formStyle = {
-    width: '5 0%',
+    width: '50%',
     minWidth: '280px',
     display: 'grid',
     alignItems: 'center',
