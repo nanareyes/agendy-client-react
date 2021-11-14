@@ -1,15 +1,19 @@
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import { useState } from 'react';
+import { useRecoilState } from 'recoil';
+import { userState } from '../atoms';
+
 
 const useRegister = () => {
   let navigate = useNavigate();
+  const [, setUser] = useRecoilState(userState);
 
   const [inputName, setInputName] = useState('');
   const [inputEmail, setInputEmail] = useState('');
   const [inputPassword, setInputPassword] = useState('');
   const [inputPassword2, setInputPassword2] = useState('');
-  const [inputType, setInputType] = useState('');
+  const [inputUserType, setInputUserType] = useState('');
 
   const onRegister = (e) => {
     e.preventDefault();
@@ -21,10 +25,15 @@ const useRegister = () => {
       email: inputEmail,
       password: inputPassword,
       password2: inputPassword2,
-      type: inputType
+      userType: inputUserType
     })
       .then(function (response) {
         console.log('Registro exitoso')
+        setUser({
+          isAuthenticaded: true,
+          ...response.data.userDB,
+          token: response.data.token
+        });
         navigate("/home");
       })
       .catch(function (error) {
@@ -39,7 +48,7 @@ const useRegister = () => {
     setInputEmail,
     setInputPassword,
     setInputPassword2,
-    setInputType,
+    setInputUserType,
     onRegister,
   }
 };

@@ -22,7 +22,6 @@ const useLogin = () => {
         console.log('login exitoso')
         setUser({
           isAuthenticaded: true,
-          loginType: 'AGENDY',
           ...response.data.userDB,
           token: response.data.token
         });

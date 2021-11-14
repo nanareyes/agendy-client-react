@@ -3,16 +3,25 @@ import { Card, Col, Label, CardBody, FormGroup, CardHeader, Input, Button, Row }
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { useProfile } from './controller';
 
+
 function EditProfile(props) {
   const {
     inputDateOfBirth,
     inputPhone,
-    inputDirection,
+    inputAddress,
     inputCity,
+    inputUserType,
     setInputDateOfBirth,
     setInputPhone,
-    setInputDirection,
+    setInputAddress,
     setInputCity,
+    setInputUserType,
+    userDateOFBirth,
+    userPhone,
+    userAddress,
+    userCity,
+    userName,
+    userUserType,
     onSubmitProfile,
   } = useProfile();
 
@@ -23,6 +32,12 @@ function EditProfile(props) {
     <React.Fragment>
       <Row>
         <Col sm="4">
+          Nombre {userName}<br />
+          Fecha de nacimiento {userDateOFBirth} <br />
+          Teléfono {userPhone} <br />
+          Dirección {userAddress} <br />
+          Ciudad {userCity} <br />
+          Tipo de usuario {userUserType} <br />
         </Col>
         <Col sm="7">
           <Card>
@@ -33,7 +48,7 @@ function EditProfile(props) {
               <Row>
                 <Col sm="5">
                   <Row>
-                    <input type="file"  />
+                    <input type="file" />
                   </Row>
                 </Col>
                 <Col sm="7">
@@ -42,13 +57,13 @@ function EditProfile(props) {
                       id="dateOfBirth"
                       name="dateOfBirth"
                       placeholder="dateOfBirth"
-                      type="dateOfBirth"
-                      value= {inputDateOfBirth}
+                      type="date"
+                      value={inputDateOfBirth}
                       onChange={(e) =>
                         setInputDateOfBirth(e.target.value)
                       }
                     />
-                    <Label for="exampleDateOfBirth">
+                    <Label for="dateOfBirth">
                       Fecha de nacimiento
                     </Label>
                   </FormGroup>
@@ -57,28 +72,28 @@ function EditProfile(props) {
                       id="phone"
                       name="phone"
                       placeholder="phone"
-                      type="phone"
-                      value= {inputPhone}
+                      type="text"
+                      value={inputPhone}
                       onChange={(e) =>
                         setInputPhone(e.target.value)
                       }
                     />
-                    <Label for="examplePhone">
+                    <Label for="phone">
                       Teléfono
                     </Label>
                   </FormGroup>
                   <FormGroup floating>
                     <Input
-                      id="direction"
-                      name="direction"
-                      placeholder="direction"
-                      type="direction"
-                      value={inputDirection}
+                      id="address"
+                      name="address"
+                      placeholder="address"
+                      type="text"
+                      value={inputAddress}
                       onChange={(e) =>
-                        setInputDirection(e.target.value)
+                        setInputAddress(e.target.value)
                       }
                     />
-                    <Label for="exampleDirection">
+                    <Label for="address">
                       Dirección
                     </Label>
                   </FormGroup>
@@ -87,21 +102,57 @@ function EditProfile(props) {
                       id="city"
                       name="city"
                       placeholder="city"
-                      type="city"
+                      type="text"
                       value={inputCity}
                       onChange={(e) =>
                         setInputCity(e.target.value)
                       }
                     />
-                    <Label for="exampleCity">
+                    <Label for="city">
                       Ciudad
                     </Label>
                   </FormGroup>
+                  <Row>
+                    <Col>
+                      <FormGroup check>
+                        <Input
+                          id="userType"
+                          name="userType"
+                          placeholder="userType"
+                          type="radio"
+                          value={inputUserType}
+                          onChange={(e) =>
+                            setInputUserType(e.target.value)}
+                        />
+                        {' '}
+                        <Label check>
+                          Soy Cliente
+                        </Label>
+                      </FormGroup>
+                    </Col>
+                    <Col>
+                      <FormGroup check>
+                        <Input
+                          id="userType"
+                          name="userType"
+                          placeholder="userType"
+                          type="radio"
+                          value={inputUserType}
+                          onChange={(e) =>
+                            setInputUserType(e.target.value)}
+                        />
+                        {' '}
+                        <Label check>
+                          Soy Estilista
+                        </Label>
+                      </FormGroup>
+                    </Col>
+                  </Row>
                 </Col>
                 <Button className="editProfile" onClick={onSubmitProfile} style={{
-                      backgroundColor: '#E9478A',
-                      color: '#ffff'
-                    }}>
+                  backgroundColor: '#E9478A',
+                  color: '#ffff'
+                }}>
                   Guardar
                 </Button>
               </Row>

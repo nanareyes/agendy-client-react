@@ -10,7 +10,7 @@ function Register(props) {
     setInputEmail,
     setInputPassword,
     setInputPassword2,
-    setInputType,
+    setInputUserType,
     onRegister,
   } = useRegister();
 
@@ -90,7 +90,7 @@ function Register(props) {
                     placeholder="TypeCliente"
                     type="radio"
                     onChange={(e) =>
-                      setInputType(e.target.value)}
+                      setInputUserType(e.target.value)}
                   />
                   {' '}
                   <Label check>
@@ -106,7 +106,7 @@ function Register(props) {
                     placeholder="TypeCliente"
                     type="radio"
                     onChange={(e) =>
-                      setInputType(e.target.value)}
+                      setInputUserType(e.target.value)}
                   />
                   {' '}
                   <Label check>

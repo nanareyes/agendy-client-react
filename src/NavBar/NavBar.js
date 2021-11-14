@@ -32,17 +32,17 @@ const NavBar = () => {
               navbar
             >
               <NavItem>
-                <NavLink href="/">
+                <NavLink href="home">
                   Servicios
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/">
+                <NavLink  href="home">
                   Agenda
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/">
+                <NavLink href="home">
                   Nuestro Equipo
                 </NavLink>
               </NavItem>

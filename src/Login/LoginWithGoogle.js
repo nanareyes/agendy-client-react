@@ -2,30 +2,72 @@ import React from "react";
 import GoogleLogin from 'react-google-login';
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from 'recoil';
-import {userState} from '../atoms';
+import { userState } from '../atoms';
+import axios from "axios";
 
 // El componente detecta si se trata de un login o registro
 // con la propiedad isSignUp. Por defecto es false, indicando
 // que es solo un login
 function LoginWithGoogle({ isSignUp = false }) {
   // No se utiliza el estado local del componente sino
-  // el estado de recoil. Asi es posible reusarlo en 
+  // el estado de recoil. Asi es posible reusarlo en
   // otros componentes, como NavBar
-  const [user, setUSer] = useRecoilState(userState);
+  const [user, setUser] = useRecoilState(userState);
   const navigate = useNavigate();
 
   const onGoogleLogin = (response) => {
     console.log(response);
     console.log(response.profileObj);
+
     // ACtualiza los datos del usuario en el state
-    setUSer({
-      isAuthenticated: true,
+    axios.post('https://agendy-api.herokuapp.com/login', {
+      name: response.profileObj.name,
+      email: response.profileObj.email,
       loginType: 'GOOGLE',
-      ...response.profileObj
-    });
-    console.info("user", user);
-    // Lo envia al home
-    navigate("/home");
+      googleId: response.profileObj.googleId,
+      googleProfile: response.profileObj
+    })
+      .then(function (response) {
+        console.log('login exitoso')
+        setUser({
+          isAuthenticaded: true,
+          ...response.data.userDB,
+          token: response.data.token
+        });
+        navigate("home");
+      })
+      .catch(function (error) {
+        // console.log(error);
+        console.log('Usuario no registrado')
+        alert('Usuario no registrado')
+      });
+  }
+
+  const onGoogleRegister = (response) => {
+    console.log(response);
+    console.log(response.profileObj);
+
+    axios.post('https://agendy-api.herokuapp.com/api/new-user', {
+      name: response.profileObj.name,
+      email: response.profileObj.email,
+      loginType: 'GOOGLE',
+      googleId: response.profileObj.googleId,
+      googleProfile: response.profileObj
+    })
+      .then(function (response) {
+        console.log('Registro exitoso')
+        setUser({
+          isAuthenticaded: true,
+          ...response.data.userDB,
+          token: response.data.token
+        });
+        navigate("/home");
+      })
+      .catch(function (error) {
+        // console.log(error);
+        console.log('Usuario no registrado')
+        alert('Error, el registro no fue exitoso')
+      });
   }
 
   const onGoogleLoginError = (response) => {
@@ -40,7 +82,7 @@ function LoginWithGoogle({ isSignUp = false }) {
         // render={renderProps => (
         //   <button onClick={renderProps.onClick} disabled={renderProps.disabled}>This is my custom Google button</button>
         // )}
-        onSuccess={onGoogleLogin}
+        onSuccess={isSignUp ? onGoogleRegister : onGoogleLogin}
         onFailure={onGoogleLoginError}
         cookiePolicy={'single_host_origin'}
       />
