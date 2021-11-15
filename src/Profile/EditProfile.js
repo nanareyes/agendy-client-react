@@ -16,12 +16,7 @@ function EditProfile(props) {
     setInputAddress,
     setInputCity,
     setInputUserType,
-    userDateOFBirth,
-    userPhone,
-    userAddress,
-    userCity,
     userName,
-    userUserType,
     onSubmitProfile,
   } = useProfile();
 
@@ -32,12 +27,6 @@ function EditProfile(props) {
     <React.Fragment>
       <Row>
         <Col sm="4">
-          Nombre {userName}<br />
-          Fecha de nacimiento {userDateOFBirth} <br />
-          Teléfono {userPhone} <br />
-          Dirección {userAddress} <br />
-          Ciudad {userCity} <br />
-          Tipo de usuario {userUserType} <br />
         </Col>
         <Col sm="7">
           <Card>

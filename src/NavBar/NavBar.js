@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink as RRNavLink } from 'react-router-dom';
 import { NavbarBrand, Row, Navbar, Nav, NavLink, NavItem, NavbarToggler, Collapse, DropdownMenu, DropdownItem, DropdownToggle, UncontrolledDropdown, CardImg } from 'reactstrap';
 import { Link } from "react-router-dom";
 import { AvatarUser } from "./AvatarUser";
@@ -7,7 +8,7 @@ import logo1 from '../assets/logo1.png'
 
 
 const NavBar = () => {
-  const  {
+  const {
     userName,
     onLogout
   } = useNavBar();
@@ -22,7 +23,7 @@ const NavBar = () => {
           light
 
         >
-          <NavbarBrand href="/">
+          <NavbarBrand >
             <img src={logo1} className="App-logo" alt="logo" />
           </NavbarBrand>
           <NavbarToggler onClick={function noRefCheck() { }} />
@@ -32,17 +33,17 @@ const NavBar = () => {
               navbar
             >
               <NavItem>
-                <NavLink href="home">
+                <NavLink to="/home" activeClassName="active" tag={RRNavLink}>
                   Servicios
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink  href="home">
+                <NavLink to="/home" activeClassName="active" tag={RRNavLink}>
                   Agenda
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="home">
+                <NavLink to="/home" activeClassName="active" tag={RRNavLink}>
                   Nuestro Equipo
                 </NavLink>
               </NavItem>

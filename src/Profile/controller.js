@@ -1,13 +1,13 @@
 import axios from 'axios';
 import { DateTime } from 'luxon';
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { userState } from '../atoms';
 
 
 const useProfile = () => {
-  let navigate = useNavigate();
+  // let navigate = useNavigate();
   const [user, setUser] = useRecoilState(userState);
 
   console.log("User en Profile controller", user);

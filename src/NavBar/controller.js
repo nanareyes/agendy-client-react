@@ -6,7 +6,7 @@ const useNavBar = () => {
   const [user, setUser] = useRecoilState(userState);
   const navigate = useNavigate();
 
-  const userName = user.loginType === 'GOOGLE' ? user.givenName : user.name;
+  const userName = user.loginType === 'GOOGLE' ? user.name : user.name;
 
   const onLogout = () => {
     // Para salir, se actualiza el userState, seteando
