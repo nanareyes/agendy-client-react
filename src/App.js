@@ -8,14 +8,14 @@ import { Profile } from './Profile/Profile';
 function App() {
   return (
     <div className="App">
-        <Routes>
+      <Routes>
         <Route path="home" element={<Home />} />
         <Route path="/" element={<Landing />} />
         <Route path="register" element={<Register />} />
         <Route path="profile" element={<Profile />} />
       </Routes>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
