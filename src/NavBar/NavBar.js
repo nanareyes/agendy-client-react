@@ -5,7 +5,11 @@ import { Link } from "react-router-dom";
 import { AvatarUser } from "./AvatarUser";
 import { useNavBar } from "./controller";
 import logo1 from '../assets/logo1.png'
+import styled from 'styled-components'
 
+const StyledNavBar = styled.img`
+  width: 150px;
+`
 
 const NavBar = () => {
   const {
@@ -24,7 +28,7 @@ const NavBar = () => {
 
         >
           <NavbarBrand >
-            <img src={logo1} className="App-logo" alt="logo" />
+            <StyledNavBar src={logo1} className="App-logo" alt="logo" />
           </NavbarBrand>
           <NavbarToggler onClick={function noRefCheck() { }} />
           <Collapse navbar>
