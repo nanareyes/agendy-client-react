@@ -3,6 +3,14 @@ import { Form, FormGroup, Col, Input, Label, Button, Row } from 'reactstrap';
 import { Logo } from '../Logo/Logo';
 import { useRegister } from './controller';
 import { LoginWithGoogle } from '../Login/LoginWithGoogle';
+import styled from 'styled-components'
+
+const ActionsContainer = styled.div`
+  display: grid;
+  width: 100%;
+  grid-gap: 1rem;
+  place-items: center;
+`
 
 function Register(props) {
   const {
@@ -14,6 +22,35 @@ function Register(props) {
     onRegister,
   } = useRegister();
 
+  // styles || Considerar refactorizar a styled components
+  const inputStyle = {
+    border: '2px solid var(--vino)',
+    color: 'var(--vino)',
+    padding: '0.8rem .75rem',
+  }
+
+  const formStyle = {
+    width: '50%',
+    minWidth: '280px',
+    display: 'grid',
+    alignItems: 'center',
+  }
+
+  const buttonStyle = {
+    width: '100%',
+    backgroundColor: 'var(--fucsia)',
+    color: 'var(--white)',
+    fontFamily: 'Ubuntu',
+    border: 'none',
+  }
+
+
+  const pinkDivider = {
+    width: '80%',
+    margin: '1rem auto',
+    border: '2px solid var(--fucsia)',
+  }
+
   return (
     <React.Fragment>
       <Row>
@@ -21,12 +58,13 @@ function Register(props) {
           <Logo />
         </Col>
         <Col>
-          <Form inline>
+          <Form style={formStyle} inline>
             <Col>
               <FormGroup floating>
                 <Input
                   id="Name"
                   name="name"
+                  style={inputStyle}
                   placeholder="Name"
                   type="name"
                   onChange={(e) =>
@@ -42,6 +80,7 @@ function Register(props) {
                 <Input
                   id="exampleEmail"
                   name="email"
+                  style={inputStyle}
                   placeholder="Email"
                   type="email"
                   onChange={(e) =>
@@ -57,6 +96,7 @@ function Register(props) {
                 <Input
                   id="examplePassword"
                   name="password"
+                  style={inputStyle}
                   placeholder="Password"
                   type="password"
                   onChange={(e) =>
@@ -71,6 +111,7 @@ function Register(props) {
                 <Input
                   id="examplePassword2"
                   name="password2"
+                  style={inputStyle}
                   placeholder="Password2"
                   type="password"
                   onChange={(e) =>
@@ -115,18 +156,15 @@ function Register(props) {
                 </FormGroup>
               </Col>
             </Row>
-            <br />
-            <Col>
-              <Button className="register" onClick={onRegister}>
+            <ActionsContainer>
+              <Button style={buttonStyle} className="register" onClick={onRegister}>
                 Registrarme
               </Button>
-            </Col>
-            <Col>
+            </ActionsContainer>
+            <hr style={pinkDivider} />
+            <ActionsContainer>
               <LoginWithGoogle isSignUp={true} />
-            </Col>
-            <br />
-            <Col>
-            </Col>
+            </ActionsContainer>
           </Form>
         </Col>
       </Row>
