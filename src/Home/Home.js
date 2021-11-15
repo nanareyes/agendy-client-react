@@ -1,8 +1,17 @@
 import React from 'react'
-import { NavBar } from '../NavBar/NavBar'
-//import { Container, Row } from 'reactstrap'
-import { Card, CardBody, CardImg, CardTitle, CardGroup } from 'reactstrap'
+import {
+  Card,
+  CardBody,
+  Row,
+  Col,
+  CardImg,
+  CardTitle,
+  CardGroup,
+} from 'reactstrap'
 import { useNavigate } from 'react-router-dom'
+import agenda from '../assets/imagesHome/agenda.jpg'
+import manosypies from '../assets/imagesHome/manosypies.jpg'
+import { NavBar } from '../NavBar/NavBar'
 
 const Home = () => {
   const history = useNavigate()
@@ -18,45 +27,51 @@ const Home = () => {
   return (
     <div>
       <NavBar />
-      <CardGroup>
-        <Card>
-          <CardImg
-            alt="Card image cap"
-            src="./Group.jpg"
-            top
-            width="100%"
-            onClick={onClickManosypies}
-          />
-          <CardBody>
-            <CardTitle tag="h5">MANOS Y PIES</CardTitle>
-          </CardBody>
-        </Card>
-        <Card>
-          <CardImg
-            alt="Card image cap"
-            src="./Group.jpg"
-            top
-            width="100%"
-            onClick={onClickGaleria}
-          />
-          <CardBody>
-            <CardTitle tag="h5">GALERIA</CardTitle>
-          </CardBody>
-        </Card>
-        <Card>
-          <CardImg
-            alt="Card image cap"
-            src="./Group 46.jpg"
-            top
-            width="100%"
-            onClick={onClickAgenda}
-          />
-          <CardBody>
-            <CardTitle tag="h5">AGENDA</CardTitle>
-          </CardBody>
-        </Card>
-      </CardGroup>
+      <Row>
+        <Col sm="2"></Col>
+        <Col sm="8">
+          <CardGroup>
+            <Card>
+              <CardImg
+                alt="Card image cap"
+                src={manosypies}
+                top
+                width="100%"
+                onClick={onClickManosypies}
+              />
+              <CardBody>
+                <CardTitle tag="h5">MANOS Y PIES</CardTitle>
+              </CardBody>
+            </Card>
+            <Card>
+              <CardImg
+                alt="Card image cap"
+                src={manosypies}
+                top
+                width="100%"
+                onClick={onClickGaleria}
+              />
+              <CardBody>
+                <CardTitle tag="h5">GALERIA</CardTitle>
+              </CardBody>
+            </Card>
+            <Card>
+              <CardImg
+                alt="Card image cap"
+                src={agenda}
+                top
+                width="100%"
+                onClick={onClickAgenda}
+              />
+              <CardBody>
+                <CardTitle tag="h5">AGENDA</CardTitle>
+              </CardBody>
+            </Card>
+          </CardGroup>
+        </Col>
+      </Row>
     </div>
   )
 }
-export default Home
+
+export { Home }
