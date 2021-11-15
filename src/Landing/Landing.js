@@ -17,6 +17,7 @@ const StyledImage = styled.img`
 `
 
 function Landing(props) {
+
   return (
     <React.Fragment>
       <LandingContainer>

@@ -2,7 +2,7 @@ import React from 'react';
 import { Form, FormGroup, Col, Input, Label, Button, Row } from 'reactstrap';
 import { Logo } from '../Logo/Logo';
 import { useRegister } from './controller';
-
+import { LoginWithGoogle } from '../Login/LoginWithGoogle';
 
 function Register(props) {
   const {
@@ -10,7 +10,7 @@ function Register(props) {
     setInputEmail,
     setInputPassword,
     setInputPassword2,
-    setInputType,
+    setInputUserType,
     onRegister,
   } = useRegister();
 
@@ -90,7 +90,7 @@ function Register(props) {
                     placeholder="TypeCliente"
                     type="radio"
                     onChange={(e) =>
-                      setInputType(e.target.value)}
+                      setInputUserType(e.target.value)}
                   />
                   {' '}
                   <Label check>
@@ -106,7 +106,7 @@ function Register(props) {
                     placeholder="TypeCliente"
                     type="radio"
                     onChange={(e) =>
-                      setInputType(e.target.value)}
+                      setInputUserType(e.target.value)}
                   />
                   {' '}
                   <Label check>
@@ -121,12 +121,11 @@ function Register(props) {
                 Registrarme
               </Button>
             </Col>
+            <Col>
+              <LoginWithGoogle isSignUp={true} />
+            </Col>
             <br />
             <Col>
-              <Button className="google" onClick={''}>
-                <i class="bi bi-google"></i>
-                <span className="google mx-3">Registrarme con google</span>
-              </Button>
             </Col>
           </Form>
         </Col>
