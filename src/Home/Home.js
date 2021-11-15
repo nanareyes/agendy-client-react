@@ -1,17 +1,9 @@
-import React from 'react'
-import {
-  Card,
-  CardBody,
-  Row,
-  Col,
-  CardImg,
-  CardTitle,
-  CardGroup,
-} from 'reactstrap'
+import React from "react";
+import { Card, CardBody, Row, Col, CardImg, CardTitle, CardGroup } from 'reactstrap'
 import { useNavigate } from 'react-router-dom'
 import agenda from '../assets/imagesHome/agenda.jpg'
 import manosypies from '../assets/imagesHome/manosypies.jpg'
-import { NavBar } from '../NavBar/NavBar'
+import { NavBar } from '../NavBar/NavBar';
 
 const Home = () => {
   const history = useNavigate()
@@ -28,7 +20,8 @@ const Home = () => {
     <div>
       <NavBar />
       <Row>
-        <Col sm="2"></Col>
+        <Col sm="2">
+        </Col>
         <Col sm="8">
           <CardGroup>
             <Card>

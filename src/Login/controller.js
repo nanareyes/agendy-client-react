@@ -1,17 +1,18 @@
+import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
-import { useState } from 'react';
+import { useRecoilState } from 'recoil';
+import { userState } from '../atoms';
 
 const useLogin = () => {
   let navigate = useNavigate();
+  const [, setUser] = useRecoilState(userState);
 
   const [inputEmail, setInputEmail] = useState('');
   const [inputPassword, setInputPassword] = useState('');
 
   const loginHandler = (e) => {
     e.preventDefault();
-    // console.log('aquí funciona el boton',inputEmail,inputPassword)
-
 
     axios.post('https://agendy-api.herokuapp.com/login', {
       email: inputEmail,
@@ -19,6 +20,11 @@ const useLogin = () => {
     })
       .then(function (response) {
         console.log('login exitoso')
+        setUser({
+          isAuthenticaded: true,
+          ...response.data.userDB,
+          token: response.data.token
+        });
         navigate("home");
       })
       .catch(function (error) {
