@@ -1,0 +1,17 @@
+{
+  "recommendations": [
+    "jpoissonnier.vscode-styled-components",
+    "simonsiefke.prettier-vscode",
+    "syler.sass-indented",
+    "pkief.material-icon-theme",
+    "dsznajder.es7-react-js-snippets",
+    "dbaeumer.vscode-eslint",
+    "abusaidm.html-snippets",
+    "zignd.html-css-class-completion",
+    "xabikos.javascriptsnippets",
+    "christian-kohler.path-intellisense",
+    "eamodio.gitlens",
+    "waderyan.gitblame",
+    "ms-azuretools.vscode-docker"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "editor.formatOnSave": true,
+  "emmet.includeLanguages": {
+    "javascript": "html"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "SimonSiefke.prettier-vscode"
+  },
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": false
+}
