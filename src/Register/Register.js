@@ -1,8 +1,9 @@
-import React from 'react';
-import { Form, FormGroup, Col, Input, Label, Button, Row } from 'reactstrap';
-import { Logo } from '../Logo/Logo';
-import { useRegister } from './controller';
-import { LoginWithGoogle } from '../Login/LoginWithGoogle';
+import React from 'react'
+import { Form, FormGroup, Input, Label, Button } from 'reactstrap'
+import { Logo } from '../Logo/Logo'
+import { useRegister } from './controller'
+import { LoginWithGoogle } from '../Login/LoginWithGoogle'
+import { LandingContainer } from '../StyledComponents/LandingContainer'
 import styled from 'styled-components'
 
 const ActionsContainer = styled.div`
@@ -20,7 +21,7 @@ function Register(props) {
     setInputPassword2,
     setInputUserType,
     onRegister,
-  } = useRegister();
+  } = useRegister()
 
   // styles || Considerar refactorizar a styled components
   const inputStyle = {
@@ -44,7 +45,6 @@ function Register(props) {
     border: 'none',
   }
 
-
   const pinkDivider = {
     width: '80%',
     margin: '1rem auto',
@@ -53,111 +53,80 @@ function Register(props) {
 
   return (
     <React.Fragment>
-      <Row>
-        <Col>
-          <Logo />
-        </Col>
-        <Col>
+      <LandingContainer>
+        <Logo />
+        <div>
           <Form style={formStyle} inline>
-            <Col>
-              <FormGroup floating>
-                <Input
-                  id="Name"
-                  name="name"
-                  style={inputStyle}
-                  placeholder="Name"
-                  type="name"
-                  onChange={(e) =>
-                    setInputName(e.target.value)
-                  }
-                />
-                <Label for="exampleEmail">
-                  Nombres
-                </Label>
-              </FormGroup>
-              {' '}
-              <FormGroup floating>
-                <Input
-                  id="exampleEmail"
-                  name="email"
-                  style={inputStyle}
-                  placeholder="Email"
-                  type="email"
-                  onChange={(e) =>
-                    setInputEmail(e.target.value)
-                  }
-                />
-                <Label for="exampleEmail">
-                  Correo
-                </Label>
-              </FormGroup>
-              {' '}
-              <FormGroup floating>
-                <Input
-                  id="examplePassword"
-                  name="password"
-                  style={inputStyle}
-                  placeholder="Password"
-                  type="password"
-                  onChange={(e) =>
-                    setInputPassword(e.target.value)}
-                />
-                <Label for="examplePassword">
-                  Contraseña
-                </Label>
-              </FormGroup>
-              {' '}
-              <FormGroup floating>
-                <Input
-                  id="examplePassword2"
-                  name="password2"
-                  style={inputStyle}
-                  placeholder="Password2"
-                  type="password"
-                  onChange={(e) =>
-                    setInputPassword2(e.target.value)}
-                />
-                <Label for="examplePassword">
-                  Confirmar contraseña
-                </Label>
-              </FormGroup>
-            </Col>
-            <Row>
-              <Col>
-                <FormGroup check>
-                  <Input
-                    id="TypeCliente"
-                    name="TypeCliente"
-                    placeholder="TypeCliente"
-                    type="radio"
-                    onChange={(e) =>
-                      setInputUserType(e.target.value)}
-                  />
-                  {' '}
-                  <Label check>
-                    Soy Cliente
-                  </Label>
-                </FormGroup>
-              </Col>
-              <Col>
-                <FormGroup check>
-                  <Input
-                    id="TypeCliente"
-                    name="TypeCliente"
-                    placeholder="TypeCliente"
-                    type="radio"
-                    onChange={(e) =>
-                      setInputUserType(e.target.value)}
-                  />
-                  {' '}
-                  <Label check>
-                    Soy Estilista
-                  </Label>
-                </FormGroup>
-              </Col>
-            </Row>
+            <FormGroup floating>
+              <Input
+                id="Name"
+                name="name"
+                style={inputStyle}
+                placeholder="Name"
+                type="name"
+                onChange={(e) => setInputName(e.target.value)}
+              />
+              <Label for="exampleEmail">Nombres</Label>
+            </FormGroup>{' '}
+            <FormGroup floating>
+              <Input
+                id="exampleEmail"
+                name="email"
+                style={inputStyle}
+                placeholder="Email"
+                type="email"
+                onChange={(e) => setInputEmail(e.target.value)}
+              />
+              <Label for="exampleEmail">Correo</Label>
+            </FormGroup>{' '}
+            <FormGroup floating>
+              <Input
+                id="examplePassword"
+                name="password"
+                style={inputStyle}
+                placeholder="Password"
+                type="password"
+                onChange={(e) => setInputPassword(e.target.value)}
+              />
+              <Label for="examplePassword">Contraseña</Label>
+            </FormGroup>{' '}
+            <FormGroup floating>
+              <Input
+                id="examplePassword2"
+                name="password2"
+                style={inputStyle}
+                placeholder="Password2"
+                type="password"
+                onChange={(e) => setInputPassword2(e.target.value)}
+              />
+              <Label for="examplePassword">Confirmar contraseña</Label>
+            </FormGroup>
+            <FormGroup check>
+              <Input
+                id="TypeCliente"
+                name="TypeCliente"
+                placeholder="TypeCliente"
+                type="radio"
+                onChange={(e) => setInputUserType(e.target.value)}
+              />{' '}
+              <Label check>Soy Cliente</Label>
+            </FormGroup>
+            <FormGroup check>
+              <Input
+                id="TypeCliente"
+                name="TypeCliente"
+                placeholder="TypeCliente"
+                type="radio"
+                onChange={(e) => setInputUserType(e.target.value)}
+              />{' '}
+              <Label check>Soy Estilista</Label>
+            </FormGroup>
             <ActionsContainer>
-              <Button style={buttonStyle} className="register" onClick={onRegister}>
+              <Button
+                style={buttonStyle}
+                className="register"
+                onClick={onRegister}
+              >
                 Registrarme
               </Button>
             </ActionsContainer>
@@ -166,10 +135,10 @@ function Register(props) {
               <LoginWithGoogle isSignUp={true} />
             </ActionsContainer>
           </Form>
-        </Col>
-      </Row>
+        </div>
+      </LandingContainer>
     </React.Fragment>
   )
 }
 
-export { Register };
+export { Register }

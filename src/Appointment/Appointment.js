@@ -1,13 +1,36 @@
 import React from 'react'
 import { SectionTitle } from '../StyledComponents/SectionTitle'
-import { TaggedTitle } from '../StyledComponents/TaggedTitle'
-// import styled from 'styled-components'
+import { CustomCalendar } from './CustomCalendar'
+import { SectionWrapper } from '../StyledComponents/SectionWrapper'
+import { NavBar } from '../NavBar/NavBar'
+
+//import styled from 'styled-components'
 
 const Appointment = () => {
+  const mainLayout = {
+    display: 'grid',
+  }
+
+  const sectionGroup = {
+    display: 'inherit',
+    padding: '1rem',
+    // gridTemplateColumns: ''
+  }
+
   return (
-    <div style={{ padding: '1rem' }}>
+    <div style={mainLayout}>
+      <NavBar />
       <SectionTitle title="AGENDAR CITA" />
-      <TaggedTitle title="Seleccionar Fecha" />
+      <div style={sectionGroup}>
+        <SectionWrapper
+          title="Seleccionar Fecha"
+          children={<CustomCalendar />}
+        />
+        <SectionWrapper
+          title="Horas disponibles"
+          children={<CustomCalendar />}
+        />
+      </div>
     </div>
   )
 }

@@ -5,7 +5,7 @@ install:
 	npm install
 
 #2. Ejecutar la aplicación en localhost
-start:
+dev:
 	npm start
 
 # ---- Comandos de Despliegue ---

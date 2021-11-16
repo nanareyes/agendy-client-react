@@ -1,7 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const WrapperContainer = styled.div`
+const WrapperContainer = styled.div.attrs((props) => ({
+  className: 'tagged-title',
+}))`
   display: inline-grid;
   background: white;
   padding: 0.5rem;
@@ -9,6 +11,8 @@ const WrapperContainer = styled.div`
   color: var(--fucsia);
   border-radius: 10px;
   transition: 0.2s all ease-in-out;
+  cursor: pointer;
+  user-select: none;
 
   &:hover {
     background-color: var(--fucsia);
@@ -20,9 +24,9 @@ const WrapperContainer = styled.div`
   }
 `
 
-const TaggedTitle = ({ title }) => {
+const TaggedTitle = ({ title, className }) => {
   return (
-    <WrapperContainer>
+    <WrapperContainer className={className}>
       <p>{title}</p>
     </WrapperContainer>
   )

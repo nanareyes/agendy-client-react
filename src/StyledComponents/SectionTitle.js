@@ -7,12 +7,15 @@ const SectionContainer = styled.div`
   width: 300px;
   place-items: center;
   user-select: none;
+  font-size: ${(props) =>
+    props.fontSize || 'clamp(1.3rem, 3.7vw - 0.3rem, 2rem)'};
+  padding: 1rem;
 `
 
-const SectionTitle = ({ title }) => {
+const SectionTitle = ({ title, fontSize }) => {
   return (
-    <SectionContainer>
-      <h1>{title}</h1>
+    <SectionContainer fontSize={fontSize}>
+      <h1 style={{ fontSize: 'inherit' }}>{title}</h1>
       <LineDivider />
     </SectionContainer>
   )
