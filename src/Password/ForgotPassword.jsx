@@ -1,23 +1,23 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import loading from '../../assets/loading.png';
+import { Spinner } from 'reactstrap';
 import Swal from 'sweetalert2';
 
-const ForgorPassword = () => {
+const ForgotPassword = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.peventDefault();
 
     const userEmail = {
-      email:e.target.email.value
+      email: e.target.email.value
     };
 
     setIsLoading(true);
-    await axios.post(process.env.REACT_APP_API_URL + '/forgotpassword', userEmail)
+    await axios.post('https://agendy-api.herokuapp.com/forgotpassword', userEmail)
       .then((res) => {
         setIsLoading(false)
-        Swal.fire ({
+        Swal.fire({
           showConfirmButton: true,
           icon: 'success',
           text: 'Revise su email, se le ha enviado un enlace para crear una nueva contraseña'
@@ -40,17 +40,20 @@ const ForgorPassword = () => {
         <input type="email" name="email" placeholder="Introduce tu email" required />
         <div className="divButton">
           {isLoading
-          ?
-          <div className="loadingImage">
-            <img src={loading} alt="loading"/>
-          </div>
-          :
-          <button type="submit">Enviar</button>
+            ?
+            <Spinner>
+              Loading...
+            </Spinner>
+            :
+            <button type="submit">Enviar</button>
           }
+          <a href="/resetpassword">
+            {' '}resetear mi contraseña ¡
+          </a>
         </div>
       </form>
     </div>
   )
 }
 
-export default ForgorPassword;
+export { ForgotPassword };
