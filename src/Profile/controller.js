@@ -23,18 +23,21 @@ const useProfile = () => {
 
   const userName = user.loginType === 'GOOGLE' ? user.givenName : user.name;
   const userId = user.loginType === 'GOOGLE' ? user.googleId : user.id;
+  const userPhoto = user.loginType === 'GOOGLE' ? user.imageUrl : user.photo;
 
+  const [inputPhoto, setInputPhoto] = useState(user.photo);
 
   const onSubmitProfile = (e) => {
     // console.log('Completar perfil', user);
     e.preventDefault();
 
     axios.put(`https://agendy-api.herokuapp.com/api/user/${user._id}`, {
+      photo: inputPhoto,
       dateOfBirth: inputDateOfBirth,
       phone: inputPhone,
       address: inputAddress,
       city: inputCity,
-      userType: inputUserType,
+      userType: inputUserType
     })
       .then(function (response) {
         console.log('Actualización exitosa')
@@ -62,11 +65,14 @@ const useProfile = () => {
   return {
     userId,
     userName,
+    userPhoto,
+    inputPhoto,
     inputDateOfBirth,
     inputPhone,
     inputAddress,
     inputCity,
     inputUserType,
+    setInputPhoto,
     setInputDateOfBirth,
     setInputPhone,
     setInputAddress,
