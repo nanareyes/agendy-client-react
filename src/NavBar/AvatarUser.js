@@ -1,18 +1,14 @@
 import React from "react";
-import { useRecoilState } from 'recoil';
-import { userState } from "../atoms";
+// import { useRecoilState } from 'recoil';
+// import { userState } from "../atoms";
 import Avatar from 'react-avatar';
-// import { useProfile } from '.Profile/controller';
 
 function AvatarUser() {
-  const [user] = useRecoilState(userState);
-  const {googleId} = user;
- const userPhoto = user.loginType === 'GOOGLE'? user.imageUrl : user.photo;
+  // const [user, setUser] = useRecoilState(userState);
 
   return (
     <React.Fragment>
-      <Avatar googleId={googleId} size="50" round={true} />
-      {/* <Image src="holder.js/171x180" roundedCircle /> */}
+      <Avatar src="" size="50" round={true} />
     </React.Fragment>
   );
 }

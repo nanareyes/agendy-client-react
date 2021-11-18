@@ -78,7 +78,7 @@ function LoginWithGoogle({ isSignUp = false }) {
       .catch(function (error) {
         // console.log(error);
         console.log('Usuario no registrado')
-        alert('Error, el registro no fue exitoso')
+        alert('Error, '+ {user}+ ' el registro no fue exitoso')
       });
   }
 

@@ -3,6 +3,7 @@ import { Card, Form, Col, Label, CardBody, FormGroup, CardHeader, Input, Button,
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { useProfile } from './controller';
 import styled from 'styled-components'
+import moment from 'moment'
 
 const ActionsContainer = styled.div`
   display: grid;
@@ -28,8 +29,6 @@ function EditProfile(props) {
     onSubmitProfile,
   } = useProfile();
 
-  // const photeSelecte = (e) => {
-  //     e.preventDefault();
 
   const inputStyle = {
     border: '2px solid var(--vino)',
@@ -92,7 +91,7 @@ function EditProfile(props) {
                         style={inputStyle}
                         placeholder="dateOfBirth"
                         type="date"
-                        value={inputDateOfBirth}
+                        value={moment(inputDateOfBirth).format('YYYY-MM-DD')}
                         onChange={(e) =>
                           setInputDateOfBirth(e.target.value)
                         }

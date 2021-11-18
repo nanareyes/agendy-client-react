@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink as RRNavLink } from 'react-router-dom';
-import { NavbarBrand, Row, Navbar, Nav, NavLink, NavItem, NavbarToggler, Collapse, DropdownMenu, DropdownItem, DropdownToggle, UncontrolledDropdown, CardImg } from 'reactstrap';
+import { NavbarBrand, Row, Navbar, Nav, NavLink, NavItem, NavbarToggler, Collapse, DropdownMenu, DropdownItem, DropdownToggle, UncontrolledDropdown } from 'reactstrap';
 import { Link } from "react-router-dom";
 import { AvatarUser } from "./AvatarUser";
 import { useNavBar } from "./controller";
@@ -37,17 +37,17 @@ const NavBar = () => {
               navbar
             >
               <NavItem>
-                <NavLink to="/home" activeClassName="active" tag={RRNavLink}>
+                <NavLink to="/home"  tag={RRNavLink}>
                   Servicios
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink to="/home" activeClassName="active" tag={RRNavLink}>
+                <NavLink to="/home" tag={RRNavLink}>
                   Agenda
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink to="/home" activeClassName="active" tag={RRNavLink}>
+                <NavLink to="/home" tag={RRNavLink}>
                   Nuestro Equipo
                 </NavLink>
               </NavItem>
