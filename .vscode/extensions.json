@@ -1,7 +1,6 @@
 {
   "recommendations": [
     "jpoissonnier.vscode-styled-components",
-    "simonsiefke.prettier-vscode",
     "syler.sass-indented",
     "pkief.material-icon-theme",
     "dsznajder.es7-react-js-snippets",
@@ -12,6 +11,7 @@
     "christian-kohler.path-intellisense",
     "eamodio.gitlens",
     "waderyan.gitblame",
-    "ms-azuretools.vscode-docker"
+    "ms-azuretools.vscode-docker",
+    "remimarsal.prettier-now"
   ]
 }

@@ -1,12 +1,20 @@
 {
   "editor.formatOnSave": true,
   "emmet.includeLanguages": {
-    "javascript": "html"
+    "javascript": "javascriptreact"
   },
-  "[javascript]": {
-    "editor.defaultFormatter": "SimonSiefke.prettier-vscode"
+  "emmet.triggerExpansionOnTab": true,
+  "files.associations": { "*.js": "javascriptreact" },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "remimarsal.prettier-now"
   },
   "editor.tabSize": 2,
   "editor.insertSpaces": true,
-  "editor.detectIndentation": false
+  "editor.detectIndentation": true,
+  "prettier.arrayExpand": true,
+  "prettier.jsxBracketSameLine": true,
+  "prettier.jsxSingleQuote": true,
+  "prettier.tabWidth": 2,
+  "prettier.trailingComma": "es5",
+  "prettier.semi": false
 }
