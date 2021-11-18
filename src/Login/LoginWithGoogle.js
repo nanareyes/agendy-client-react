@@ -1,9 +1,9 @@
-import React from "react";
-import GoogleLogin from 'react-google-login';
-import { useNavigate } from "react-router-dom";
-import { useRecoilState } from 'recoil';
-import { userState } from '../atoms';
-import axios from "axios";
+import React from 'react'
+import GoogleLogin from 'react-google-login'
+import { useNavigate } from 'react-router-dom'
+import { useRecoilState } from 'recoil'
+import { userState } from '../atoms'
+import axios from 'axios'
 import styled from 'styled-components'
 
 const CustomGoogle = styled.button`
@@ -24,66 +24,69 @@ function LoginWithGoogle({ isSignUp = false }) {
   // No se utiliza el estado local del componente sino
   // el estado de recoil. Asi es posible reusarlo en
   // otros componentes, como NavBar
-  const [user, setUser] = useRecoilState(userState);
-  const navigate = useNavigate();
+  const [user, setUser] = useRecoilState(userState)
+  console.log(user)
+  const navigate = useNavigate()
 
   const onGoogleLogin = (response) => {
-    console.log(response);
-    console.log(response.profileObj);
+    // console.log(response)
+    // console.log(response.profileObj)
 
     // ACtualiza los datos del usuario en el state
-    axios.post('https://agendy-api.herokuapp.com/login', {
-      name: response.profileObj.name,
-      email: response.profileObj.email,
-      loginType: 'GOOGLE',
-      googleId: response.profileObj.googleId,
-      googleProfile: response.profileObj
-    })
+    axios
+      .post('https://agendy-api.herokuapp.com/login', {
+        name: response.profileObj.name,
+        email: response.profileObj.email,
+        loginType: 'GOOGLE',
+        googleId: response.profileObj.googleId,
+        googleProfile: response.profileObj,
+      })
       .then(function (response) {
         console.log('login exitoso')
         setUser({
           isAuthenticaded: true,
           ...response.data.userDB,
-          token: response.data.token
-        });
-        navigate("home");
+          token: response.data.token,
+        })
+        navigate('home')
       })
       .catch(function (error) {
         // console.log(error);
         console.log('Usuario no registrado')
         alert('Usuario no registrado')
-      });
+      })
   }
 
   const onGoogleRegister = (response) => {
-    console.log(response);
-    console.log(response.profileObj);
+    console.log(response)
+    console.log(response.profileObj)
 
-    axios.post('https://agendy-api.herokuapp.com/api/new-user', {
-      name: response.profileObj.name,
-      email: response.profileObj.email,
-      loginType: 'GOOGLE',
-      googleId: response.profileObj.googleId,
-      googleProfile: response.profileObj
-    })
+    axios
+      .post('https://agendy-api.herokuapp.com/api/new-user', {
+        name: response.profileObj.name,
+        email: response.profileObj.email,
+        loginType: 'GOOGLE',
+        googleId: response.profileObj.googleId,
+        googleProfile: response.profileObj,
+      })
       .then(function (response) {
         console.log('Registro exitoso')
         setUser({
           isAuthenticaded: true,
           ...response.data.userDB,
-          token: response.data.token
-        });
-        navigate("/home");
+          token: response.data.token,
+        })
+        navigate('/home')
       })
       .catch(function (error) {
         // console.log(error);
         console.log('Usuario no registrado')
         alert('Error, el registro no fue exitoso')
-      });
+      })
   }
 
   const onGoogleLoginError = (response) => {
-    console.error("Error en Google login", response);
+    console.error('Error en Google login', response)
   }
 
   const googleButtonContainer = {
@@ -112,8 +115,7 @@ function LoginWithGoogle({ isSignUp = false }) {
         cookiePolicy={'single_host_origin'}
       />
     </div>
-
-  );
+  )
 }
 
 export { LoginWithGoogle }
