@@ -53,13 +53,7 @@ function Register(props) {
 
   return (
     <React.Fragment>
-      <Row>
-        <Col>
-          <Logo />
-        </Col>
-        <Col>
           <Form style={formStyle} inline>
-            <Col>
               <FormGroup floating>
                 <Input
                   id="Name"
@@ -121,9 +115,6 @@ function Register(props) {
                   Confirmar contraseña
                 </Label>
               </FormGroup>
-            </Col>
-            <Row>
-              <Col>
                 <FormGroup check>
                   <Input
                     id="TypeCliente"
@@ -138,8 +129,6 @@ function Register(props) {
                     Soy Cliente
                   </Label>
                 </FormGroup>
-              </Col>
-              <Col>
                 <FormGroup check>
                   <Input
                     id="TypeCliente"
@@ -154,8 +143,6 @@ function Register(props) {
                     Soy Estilista
                   </Label>
                 </FormGroup>
-              </Col>
-            </Row>
             <ActionsContainer>
               <Button style={buttonStyle} className="register" onClick={onRegister}>
                 Registrarme
@@ -166,8 +153,6 @@ function Register(props) {
               <LoginWithGoogle isSignUp={true} />
             </ActionsContainer>
           </Form>
-        </Col>
-      </Row>
     </React.Fragment>
   )
 }
