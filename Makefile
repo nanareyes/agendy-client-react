@@ -11,3 +11,7 @@ dev:
 # ---- Comandos de Despliegue ---
 build:
 	npm run build
+
+# --- Eliminar node_modules
+purge:
+	rm -rf ./node_modules

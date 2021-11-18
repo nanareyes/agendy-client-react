@@ -61,7 +61,7 @@ const NavBar = () => {
 					label: 'Mi Perfil',
 					icon: 'pi pi-user-edit',
 					command: (e) => {
-						window.location.href = '/Perfil'
+						window.location.href = '/Profile'
 					},
 				},
 				{
@@ -88,7 +88,7 @@ const NavBar = () => {
 						<a href='/agenda'>Agenda</a>
 					</li>
 					<li>
-						<a href='/agenda'>Equipo</a>
+						<a href='/team'>Equipo</a>
 					</li>
 				</ul>
 				<Menu model={items} popup ref={menu} id='popup_menu' />
