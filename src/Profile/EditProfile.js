@@ -13,17 +13,18 @@ const ActionsContainer = styled.div`
 
 function EditProfile(props) {
   const {
+    inputPhoto,
     inputDateOfBirth,
     inputPhone,
     inputAddress,
     inputCity,
     inputUserType,
+    setInputPhoto,
     setInputDateOfBirth,
     setInputPhone,
     setInputAddress,
     setInputCity,
     setInputUserType,
-    userName,
     onSubmitProfile,
   } = useProfile();
 
@@ -71,7 +72,15 @@ function EditProfile(props) {
               <Row>
                 <Col sm="5">
                   <Row>
-                    <input type="file" />
+                    <input
+                    type="file"
+                    style={buttonStyle}
+                    name="photo"
+                    value={inputPhoto}
+                    accept="image/png, image/jpeg"
+                    onChange={(e) =>
+                          setInputPhoto(e.target.value)}
+                    />
                   </Row>
                 </Col>
                 <Col sm="7">

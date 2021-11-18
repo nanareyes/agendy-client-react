@@ -12,8 +12,12 @@
     "bootstrap-icons": "^1.7.0",
     "history": "^5.1.0",
     "luxon": "^2.1.1",
+<<<<<<< HEAD
     "primeicons": "^5.0.0",
     "primereact": "^7.0.0",
+=======
+    "password-regex-js": "^1.0.5",
+>>>>>>> 7c85a8a1b3b9a3be0d45af1b4920ac4c6414f84b
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-avatar": "^3.10.0",
@@ -24,6 +28,7 @@
     "reactstrap": "^9.0.0",
     "recoil": "^0.5.2",
     "styled-components": "^5.3.3",
+    "sweetalert2": "^11.1.10",
     "web-vitals": "^1.0.1"
   },
   "scripts": {

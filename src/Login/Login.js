@@ -79,7 +79,7 @@ function Login(props) {
           <Button style={buttonStyle} className="login" onClick={loginHandler}>
             Iniciar Sesión
           </Button>
-          <a style={linkStyles} href="/">
+          <a style={linkStyles} href="/forgotpassword">
             {' '}
             ! olvidé mi contraseña ¡
           </a>
