@@ -22,6 +22,7 @@ function Register(props) {
 		onRegister,
 	} = useRegister()
 
+	
 	// styles || Considerar refactorizar a styled components
 	const inputStyle = {
 		border: '2px solid var(--vino)',
@@ -100,8 +101,9 @@ function Register(props) {
 				<FormGroup check>
 					<Input
 						id='TypeCliente'
-						name='TypeCliente'
+						name='Cliente'
 						placeholder='TypeCliente'
+						value='Cliente'
 						type='radio'
 						onChange={(e) => setInputUserType(e.target.value)}
 					/>{' '}
@@ -109,10 +111,11 @@ function Register(props) {
 				</FormGroup>
 				<FormGroup check>
 					<Input
-						id='TypeCliente'
-						name='TypeCliente'
-						placeholder='TypeCliente'
+						id='TypeEstilista'
+						name='Estilista'
+						placeholder='TypeEstilista'
 						type='radio'
+						value='Estilista'
 						onChange={(e) => setInputUserType(e.target.value)}
 					/>{' '}
 					<Label check>Soy Estilista</Label>

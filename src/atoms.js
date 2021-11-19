@@ -7,4 +7,14 @@ const userState = atom({
   }, 
 });
 
-export { userState };
+const fileState = atom({
+  key: 'fileState',
+  default: undefined, 
+});
+
+const loadingState = atom({
+  key: 'loadingState',
+  default: false, 
+});
+
+export { userState, fileState, loadingState };

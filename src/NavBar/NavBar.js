@@ -1,14 +1,14 @@
 import React, { useRef } from 'react'
-// import { NavLink as RRNavLink } from 'react-router-dom'
-import { AvatarUser } from './AvatarUser'
-// import { useNavBar } from './controller'
+import { useNavBar } from './controller'
 import logo1 from '../assets/logo1.png'
+import { useNavigate } from "react-router-dom";
 import styled from 'styled-components'
-
 import { Menu } from 'primereact/menu'
 import { Button } from 'primereact/button'
-
 import { StyledImage } from '../StyledComponents/StyledImage'
+import { userState } from '../atoms'
+import { useRecoilState } from 'recoil';
+import { AvatarNavbar } from '../StyledComponents/Avatar'
 
 const NavContainer = styled.div`
 	display: flex;
@@ -52,7 +52,10 @@ const NavContainer = styled.div`
 `
 
 const NavBar = () => {
-	// const { userName, onLogout } = useNavBar()
+
+	let navigate = useNavigate();
+	const [user, setUser] = useRecoilState(userState);
+	const { userName, onLogout } = useNavBar()
 	const menu = useRef(null)
 	const items = [
 		{
@@ -61,20 +64,20 @@ const NavBar = () => {
 					label: 'Mi Perfil',
 					icon: 'pi pi-user-edit',
 					command: (e) => {
-						window.location.href = '/Profile'
+						navigate('/profile')
 					},
 				},
 				{
 					label: 'Salir',
 					icon: 'pi pi-sign-out',
 					command: (e) => {
-						window.location.href = '/'
+						onLogout()
 					},
 				},
 			],
 		},
 	]
-	const userName = 'John Doe'
+
 
 	return (
 		<React.Fragment>
@@ -82,13 +85,14 @@ const NavBar = () => {
 				<StyledImage src={logo1} size='180px' />
 				<ul className='link-list'>
 					<li>
-						<a href='/home'>Servicios</a>
+						<a
+							href='/home'>Servicios</a>
 					</li>
 					<li>
-						<a href='/agenda'>Agenda</a>
+						<a href='/home' >Agenda</a>
 					</li>
 					<li>
-						<a href='/team'>Equipo</a>
+						<a href='/home'>Equipo</a>
 					</li>
 				</ul>
 				<Menu model={items} popup ref={menu} id='popup_menu' />
@@ -101,7 +105,9 @@ const NavBar = () => {
 						Bienvenid@ <br /> {userName}{' '}
 					</span>
 					<i className='pi pi-angle-down' />
-					<AvatarUser />
+					<AvatarNavbar
+          src={ user?.imageUrl }
+          />
 				</Button>
 			</NavContainer>
 		</React.Fragment>

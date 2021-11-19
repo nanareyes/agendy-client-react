@@ -1,9 +1,10 @@
 import React from 'react'
-import { Card, Form, Col, Label, CardBody, FormGroup, CardHeader, Input, Button, Row } from 'reactstrap';
+import { Card, Form, Col, Label, CardBody, FormGroup, CardHeader, Input, Button, Row, Spinner } from 'reactstrap';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { useProfile } from './controller';
 import styled from 'styled-components'
-import moment from 'moment'
+import { PhotoProfile } from './PhotoProfile'
+// import moment from 'moment'
 
 const ActionsContainer = styled.div`
   display: grid;
@@ -14,21 +15,21 @@ const ActionsContainer = styled.div`
 
 function EditProfile(props) {
   const {
-    inputPhoto,
     inputDateOfBirth,
     inputPhone,
     inputAddress,
     inputCity,
-    inputUserType,
-    setInputPhoto,
     setInputDateOfBirth,
     setInputPhone,
     setInputAddress,
     setInputCity,
     setInputUserType,
     onSubmitProfile,
+    inputFile,
+    loading
   } = useProfile();
 
+  console.log("inputFile en EditProfile", inputFile)
 
   const inputStyle = {
     border: '2px solid var(--vino)',
@@ -68,18 +69,14 @@ function EditProfile(props) {
               COMPLETA TU PERFIL
             </CardHeader>
             <CardBody>
+              {loading && (
+                <Spinner color="primary" />
+              )}
+              {!loading && (
               <Row>
                 <Col sm="5">
                   <Row>
-                    <input
-                    type="file"
-                    style={buttonStyle}
-                    name="photo"
-                    value={inputPhoto}
-                    accept="image/png, image/jpeg"
-                    onChange={(e) =>
-                          setInputPhoto(e.target.value)}
-                    />
+                    <PhotoProfile />
                   </Row>
                 </Col>
                 <Col sm="7">
@@ -91,7 +88,8 @@ function EditProfile(props) {
                         style={inputStyle}
                         placeholder="dateOfBirth"
                         type="date"
-                        value={moment(inputDateOfBirth).format('YYYY-MM-DD')}
+                        // value={moment(inputDateOfBirth).format('YYYY-MM-DD')}
+                        value={inputDateOfBirth}
                         onChange={(e) =>
                           setInputDateOfBirth(e.target.value)
                         }
@@ -153,10 +151,10 @@ function EditProfile(props) {
                         <FormGroup check>
                           <Input
                             id="userType"
-                            name="userType"
+                            name="Cliente"
                             placeholder="userType"
                             type="radio"
-                            value={inputUserType}
+                            value='Cliente'
                             onChange={(e) =>
                               setInputUserType(e.target.value)}
                           />
@@ -170,10 +168,10 @@ function EditProfile(props) {
                         <FormGroup check>
                           <Input
                             id="userType"
-                            name="userType"
+                            name="Estilista"
                             placeholder="userType"
                             type="radio"
-                            value={inputUserType}
+                            value='Estilista'
                             onChange={(e) =>
                               setInputUserType(e.target.value)}
                           />
@@ -193,6 +191,7 @@ function EditProfile(props) {
                 </ActionsContainer>
                 <hr style={pinkDivider} />
               </Row>
+              )}
             </CardBody>
           </Card>
         </Col>
