@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+/* import React, {useState} from 'react';
 import {Formulario, Label, ContenedorTerminos, ContenedorBotonCentrado, Boton, MensajeExito, MensajeError} from './elementos/Formularios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
@@ -155,6 +155,16 @@ const App = () => {
 			</Formulario>
 		</main>
 	);
-}
+} */
+/* codigo de cards */
+import "./App.css";
+import Cards from "./components/Cards";
 
+function App() {
+return (
+    <div className="App">
+    <Cards />
+    </div>
+);
+}
 export default App;
