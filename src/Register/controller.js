@@ -15,17 +15,19 @@ const useRegister = () => {
   const [inputPassword2, setInputPassword2] = useState('');
   const [inputUserType, setInputUserType] = useState('');
 
+
   const onRegister = (e) => {
     e.preventDefault();
     // console.log('aquí funciona el boton',inputNombres, inputEmail,inputPassword, inputPassword2)
 
 
-    axios.post('https://agendy-api.herokuapp.com/api/new-user', {
+    axios.post(`${process.env.REACT_APP_API_URL}/api/new-user`, {
       name: inputName,
       email: inputEmail,
       password: inputPassword,
       password2: inputPassword2,
-      userType: inputUserType
+      userType: inputUserType,
+      loginType: 'AGENDY'
     })
       .then(function (response) {
         console.log('Registro exitoso')
@@ -38,7 +40,7 @@ const useRegister = () => {
       })
       .catch(function (error) {
         // console.log(error);
-        console.log('Usuario no registrado')
+        console.log(error,'Usuario no registrado')
         alert('Error, el registro no fue exitoso')
       });
   }

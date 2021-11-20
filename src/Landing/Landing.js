@@ -11,7 +11,7 @@ const StyledImage = styled.img`
 	height: auto;
 `
 
-function Landing(props) {
+const Landing = () => {
 	const returnComponent = () => {
 		const path = document.location.pathname
 		return path === '/register' ? <Register /> : <Login />

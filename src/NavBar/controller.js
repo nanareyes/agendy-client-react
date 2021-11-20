@@ -7,6 +7,7 @@ const useNavBar = () => {
   const navigate = useNavigate();
 
   const userName = user.loginType === 'GOOGLE' ? user.name : user.name;
+  const userPhoto = user.loginType === 'GOOGLE' ? user.imageUrl : user.photo;
 
   const onLogout = () => {
     // Para salir, se actualiza el userState, seteando
@@ -18,6 +19,7 @@ const useNavBar = () => {
     user,
     setUser,
     userName,
+    userPhoto,
     onLogout
   }
 }
