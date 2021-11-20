@@ -6,15 +6,9 @@
   "emmet.triggerExpansionOnTab": true,
   "files.associations": { "*.js": "javascriptreact" },
   "[javascriptreact]": {
-    "editor.defaultFormatter": "remimarsal.prettier-now"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "editor.tabSize": 2,
   "editor.insertSpaces": true,
   "editor.detectIndentation": true,
-  "prettier.arrayExpand": true,
-  "prettier.jsxBracketSameLine": true,
-  "prettier.jsxSingleQuote": true,
-  "prettier.tabWidth": 2,
-  "prettier.trailingComma": "es5",
-  "prettier.semi": false
 }

@@ -12,6 +12,6 @@
     "eamodio.gitlens",
     "waderyan.gitblame",
     "ms-azuretools.vscode-docker",
-    "remimarsal.prettier-now"
+    "esbenp.prettier-vscode"
   ]
 }

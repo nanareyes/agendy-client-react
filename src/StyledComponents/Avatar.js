@@ -5,10 +5,17 @@ const Avatar = styled.img`
   width: 150px;
   padding: 5px;
 `
-const AvatarNavbar = styled.img`
+const AvatarNavbar = styled.div.attrs((props) => ({
+  image: props.image || '',
+}))`
+  background-image: url('${(props) => props.image}');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   border-radius: 50%;
-  width: 80px;
+  width: 60px;
+  height: 60px;
   padding: 5px;
 `
 
-export { Avatar, AvatarNavbar }
+export {Avatar, AvatarNavbar}
