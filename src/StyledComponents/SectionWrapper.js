@@ -16,7 +16,7 @@ const SectionContainer = styled.section`
 const SectionWrapper = ({title, children}) => {
   return (
     <SectionContainer>
-      <TaggedTitle title={title} />
+      {title ? <TaggedTitle title={title} /> : ''}
       {children}
     </SectionContainer>
   )
