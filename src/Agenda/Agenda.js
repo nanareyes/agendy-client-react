@@ -1,8 +1,12 @@
-import React from "react";
+import React from 'react'
+import {NavBar} from '../NavBar/NavBar'
 
-const Agenda = ()=>{
+const Agenda = () => {
   return (
-   console.log('Agenda')
+    <div>
+      <NavBar />
+      Welcome to agenda
+    </div>
   )
 }
 export {Agenda}

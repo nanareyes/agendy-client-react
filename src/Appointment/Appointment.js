@@ -1,8 +1,9 @@
 import React from 'react'
-import { SectionTitle } from '../StyledComponents/SectionTitle'
-import { CustomCalendar } from './CustomCalendar'
-import { SectionWrapper } from '../StyledComponents/SectionWrapper'
-import { NavBar } from '../NavBar/NavBar'
+import {SectionTitle} from '../StyledComponents/SectionTitle'
+import {CustomCalendar} from './CustomCalendar'
+import {AvailableHours} from './AvailableHours'
+import {SectionWrapper} from '../StyledComponents/SectionWrapper'
+import {NavBar} from '../NavBar/NavBar'
 
 //import styled from 'styled-components'
 
@@ -13,8 +14,8 @@ const Appointment = () => {
 
   const sectionGroup = {
     display: 'inherit',
-    padding: '1rem',
-    // gridTemplateColumns: ''
+    gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+    gap: '1rem',
   }
 
   return (
@@ -28,11 +29,11 @@ const Appointment = () => {
         />
         <SectionWrapper
           title="Horas disponibles"
-          children={<CustomCalendar />}
+          children={<AvailableHours />}
         />
       </div>
     </div>
   )
 }
 
-export { Appointment }
+export {Appointment}

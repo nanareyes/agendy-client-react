@@ -55,6 +55,8 @@ const NavContainer = styled.div`
 const NavBar = () => {
   let navigate = useNavigate()
   const [user, setUser] = useRecoilState(userState)
+
+  console.log(setUser)
   const {userName, onLogout} = useNavBar()
   const menu = useRef(null)
   const items = [
@@ -81,13 +83,15 @@ const NavBar = () => {
   return (
     <React.Fragment>
       <NavContainer>
-        <StyledImage src={logo1} size="180px" />
+        <NavLink to="/home">
+          <StyledImage src={logo1} size="180px" />
+        </NavLink>
         <ul className="link-list">
           <li>
             <NavLink to="/home">Servicios</NavLink>
           </li>
           <li>
-            <NavLink to="/home">Agenda</NavLink>
+            <NavLink to="/agenda">Mi Agenda</NavLink>
           </li>
           <li>
             <NavLink to="/home">Equipo</NavLink>
