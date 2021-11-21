@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import {Button} from 'primereact/button'
-import {Tooltip} from 'primereact/tooltip'
 
 const TicketCard = styled.div`
   background: white;
