@@ -27,6 +27,7 @@
     "react-scripts": "^3.4.4",
     "reactstrap": "^9.0.0",
     "recoil": "^0.5.2",
+    "serve": "^13.0.2",
     "styled-components": "^5.3.3",
     "sweetalert2": "^11.1.10",
     "web-vitals": "^1.0.1"
