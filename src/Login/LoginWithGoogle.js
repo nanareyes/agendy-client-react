@@ -1,8 +1,8 @@
 import React from 'react'
 import GoogleLogin from 'react-google-login'
-import { useNavigate } from 'react-router-dom'
-import { useRecoilState } from 'recoil'
-import { userState } from '../atoms'
+import {useNavigate} from 'react-router-dom'
+import {useRecoilState} from 'recoil'
+import {userState} from '../atoms'
 import axios from 'axios'
 import styled from 'styled-components'
 
@@ -20,7 +20,7 @@ const CustomGoogle = styled.button`
 // El componente detecta si se trata de un login o registro
 // con la propiedad isSignUp. Por defecto es false, indicando
 // que es solo un login
-function LoginWithGoogle({ isSignUp = false }) {
+function LoginWithGoogle({isSignUp = false}) {
   // No se utiliza el estado local del componente sino
   // el estado de recoil. Asi es posible reusarlo en
   // otros componentes, como NavBar
@@ -34,7 +34,7 @@ function LoginWithGoogle({ isSignUp = false }) {
 
     // ACtualiza los datos del usuario en el state
     axios
-      .post(`${process.env.https://agendy-api.herokuapp.com}/login`, {
+      .post(`${process.env.REACT_APP_API_URL}/login`, {
         name: response.profileObj.name,
         email: response.profileObj.email,
         loginType: 'GOOGLE',
@@ -62,7 +62,7 @@ function LoginWithGoogle({ isSignUp = false }) {
     console.log(response.profileObj)
 
     axios
-      .post(`${process.env.https://agendy-api.herokuapp.com}/api/new-user`, {
+      .post(`${process.env.REACT_APP_API_URL}/api/new-user`, {
         name: response.profileObj.name,
         email: response.profileObj.email,
         loginType: 'GOOGLE',
@@ -104,8 +104,7 @@ function LoginWithGoogle({ isSignUp = false }) {
         render={(renderProps) => (
           <CustomGoogle
             onClick={renderProps.onClick}
-            disabled={renderProps.disabled}
-          >
+            disabled={renderProps.disabled}>
             <i style={iconStyle} className="fab fa-google"></i>
             {`${isSignUp ? 'Registrarse' : 'Ingresar'} con google`}
           </CustomGoogle>
@@ -118,4 +117,4 @@ function LoginWithGoogle({ isSignUp = false }) {
   )
 }
 
-export { LoginWithGoogle }
+export {LoginWithGoogle}
