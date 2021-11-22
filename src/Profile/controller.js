@@ -49,7 +49,7 @@ const useProfile = () => {
     e.preventDefault();
 
     setLoading(true);
-    axios.put(`${process.env.REACT_APP_API_URL}/api/user/${user._id}`, {
+    axios.put(`${process.env.https://agendy-api.herokuapp.com}/api/user/${user._id}`, {
       dateOfBirth: inputDateOfBirth,
       phone: inputPhone,
       address: inputAddress,
@@ -71,7 +71,7 @@ const useProfile = () => {
                 'content-type': 'multipart/form-data'
             }
         };
-        axios.post(`${process.env.REACT_APP_API_URL}/api/profile/${user._id}`, formData, config)
+        axios.post(`${process.env.https://agendy-api.herokuapp.com}/api/profile/${user._id}`, formData, config)
           .then(function (response) {
             setUser((currentUser) => {
               const newUser = {

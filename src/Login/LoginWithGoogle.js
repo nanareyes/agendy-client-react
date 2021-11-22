@@ -34,7 +34,7 @@ function LoginWithGoogle({ isSignUp = false }) {
 
     // ACtualiza los datos del usuario en el state
     axios
-      .post(`${process.env.REACT_APP_API_URL}/login`, {
+      .post(`${process.env.https://agendy-api.herokuapp.com}/login`, {
         name: response.profileObj.name,
         email: response.profileObj.email,
         loginType: 'GOOGLE',
@@ -62,7 +62,7 @@ function LoginWithGoogle({ isSignUp = false }) {
     console.log(response.profileObj)
 
     axios
-      .post(`${process.env.REACT_APP_API_URL}/api/new-user`, {
+      .post(`${process.env.https://agendy-api.herokuapp.com}/api/new-user`, {
         name: response.profileObj.name,
         email: response.profileObj.email,
         loginType: 'GOOGLE',
