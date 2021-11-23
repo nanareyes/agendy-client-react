@@ -32,7 +32,7 @@ const ResetPassword = (props) => {
     }
 
     setIsLoading(true);
-    await axios.put('https://agendy-api.herokuapp.com/resetpassword' + props.match.params.id + '/' + props.match.params.tokenresetpassword, userPassword, {
+    await axios.put(`${process.env.REACT_APP_API_URL}/resetpassword` + props.match.params.id + '/' + props.match.params.tokenresetpassword, userPassword, {
       where: {
         id: props.match.params.id,
         tokenresetpassword: props.match.params.tokenresetpassword

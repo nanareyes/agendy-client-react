@@ -14,7 +14,7 @@ const ForgotPassword = () => {
     };
 
     setIsLoading(true);
-    await axios.post('https://agendy-api.herokuapp.com/forgotpassword', userEmail)
+    await axios.post(`https://agendy-api.herokuapp.com/forgotpassword`, userEmail)
       .then((res) => {
         setIsLoading(false)
         Swal.fire({

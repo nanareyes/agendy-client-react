@@ -14,7 +14,7 @@ const useLogin = () => {
   const loginHandler = (e) => {
     e.preventDefault();
 
-    axios.post('https://agendy-api.herokuapp.com/login', {
+    axios.post(`${process.env.REACT_APP_API_URL}/login`, {
       email: inputEmail,
       password: inputPassword
     })
