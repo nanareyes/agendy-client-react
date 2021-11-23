@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Spinner } from 'reactstrap'
 import Swal from 'sweetalert2';
 
 const ResetPassword = (props) => {
+  let { id } = useParams();
+  let { token } = useParams();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState("");
@@ -32,10 +34,10 @@ const ResetPassword = (props) => {
     }
 
     setIsLoading(true);
-    await axios.put(`${process.env.REACT_APP_API_URL}/resetpassword` + props.match.params.id + '/' + props.match.params.tokenresetpassword, userPassword, {
+    await axios.put(`https://localhost:4000/api/resetpassword/` + id + '/' + token, userPassword, {
       where: {
-        id: props.match.params.id,
-        tokenresetpassword: props.match.params.tokenresetpassword
+        id: id,
+        token: token
       }
     })
       .then((res) => {
