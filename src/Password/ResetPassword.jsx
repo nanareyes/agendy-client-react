@@ -1,8 +1,39 @@
 import React, {useState} from 'react'
 import axios from 'axios'
 import {useNavigate, useParams} from 'react-router-dom'
-import {Spinner} from 'reactstrap'
+import {Spinner, Form, FormGroup, Button, CardImg} from 'reactstrap'
 import Swal from 'sweetalert2'
+import logo from '../assets/logo1.png'
+
+const buttonStyle = {
+  display: 'flex',
+  justify: 'center',
+  align: 'center',
+  items: 'center',
+  content: 'center',
+  width: '390.31px',
+  height: '49.16px',
+  left: '85px',
+  top: '336px',
+  background: '#E9478A',
+  border: '4px',
+}
+
+const formStyle = {
+  width: '560px',
+  height: '455px',
+  left: '469px',
+  top: '195px',
+  position: 'absolute',
+  background: '#FFFFFF',
+}
+
+const inputStyle = {
+  width: '393px',
+  height: '62.57px',
+  left: '84px',
+  top: '190px',
+}
 
 const ResetPassword = (props) => {
   let {id} = useParams()
@@ -14,8 +45,6 @@ const ResetPassword = (props) => {
   const [confirmPassword, setConfirmPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
 
-  const regExPassword = /.*/
-
   const handleSubmit = async (e) => {
     e.preventDefault()
 
@@ -26,7 +55,10 @@ const ResetPassword = (props) => {
     setIsLoading(true)
     await axios
       .put(
-        `https://localhost:4000/api/resetpassword/` + id + '/' + token,
+        `https://agendy-api.herokuapp.com/api/resetpassword/` +
+          id +
+          '/' +
+          token,
         userPassword,
         {
           where: {
@@ -68,42 +100,55 @@ const ResetPassword = (props) => {
   }
 
   return (
-    <div className="main" onSubmit={handleSubmit}>
-      <form className="mainContainer">
-        <h3>Nueva contraseña</h3>
-        <div className="divPassword"> Contraseña:*</div>
-        <div className="containerPassword">
+    <React.Fragment>
+      <Form style={formStyle} inline onSubmit={handleSubmit}>
+        <CardImg
+          src={logo}
+          top="40px"
+          width="206px"
+          height="70.63px"
+          left="178px"
+        />
+        <h4>CREAR NUEVA CONTRASEÑA</h4>
+        <FormGroup floating>
           <input
             type={showPassword ? 'text' : 'password'}
+            style={inputStyle}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             name="password"
-            placeholder="Introduce tu contraseña"
+            placeholder="Nueva contraseña"
             required
           />
-          <button onClick={switchShowPassword}>
-            {showPassword ? 'Ocultar' : 'Mostrar'}{' '}
-          </button>
-        </div>
-        <div> Confirmar contraseña:*</div>
-        <input
-          type="password"
-          value={confirmPassword}
-          onChange={(e) => checkValidation(e)}
-          name="confirmPassword"
-          placeholder="Confirma la contraseña"
-          required
-        />
+        </FormGroup>
+
+        <button onClick={switchShowPassword}>
+          {showPassword ? 'Ocultar' : 'Mostrar'}{' '}
+        </button>
+        <FormGroup floating>
+          <input
+            type="password"
+            value={confirmPassword}
+            style={inputStyle}
+            onChange={(e) => checkValidation(e)}
+            name="confirmPassword"
+            placeholder="Confirmar contraseña"
+            required
+          />
+        </FormGroup>
+
         <div className="confirmPassword">{isError}</div>
         <div className="divButton">
           {isLoading ? (
             <Spinner>Cargando...</Spinner>
           ) : (
-            <button type="submit">Enviar</button>
+            <Button style={buttonStyle} className="login" type="submit">
+              Enviar
+            </Button>
           )}
         </div>
-      </form>
-    </div>
+      </Form>
+    </React.Fragment>
   )
 }
 

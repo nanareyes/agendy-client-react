@@ -1,7 +1,39 @@
 import React, {useState} from 'react'
 import axios from 'axios'
-import {Spinner} from 'reactstrap'
+import {Spinner, Form, FormGroup, Button, CardImg} from 'reactstrap'
 import Swal from 'sweetalert2'
+import logo from '../assets/logo1.png'
+//import styled from 'styled-components'
+
+const buttonStyle = {
+  display: 'flex',
+  justify: 'center',
+  align: 'center',
+  items: 'center',
+  content: 'center',
+  width: '390.31px',
+  height: '49.16px',
+  left: '85px',
+  top: '336px',
+  background: '#E9478A',
+  border: '4px',
+}
+
+const formStyle = {
+  width: '560px',
+  height: '455px',
+  left: '469px',
+  top: '195px',
+  position: 'absolute',
+  background: '#FFFFFF',
+}
+
+const inputStyle = {
+  width: '393px',
+  height: '62.57px',
+  left: '84px',
+  top: '190px',
+}
 
 const ForgotPassword = () => {
   const [isLoading, setIsLoading] = useState(false)
@@ -35,26 +67,37 @@ const ForgotPassword = () => {
   }
 
   return (
-    <div className="main">
-      <form className="mainContainer" onSubmit={handleSubmit}>
-        <h3>Recuperar cuenta</h3>
-        <div>Correo electrónico: </div>
-        <input
-          type="email"
-          name="email"
-          placeholder="Introduce tu email"
-          required
+    <React.Fragment>
+      <Form style={formStyle} inline onSubmit={handleSubmit}>
+        <CardImg
+          src={logo}
+          top="40px"
+          width="206px"
+          height="70.63px"
+          left="178px"
         />
+
+        <h4>RECUPERAR CONTRASEÑA</h4>
+        <FormGroup floating>
+          <input
+            type="email"
+            name="email"
+            style={inputStyle}
+            placeholder="Correo electrónico"
+            required
+          />
+        </FormGroup>
         <div className="divButton">
           {isLoading ? (
             <Spinner>Loading...</Spinner>
           ) : (
-            <button type="submit">Enviar</button>
+            <Button style={buttonStyle} className="login" type="submit">
+              Enviar
+            </Button>
           )}
-          <a href="/resetpassword"> resetear mi contraseña ¡</a>
         </div>
-      </form>
-    </div>
+      </Form>
+    </React.Fragment>
   )
 }
 
