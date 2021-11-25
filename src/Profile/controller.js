@@ -13,7 +13,7 @@ const useProfile = () => {
   console.log('User en Profile controller', user)
 
   const date = DateTime.fromISO(user.dateOfBirth)
-  const dateInput = date.toFormat('yyyy-mm-dd')
+  const dateInput = date.toFormat('yyyy-MM-dd')
 
   const [inputDateOfBirth, setInputDateOfBirth] = useState(dateInput)
   const [inputPhone, setInputPhone] = useState(user.phone)
