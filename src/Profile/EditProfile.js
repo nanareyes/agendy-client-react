@@ -27,6 +27,7 @@ const ActionsContainer = styled.div`
 
 function EditProfile(props) {
   const {
+    inputUserType,
     inputDateOfBirth,
     inputPhone,
     inputAddress,
@@ -96,7 +97,7 @@ function EditProfile(props) {
                           placeholder="dateOfBirth"
                           type="date"
                           // value={moment(inputDateOfBirth).format('YYYY-MM-DD')}
-                          value={inputDateOfBirth.substr(0,10)}
+                          value={inputDateOfBirth.substr(0, 10)}
                           onChange={(e) => setInputDateOfBirth(e.target.value)}
                         />
                         <Label for="dateOfBirth">Fecha de nacimiento</Label>
@@ -139,29 +140,27 @@ function EditProfile(props) {
                       </FormGroup>
                       <Row>
                         <Col>
-                          <FormGroup check>
+                          <FormGroup>
                             <Input
-                              id="userType"
-                              name="Cliente"
+                              id="userTypeCliente"
+                              name="userType"
                               placeholder="userType"
                               type="radio"
                               value="Cliente"
+                              checked={inputUserType === 'Cliente'}
                               onChange={(e) => setInputUserType(e.target.value)}
                             />{' '}
-                            <Label check>Soy Cliente</Label>
-                          </FormGroup>
-                        </Col>
-                        <Col>
-                          <FormGroup check>
+                            <Label check>Soy Cliente </Label>
                             <Input
-                              id="userType"
-                              name="Estilista"
+                              id="userTypeEstilista"
+                              name="userType"
                               placeholder="userType"
                               type="radio"
                               value="Estilista"
+                              checked={inputUserType === 'Estilista'}
                               onChange={(e) => setInputUserType(e.target.value)}
                             />{' '}
-                            <Label check>Soy Estilista</Label>
+                            <Label check>Soy Estilista </Label>
                           </FormGroup>
                         </Col>
                       </Row>
