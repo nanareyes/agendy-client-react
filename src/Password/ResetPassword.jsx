@@ -1,9 +1,16 @@
 import React, {useState} from 'react'
 import axios from 'axios'
 import {useNavigate, useParams} from 'react-router-dom'
-import {Spinner, Form, FormGroup, Button, CardImg} from 'reactstrap'
+import {Spinner, Form, FormGroup, Button} from 'reactstrap'
 import Swal from 'sweetalert2'
-import logo from '../assets/logo1.png'
+import logo1 from '../assets/logo1.png'
+
+import styled from 'styled-components'
+
+const StyledImage = styled.img`
+  width: 300px;
+  height: auto;
+`
 
 const buttonStyle = {
   display: 'flex',
@@ -54,14 +61,11 @@ const ResetPassword = (props) => {
 
     setIsLoading(true)
     await axios
-      .put(
-        `https://agendy-api.herokuapp.com/api/resetpassword/` +
-          id +
-          '/' +
-          token,
+      .post(
+        `https://agendy-api.herokuapp.com/api/resetPassword`,
         userPassword,
         {
-          where: {
+          params: {
             id: id,
             token: token,
           },
@@ -74,9 +78,10 @@ const ResetPassword = (props) => {
           icon: 'success',
           text: 'Contraseña cambiada correctamente',
         })
-        navigate.push('/login')
+        navigate('/')
       })
       .catch((err) => {
+        console.log(err)
         Swal.fire({
           showConfirmButton: true,
           icon: 'error',
@@ -102,13 +107,7 @@ const ResetPassword = (props) => {
   return (
     <React.Fragment>
       <Form style={formStyle} inline onSubmit={handleSubmit}>
-        <CardImg
-          src={logo}
-          top="40px"
-          width="206px"
-          height="70.63px"
-          left="178px"
-        />
+        <StyledImage src={logo1} size="180px" />
         <h4>CREAR NUEVA CONTRASEÑA</h4>
         <FormGroup floating>
           <input

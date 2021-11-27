@@ -1,9 +1,15 @@
 import React, {useState} from 'react'
 import axios from 'axios'
-import {Spinner, Form, FormGroup, Button, CardImg} from 'reactstrap'
+import {Spinner, Form, FormGroup, Button} from 'reactstrap'
 import Swal from 'sweetalert2'
-import logo from '../assets/logo1.png'
-//import styled from 'styled-components'
+import logo1 from '../assets/logo1.png'
+
+import styled from 'styled-components'
+
+const StyledImage = styled.img`
+  width: 300px;
+  height: auto;
+`
 
 const buttonStyle = {
   display: 'flex',
@@ -47,7 +53,7 @@ const ForgotPassword = () => {
 
     setIsLoading(true)
     await axios
-      .post(`https://agendy-api.herokuapp.com/api/forgotpassword`, userEmail)
+      .post(`https://agendy-api.herokuapp.com/api/forgotPassword`, userEmail)
       .then((res) => {
         setIsLoading(false)
         Swal.fire({
@@ -69,13 +75,7 @@ const ForgotPassword = () => {
   return (
     <React.Fragment>
       <Form style={formStyle} inline onSubmit={handleSubmit}>
-        <CardImg
-          src={logo}
-          top="40px"
-          width="206px"
-          height="70.63px"
-          left="178px"
-        />
+        <StyledImage src={logo1} size="180px" />
 
         <h4>RECUPERAR CONTRASEÑA</h4>
         <FormGroup floating>
