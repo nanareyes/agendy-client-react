@@ -1,9 +1,9 @@
 import React, {useState} from 'react'
 import axios from 'axios'
-import {Spinner, Form, FormGroup, Button} from 'reactstrap'
+import {Spinner, Form, FormGroup, Button, Modal, ModalBody} from 'reactstrap'
 import Swal from 'sweetalert2'
 import logo1 from '../assets/logo1.png'
-
+//import ViewForgotPassword from '..Password/ViewForgotPassword'
 import styled from 'styled-components'
 
 const StyledImage = styled.img`
@@ -74,29 +74,33 @@ const ForgotPassword = () => {
 
   return (
     <React.Fragment>
-      <Form style={formStyle} inline onSubmit={handleSubmit}>
-        <StyledImage src={logo1} size="180px" />
+      <Modal isOpen={true}>
+        <ModalBody>
+          <Form style={formStyle} inline onSubmit={handleSubmit}>
+            <StyledImage src={logo1} size="180px" />
 
-        <h4>RECUPERAR CONTRASEÑA</h4>
-        <FormGroup floating>
-          <input
-            type="email"
-            name="email"
-            style={inputStyle}
-            placeholder="Correo electrónico"
-            required
-          />
-        </FormGroup>
-        <div className="divButton">
-          {isLoading ? (
-            <Spinner>Loading...</Spinner>
-          ) : (
-            <Button style={buttonStyle} className="login" type="submit">
-              Enviar
-            </Button>
-          )}
-        </div>
-      </Form>
+            <h4>RECUPERAR CONTRASEÑA</h4>
+            <FormGroup floating>
+              <input
+                type="email"
+                name="email"
+                style={inputStyle}
+                placeholder="Correo electrónico"
+                required
+              />
+            </FormGroup>
+            <div className="divButton">
+              {isLoading ? (
+                <Spinner>Loading...</Spinner>
+              ) : (
+                <Button style={buttonStyle} className="login" type="submit">
+                  Enviar
+                </Button>
+              )}
+            </div>
+          </Form>
+        </ModalBody>
+      </Modal>
     </React.Fragment>
   )
 }
