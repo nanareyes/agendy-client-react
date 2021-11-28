@@ -13,7 +13,8 @@ const useProfile = () => {
   console.log('User en Profile controller', user)
 
   const date = DateTime.fromISO(user.dateOfBirth)
-  const dateInput = date.toFormat('yyyy-mm-dd')
+  const dateInput = date.toFormat('yyyy-MM-dd')
+
 
   const [inputDateOfBirth, setInputDateOfBirth] = useState(dateInput)
   const [inputPhone, setInputPhone] = useState(user.phone)
@@ -22,7 +23,8 @@ const useProfile = () => {
   const [inputUserType, setInputUserType] = useState(user.userType)
   const [inputFile, setInputFile] = useRecoilState(fileState)
 
-  const userName = user.loginType === 'GOOGLE' ? user.name : user.name
+
+  const userName = user.name
   const userId = user.loginType === 'GOOGLE' ? user.googleId : user._id
 
   const onChangeFile = (e) => {
@@ -45,7 +47,6 @@ const useProfile = () => {
   const onSubmitProfile = (e) => {
     // console.log('Completar perfil', user);
     e.preventDefault()
-
     setLoading(true)
     axios
       .put(`${process.env.REACT_APP_API_URL}/api/user/${user._id}`, {

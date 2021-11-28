@@ -44,6 +44,7 @@ const useRegister = () => {
   }
 
   return {
+    inputUserType,
     setInputName,
     setInputEmail,
     setInputPassword,
