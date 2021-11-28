@@ -88,13 +88,13 @@ const NavBar = () => {
         </NavLink>
         <ul className="link-list">
           <li>
-            <NavLink to="/home">Servicios</NavLink>
+            <NavLink to="/services">Servicios</NavLink>
           </li>
           <li>
             <NavLink to="/agenda">Mi Agenda</NavLink>
           </li>
           <li>
-            <NavLink to="/home">Equipo</NavLink>
+            <NavLink to="/team">Equipo</NavLink>
           </li>
         </ul>
         <Menu model={items} popup ref={menu} id="popup_menu" />
