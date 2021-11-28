@@ -15,12 +15,14 @@ const useProfile = () => {
   const date = DateTime.fromISO(user.dateOfBirth)
   const dateInput = date.toFormat('yyyy-MM-dd')
 
+
   const [inputDateOfBirth, setInputDateOfBirth] = useState(dateInput)
   const [inputPhone, setInputPhone] = useState(user.phone)
   const [inputAddress, setInputAddress] = useState(user.address)
   const [inputCity, setInputCity] = useState(user.city)
   const [inputUserType, setInputUserType] = useState(user.userType)
   const [inputFile, setInputFile] = useRecoilState(fileState)
+
 
   const userName = user.name
   const userId = user.loginType === 'GOOGLE' ? user.googleId : user._id

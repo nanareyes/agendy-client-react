@@ -29,7 +29,7 @@ function App() {
 				<Route path='agenda' element={<Agenda />} />
 				<Route path='appointment' element={<Appointment />} />
 				<Route path='forgotpassword' element={<ForgotPassword />} />
-				<Route path='resetpassword' element={<ResetPassword />} />
+				<Route path='resetpassword/:id/:token' element={<ResetPassword />} />
 			</Routes>
 		</div>
 	)
