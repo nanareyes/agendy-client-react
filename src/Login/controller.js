@@ -3,6 +3,7 @@ import axios from 'axios'
 import {useNavigate} from 'react-router-dom'
 import {useRecoilState} from 'recoil'
 import {userState} from '../atoms'
+import Swal from 'sweetalert2'
 
 const useLogin = () => {
   let navigate = useNavigate()
@@ -31,7 +32,11 @@ const useLogin = () => {
       .catch(function (error) {
         // console.log(error);
         console.log('Usuario no registrado')
-        alert('Usuario no registrado')
+        Swal.fire({
+          showConfirmButton: true,
+          icon: 'error',
+          text: 'Usuario no registrado, confirma nuevamente los datos o crea tu cuenta',
+        })
       })
   }
 

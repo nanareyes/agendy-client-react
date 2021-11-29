@@ -3,6 +3,7 @@ import React from 'react'
 import {Login} from '../Login/Login'
 import {Register} from '../Register/Register'
 import {ResetPassword} from '../Password/ResetPassword'
+import {ForgotPassword} from '../Password/ForgotPassword'
 import logo from '../logo.svg'
 import styled from 'styled-components'
 import {LandingContainer} from '../StyledComponents/LandingContainer'
@@ -21,6 +22,7 @@ const Landing = () => {
         <StyledImage src={logo} alt="logo" />
         {(path === '/login' || path === '/') && <Login />}
         {path === '/register' && <Register />}
+        {path === '/forgotpassword' && <ForgotPassword />}
         {path.startsWith('/resetpassword') && <ResetPassword />}
       </LandingContainer>
     </React.Fragment>
