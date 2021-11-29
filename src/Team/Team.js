@@ -24,12 +24,14 @@ const Team = () => {
     {
       title: 'MONICA VIVIANA COLORADO ROMERO',
       image: monica,
-      description: 'Diseñador gráfico especialista en ...',
+      description:
+        'Auxiliar de enfermería, con conocimientos en procesos administrativos y de atención al usuario, manejo de herramientas ofimáticas y CRM institucionales, bases de datos y gestión documental.',
     },
     {
       title: 'SONIA MILENA MOSQUERA',
       image: sonia,
-      description: 'Diseñador gráfico especialista en ...',
+      description:
+        'Ingeniera de Telelcomunicaciones. Coordinadora de Certificación RETIE Colombia 2020. Voluntariado de la Cruz Roja España. Monitora de Nuevas Tecnologias para Adultos Mayores Actual',
     },
 
     {

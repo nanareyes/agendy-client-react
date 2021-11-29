@@ -40,6 +40,13 @@ const CardContainer = styled.div`
 
     transition: all 0.2s;
   }
+  .description {
+    width: 100%;
+    color: var(--vino);
+    justify-content: center;
+    font-size: 14px;
+    opacity: 1;
+  }
 `
 
 const CardTeam = ({itemList}) => {
@@ -49,7 +56,7 @@ const CardTeam = ({itemList}) => {
         <Card>
           <CardTitle>{item.title}</CardTitle>
           <CardImg src={item.image}></CardImg>
-          <CardBody>
+          <CardBody className="description">
             <p>{item.description}</p>
           </CardBody>
         </Card>
