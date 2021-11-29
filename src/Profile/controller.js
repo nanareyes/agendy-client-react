@@ -4,6 +4,7 @@ import {DateTime} from 'luxon'
 import {useState} from 'react'
 import {useRecoilState} from 'recoil'
 import {userState, fileState, loadingState} from '../atoms'
+import Swal from 'sweetalert2'
 
 const useProfile = () => {
   // let navigate = useNavigate();
@@ -13,7 +14,7 @@ const useProfile = () => {
   console.log('User en Profile controller', user)
 
   const date = DateTime.fromISO(user.dateOfBirth)
-  const dateInput = date.toFormat('yyyy-mm-dd')
+  const dateInput = date.toFormat('yyyy-MM-dd')
 
   const [inputDateOfBirth, setInputDateOfBirth] = useState(dateInput)
   const [inputPhone, setInputPhone] = useState(user.phone)
@@ -22,7 +23,7 @@ const useProfile = () => {
   const [inputUserType, setInputUserType] = useState(user.userType)
   const [inputFile, setInputFile] = useRecoilState(fileState)
 
-  const userName = user.loginType === 'GOOGLE' ? user.name : user.name
+  const userName = user.name
   const userId = user.loginType === 'GOOGLE' ? user.googleId : user._id
 
   const onChangeFile = (e) => {
@@ -45,7 +46,6 @@ const useProfile = () => {
   const onSubmitProfile = (e) => {
     // console.log('Completar perfil', user);
     e.preventDefault()
-
     setLoading(true)
     axios
       .put(`${process.env.REACT_APP_API_URL}/api/user/${user._id}`, {
@@ -85,13 +85,22 @@ const useProfile = () => {
               // console.log("newUSer en profile", newUser);
               return newUser
             })
+            Swal.fire({
+              showConfirmButton: true,
+              icon: 'success',
+              text: 'Se ha actualizado correctamente su perfil',
+            })
           })
         //navigate("/home");
       })
       .catch(function (error) {
         // console.log(error);
         console.log('Usuario no actualizado')
-        alert('Error, la actualización no fue exitosa')
+        Swal.fire({
+          showConfirmButton: true,
+          icon: 'error',
+          text: 'Ha ocurrido un error al actualizar los datos, complete la información e inténtalo nuevamente',
+        })
       })
       .finally(function () {
         setLoading(false)

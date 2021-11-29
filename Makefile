@@ -6,7 +6,7 @@ install:
 
 #2. Ejecutar la aplicación en localhost
 dev:
-	npm start
+	npm run dev
 
 # ---- Comandos de Despliegue ---
 build:

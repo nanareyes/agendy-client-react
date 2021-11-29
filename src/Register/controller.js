@@ -3,6 +3,7 @@ import {useNavigate} from 'react-router-dom'
 import {useState} from 'react'
 import {useRecoilState} from 'recoil'
 import {userState} from '../atoms'
+import Swal from 'sweetalert2'
 
 const useRegister = () => {
   let navigate = useNavigate()
@@ -29,6 +30,11 @@ const useRegister = () => {
       })
       .then(function (response) {
         console.log('Registro exitoso')
+        Swal.fire({
+          showConfirmButton: true,
+          icon: 'success',
+          text: 'Registro exitoso.¡Bienvenido a Agendy Nails!',
+        })
         setUser({
           isAuthenticaded: true,
           ...response.data.userDB,
@@ -39,11 +45,16 @@ const useRegister = () => {
       .catch(function (error) {
         // console.log(error);
         console.log(error, 'Usuario no registrado')
-        alert('Error, el registro no fue exitoso')
+        Swal.fire({
+          showConfirmButton: true,
+          icon: 'error',
+          text: 'Ha ocurrido un error, valida los datos e inténtalo nuevamente',
+        })
       })
   }
 
   return {
+    inputUserType,
     setInputName,
     setInputEmail,
     setInputPassword,

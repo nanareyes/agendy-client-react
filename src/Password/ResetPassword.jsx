@@ -1,99 +1,141 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import { Spinner } from 'reactstrap'
-import Swal from 'sweetalert2';
+import React, { useState } from 'react'
+import axios from 'axios'
+import { useNavigate, useParams } from 'react-router-dom'
+import { Spinner, Form, FormGroup, Button } from 'reactstrap'
+import Swal from 'sweetalert2'
+
+
+const buttonStyle = {
+  width: '100%',
+  backgroundColor: 'var(--fucsia)',
+  color: 'var(--white)',
+  fontFamily: 'Ubuntu',
+  border: 'none',
+}
+
+const formStyle = {
+  width: '50%',
+  minWidth: '280px',
+  display: 'grid',
+  alignItems: 'center',
+}
+const inputStyle = {
+  width: '470px',
+  height: '62.57px',
+  left: '84px',
+  top: '190px',
+  border: '2px solid var(--vino)',
+  color: 'var(--vino)',
+  padding: '0.8rem .75rem',
+
+}
 
 const ResetPassword = (props) => {
-  const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-
-  const regExPassword = /.*/
-
+  let { id } = useParams()
+  let { token } = useParams()
+  const navigate = useNavigate()
+  const [isLoading, setIsLoading] = useState(false)
+  const [isError, setIsError] = useState('')
+  const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
     const userPassword = {
-      password: e.target.password.value
+      password: e.target.password.value,
     }
 
-    if (!regExPassword.test(userPassword.password)) {
-      Swal.fire({
-        showConfirmButton: true,
-        icon: 'error',
-        text: 'La contraseña debe contener al menos: entre 8 y 16 caracteres, 1 número, 1 letra minúscula, 1 letra maypuscula y un carácter especial como #, @, %.'
-      })
-      return;
-    }
-
-    setIsLoading(true);
-    await axios.put(`${process.env.REACT_APP_API_URL}/resetpassword` + props.match.params.id + '/' + props.match.params.tokenresetpassword, userPassword, {
-      where: {
-        id: props.match.params.id,
-        tokenresetpassword: props.match.params.tokenresetpassword
-      }
-    })
+    setIsLoading(true)
+    await axios
+      .post(
+        `https://agendy-api.herokuapp.com/api/resetPassword`,
+        userPassword,
+        {
+          params: {
+            id: id,
+            token: token,
+          },
+        }
+      )
       .then((res) => {
         setIsLoading(false)
         Swal.fire({
           showConfirmButton: true,
           icon: 'success',
-          text: 'Contraseña cambiada correctamente'
+          text: 'Contraseña cambiada correctamente',
         })
-        navigate.push('/login')
-      }).catch((err) => {
+        navigate('/')
+      })
+      .catch((err) => {
+        console.log(err)
         Swal.fire({
           showConfirmButton: true,
           icon: 'error',
-          text: 'Ha habido un error al intentar enviar los datos, vuelva a intentarlo más tarde'
+          text: 'Ha habido un error al intentar enviar los datos, vuelva a intentarlo más tarde',
         })
-      });
+      })
   }
 
   const checkValidation = (e) => {
-    const confirmPass = e.target.value;
+    const confirmPass = e.target.value
     setConfirmPassword(confirmPass)
     if (password !== confirmPass) {
-      setIsError("La contraseña no coincide");
+      setIsError('La contraseña no coincide')
     } else {
-      setIsError("");
+      setIsError('')
     }
   }
 
   const switchShowPassword = () => {
-    setShowPassword(!showPassword);
+    setShowPassword(!showPassword)
   }
 
   return (
-    <div className="main" onSubmit={handleSubmit}>
-      <form className="mainContainer">
-        <h3>Nueva contraseña</h3>
-        <div className="divPassword"> Contraseña:*</div>
-        <div className="containerPassword">
-          <input type={showPassword ? "text" : "password"} value={password} onChange={(e) => setPassword(e.target.value)} name="password" placeholder="Introduce tu contraseña" required />
-          <button onClick={switchShowPassword}>{showPassword ? "Ocultar" : "Mostrar"} </button>
-        </div>
-        <div> Confirmar contraseña:*</div>
-        <input type="password" value={confirmPassword} onChange={(e) => checkValidation(e)} name="confirmPassword" placeholder="Confirma la contraseña" required />
+    <React.Fragment>
+      <Form style={formStyle} inline onSubmit={handleSubmit}>
+        <h4>CREAR NUEVA CONTRASEÑA</h4>
+        <FormGroup floating>
+          <input
+            type={showPassword ? 'text' : 'password'}
+            style={inputStyle}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            name="password"
+            placeholder="Nueva contraseña"
+            required
+          />
+        </FormGroup>
+
+        <button onClick={switchShowPassword}>
+          {showPassword ? 'Ocultar' : 'Mostrar'}{' '}
+        </button>
+        <FormGroup floating>
+          <input
+            type="password"
+            value={confirmPassword}
+            style={inputStyle}
+            onChange={(e) => checkValidation(e)}
+            name="confirmPassword"
+            placeholder="Confirmar contraseña"
+            required
+          />
+        </FormGroup>
+
         <div className="confirmPassword">{isError}</div>
         <div className="divButton">
-          {isLoading
-            ?
-            <Spinner>
-              Cargando...
-            </Spinner>
-            :
-            <button type="submit">Enviar</button>
-          }
+          {isLoading ? (
+            <Spinner>Cargando...</Spinner>
+          ) : (
+            <Button style={buttonStyle} className="login" type="submit">
+              Enviar
+            </Button>
+          )}
         </div>
-      </form>
-    </div>
+      </Form>
+    </React.Fragment>
   )
 }
 
-export { ResetPassword };
+export { ResetPassword }
