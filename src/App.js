@@ -3,7 +3,6 @@ import {Routes, Route} from 'react-router-dom'
 import {Home} from './Home/Home'
 import {Landing} from './Landing/Landing'
 import {Profile} from './Profile/Profile'
-import {ResetPassword} from './Password/ResetPassword.jsx'
 import {ForgotPassword} from './Password/ForgotPassword.jsx'
 import {Appointment} from './Appointment/Appointment'
 import {Agenda} from './Agenda/Agenda'
@@ -30,7 +29,7 @@ function App() {
         <Route path="agenda" element={<Agenda />} />
         <Route path="appointment" element={<Appointment />} />
         <Route path="forgotpassword" element={<ForgotPassword />} />
-        <Route path="resetpassword/:id/:token" element={<ResetPassword />} />
+        <Route path="resetpassword/:id/:token" element={<Landing />} />
         <Route path="team" element={<Team />} />
       </Routes>
     </div>
