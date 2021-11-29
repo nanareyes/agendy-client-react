@@ -1,5 +1,5 @@
 import React from 'react'
-import {NavLink} from 'react-router-dom'
+import {Card, CardBody, CardTitle, CardImg} from 'reactstrap'
 import styled from 'styled-components'
 
 const CardContainer = styled.div`
@@ -8,22 +8,22 @@ const CardContainer = styled.div`
   gap: 1rem;
   place-items: center;
   width: 70%;
+  height: auto;
+
   margin: 0 auto;
-  .nav-link {
-    width: 100%;
-  }
 
   .card {
-    display: grid;
-    justify-content: flex-end;
-    border-radius: 43px;
+    display: flex;
+    justify-content: flex;
+    height: auto;
+    border-radius: 30px;
     border: 2px solid var(--lila);
     box-shadow: 0px 1px 4px 2px #00000021;
     opacity: 0.8;
+    height: 600px;
+    width: 100%;
 
     // configuración de imágenes
-    height: 100px;
-    width: 100%;
     background-origin: content-box;
     background-image: url(${(props) => props.image});
     background-repeat: no-repeat;
@@ -31,15 +31,8 @@ const CardContainer = styled.div`
     background-position: center;
     padding: 1.5rem;
 
-    .title {
+    &-title {
       width: 100%;
-      display: flex;
-      justify-content: flex-end;
-      color: var(--vino);
-      font-size: 10 px;
-      opacity: 1;
-    }
-    .descrption {
       color: var(--vino);
       font-size: 1rem;
       opacity: 1;
@@ -53,17 +46,13 @@ const CardTeam = ({itemList}) => {
   const renderItems = (items) => {
     return items.map((item) => {
       return (
-        <CardContainer>
-          <div className="card-title">
-            <p>{item.title}</p>
-          </div>
-          <div
-            className="card"
-            style={{backgroundImage: `url(${item.image})`}}></div>
-          <div className="card-description">
+        <Card>
+          <CardTitle>{item.title}</CardTitle>
+          <CardImg src={item.image}></CardImg>
+          <CardBody>
             <p>{item.description}</p>
-          </div>
-        </CardContainer>
+          </CardBody>
+        </Card>
       )
     })
   }

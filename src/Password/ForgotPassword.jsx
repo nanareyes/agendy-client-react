@@ -1,44 +1,33 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
-import {Spinner, Form, FormGroup, Button} from 'reactstrap'
+import { Spinner, Form, FormGroup, Button } from 'reactstrap'
 import Swal from 'sweetalert2'
-import logo1 from '../assets/logo1.png'
 
-import styled from 'styled-components'
 
-const StyledImage = styled.img`
-  width: 300px;
-  height: auto;
-`
 
 const buttonStyle = {
-  display: 'flex',
-  justify: 'center',
-  align: 'center',
-  items: 'center',
-  content: 'center',
-  width: '390.31px',
-  height: '49.16px',
-  left: '85px',
-  top: '336px',
-  background: '#E9478A',
-  border: '4px',
+  width: '100%',
+  backgroundColor: 'var(--fucsia)',
+  color: 'var(--white)',
+  fontFamily: 'Ubuntu',
+  border: 'none',
 }
 
 const formStyle = {
-  width: '560px',
-  height: '455px',
-  left: '469px',
-  top: '195px',
-  position: 'absolute',
-  background: '#FFFFFF',
+  width: '50%',
+  minWidth: '280px',
+  display: 'grid',
+  alignItems: 'center',
 }
-
 const inputStyle = {
-  width: '393px',
+  width: '470px',
   height: '62.57px',
   left: '84px',
   top: '190px',
+  border: '2px solid var(--vino)',
+  color: 'var(--vino)',
+  padding: '0.8rem .75rem',
+
 }
 
 const ForgotPassword = () => {
@@ -59,7 +48,7 @@ const ForgotPassword = () => {
         Swal.fire({
           showConfirmButton: true,
           icon: 'success',
-          text: 'Revise su email, se le ha enviado un enlace para crear una nueva contraseña',
+          text: 'Revise su email, se ha enviado un enlace para crear una nueva contraseña',
         })
       })
       .catch((err) => {
@@ -67,7 +56,7 @@ const ForgotPassword = () => {
         Swal.fire({
           showConfirmButton: true,
           icon: 'error',
-          text: 'Ha habido un error al intentar enviar los datos, comprueba el correo introducido o vuelva intentarlo más tarde',
+          text: 'Ha ocurrido un error al enviar los datos, comprueba el correo o vuelve intentarlo más tarde',
         })
       })
   }
@@ -75,8 +64,6 @@ const ForgotPassword = () => {
   return (
     <React.Fragment>
       <Form style={formStyle} inline onSubmit={handleSubmit}>
-        <StyledImage src={logo1} size="180px" />
-
         <h4>RECUPERAR CONTRASEÑA</h4>
         <FormGroup floating>
           <input
@@ -101,4 +88,4 @@ const ForgotPassword = () => {
   )
 }
 
-export {ForgotPassword}
+export { ForgotPassword }

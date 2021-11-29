@@ -1,50 +1,38 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
-import {useNavigate, useParams} from 'react-router-dom'
-import {Spinner, Form, FormGroup, Button} from 'reactstrap'
+import { useNavigate, useParams } from 'react-router-dom'
+import { Spinner, Form, FormGroup, Button } from 'reactstrap'
 import Swal from 'sweetalert2'
-import logo1 from '../assets/logo1.png'
 
-import styled from 'styled-components'
-
-const StyledImage = styled.img`
-  width: 300px;
-  height: auto;
-`
 
 const buttonStyle = {
-  display: 'flex',
-  justify: 'center',
-  align: 'center',
-  items: 'center',
-  content: 'center',
-  width: '390.31px',
-  height: '49.16px',
-  left: '85px',
-  top: '336px',
-  background: '#E9478A',
-  border: '4px',
+  width: '100%',
+  backgroundColor: 'var(--fucsia)',
+  color: 'var(--white)',
+  fontFamily: 'Ubuntu',
+  border: 'none',
 }
 
 const formStyle = {
-  width: '560px',
-  height: '455px',
-  left: '469px',
-  top: '195px',
-  position: 'absolute',
-  background: '#FFFFFF',
+  width: '50%',
+  minWidth: '280px',
+  display: 'grid',
+  alignItems: 'center',
 }
-
 const inputStyle = {
-  width: '393px',
+  width: '470px',
   height: '62.57px',
   left: '84px',
   top: '190px',
+  border: '2px solid var(--vino)',
+  color: 'var(--vino)',
+  padding: '0.8rem .75rem',
+
 }
 
 const ResetPassword = (props) => {
-  let {id} = useParams()
-  let {token} = useParams()
+  let { id } = useParams()
+  let { token } = useParams()
   const navigate = useNavigate()
   const [isLoading, setIsLoading] = useState(false)
   const [isError, setIsError] = useState('')
@@ -107,7 +95,6 @@ const ResetPassword = (props) => {
   return (
     <React.Fragment>
       <Form style={formStyle} inline onSubmit={handleSubmit}>
-        <StyledImage src={logo1} size="180px" />
         <h4>CREAR NUEVA CONTRASEÑA</h4>
         <FormGroup floating>
           <input
@@ -151,4 +138,4 @@ const ResetPassword = (props) => {
   )
 }
 
-export {ResetPassword}
+export { ResetPassword }

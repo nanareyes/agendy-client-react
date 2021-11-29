@@ -6,6 +6,7 @@ import monica from '../assets/teamsPhoto/monica.jpeg'
 import natacha from '../assets/teamsPhoto/natacha.jpg'
 import sonia from '../assets/teamsPhoto/sonia.png'
 import {NavBar} from '../NavBar/NavBar'
+import {Footer} from '../Footer/Footer'
 
 const Team = () => {
   const items = [
@@ -17,7 +18,8 @@ const Team = () => {
     {
       title: 'DIANA CAROLINA REYES MANTILLA',
       image: carolina,
-      description: 'Diseñador gráfico especialista en ...',
+      description:
+        'Adminstradora de empresas, especialista en Mercadeo y Educación, cultura y política de la UNAD',
     },
     {
       title: 'MONICA VIVIANA COLORADO ROMERO',
@@ -41,6 +43,7 @@ const Team = () => {
     <div>
       <NavBar />
       <CardTeam itemList={items} />
+      <Footer />
     </div>
   )
 }
