@@ -1,0 +1,70 @@
+.cardGallery:hover {
+  box-shadow: 5px 10px 20px 1px rgba(255, 255, 255, 0.273) !important;
+  transition: all 0.7s linear;
+} 
+
+.cardGallery-body {
+  padding: 2rem 0 !important;
+}
+
+.cardGallery-text {
+  padding: 0.3rem 1rem;
+  font-size: 1rem;
+}
+
+.overflow {
+  overflow: hidden;
+}
+.cardGallery-title {
+  color: rgb(141, 80, 51);
+  
+}
+.cardGallery-img-top {
+  border-radius: 20px ;
+  
+}
+
+.agendy {
+  width: 20px ;
+  
+}
+
+ul{
+  list-style: none outside none; margin:0; padding: 0; text-align: center;
+  display: inline-block;
+}
+li{
+  margin: 0 2px; display: inline;
+}
+/* pagination */
+#paginationGallery nav{
+  text-align: center;
+  
+  }
+#paginationGallery ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+  text-align: center;
+}
+
+#paginationGallery ul li {
+	padding: 0;
+	margin: 0 10px;
+	display: inline-block;
+}
+
+#paginationGallery ul li a{
+  display: inline;
+  vertical-align: middle;
+	text-align: center;
+	text-decoration: none;
+	color: rgb(236, 71, 200);	
+	font-weight: normal;
+	outline-style: solid;
+  outline-width: thin;
+}
+
+#paginationGallery li a:hover, #paginationGallery li .current{
+	color: #C30;
+}
