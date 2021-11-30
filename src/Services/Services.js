@@ -3,6 +3,7 @@ import Pagination from './Pagination'
 import axios from 'axios'
 import './Services.css'
 import CardsView from './Cards'
+import {NavBar} from '../NavBar/NavBar'
 
 const Services = () => {
   const [Cards, setCards] = useState([])
@@ -30,14 +31,17 @@ const Services = () => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber)
 
   return (
-    <div className="container mt-5">
-      <h3 className="text-primary mb-1">MANOS Y PIES</h3>
-      <CardsView posts={currentCards} loading={loading} />
-      <Pagination
-        cardsPerPage={cardsPerPage}
-        totalcards={12}
-        paginate={paginate}
-      />
+    <div>
+      <NavBar />
+      <div className="container mt-1">
+        <h3 className="text-secundary mb-1">MANOS Y PIES</h3>
+        <CardsView posts={currentCards} loading={loading} />
+        <Pagination
+          cardsPerPage={cardsPerPage}
+          totalcards={12}
+          paginate={paginate}
+        />
+      </div>
     </div>
   )
 }

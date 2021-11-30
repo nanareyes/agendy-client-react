@@ -16,7 +16,7 @@ const Team = () => {
       description:
         'Desarrollador front-end especializado en diseño de interfaces y experiencias de usuario',
       github: 'https://github.com/subcorporeal',
-      linkedin: '',
+      linkedin: 'https://www.linkedin.com/in/cristian-velasco-1203/',
     },
     {
       title: 'DIANA CAROLINA REYES MANTILLA',
@@ -44,11 +44,12 @@ const Team = () => {
     },
 
     {
-      title: 'YENNY NATACHA LIBREROS',
+      title: 'YENNY NATACHA LIBREROS MONTES',
       image: natacha,
       description: 'Diseñador gráfico especialista en ...',
       github: 'https://github.com/Natacha7',
-      linkedin: '',
+      linkedin:
+        'https://www.linkedin.com/in/yenny-natacha-libreros-montes-47746410a/',
     },
   ]
 

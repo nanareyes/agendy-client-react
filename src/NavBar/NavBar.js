@@ -63,6 +63,13 @@ const NavBar = () => {
     {
       items: [
         {
+          label: 'Inicio',
+          icon: 'pi pi-home',
+          command: (e) => {
+            navigate('/home')
+          },
+        },
+        {
           label: 'Mi Perfil',
           icon: 'pi pi-user-edit',
           command: (e) => {
