@@ -13,7 +13,8 @@ const Team = () => {
     {
       title: 'CHRISTIAN ALEXANDER VELASCO NARVÁEZ',
       image: christian,
-      description: 'Diseñador gráfico especialista en ...',
+      description:
+        'Desarrollador front-end especializado en diseño de interfaces y experiencias de usuario',
     },
     {
       title: 'DIANA CAROLINA REYES MANTILLA',
