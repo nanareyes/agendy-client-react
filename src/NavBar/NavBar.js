@@ -56,7 +56,6 @@ const NavBar = () => {
   let navigate = useNavigate()
   const [user, setUser] = useRecoilState(userState)
 
-  console.log(setUser)
   const {userName, onLogout} = useNavBar()
   const menu = useRef(null)
   const items = [

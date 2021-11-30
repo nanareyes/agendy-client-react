@@ -11,7 +11,7 @@ const useProfile = () => {
   const [user, setUser] = useRecoilState(userState)
   const [loading, setLoading] = useRecoilState(loadingState)
 
-  console.log('User en Profile controller', user)
+  // console.log('User en Profile controller', user)
 
   const date = DateTime.fromISO(user.dateOfBirth)
   const dateInput = date.toFormat('yyyy-MM-dd')

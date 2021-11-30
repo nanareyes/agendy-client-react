@@ -2,7 +2,7 @@ body {
   margin: 0;
   overflow-x: hidden;
   font-family: 'PT mono', 'Helvetica Neue', sans-serif !important;
-  background-color: var(--white);
+  background-color: #F9EAFF;
   color: var(--vino);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
