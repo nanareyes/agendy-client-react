@@ -6,6 +6,8 @@ import {Profile} from './Profile/Profile'
 import {Appointment} from './Appointment/Appointment'
 import {Agenda} from './Agenda/Agenda'
 import {Team} from './Team/Team'
+import Gallery from './Gallery/Gallery'
+import Services from './Services/Services'
 
 // PrimeReact Imports
 import 'primereact/resources/themes/lara-light-indigo/theme.css'
@@ -30,6 +32,8 @@ function App() {
         <Route path="forgotpassword" element={<Landing />} />
         <Route path="resetpassword/:id/:token" element={<Landing />} />
         <Route path="team" element={<Team />} />
+        <Route path="gallery" element={<Gallery />} />
+        <Route path="services" element={<Services />} />
       </Routes>
     </div>
   )

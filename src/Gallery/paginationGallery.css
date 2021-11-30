@@ -1,0 +1,32 @@
+/* pagination */
+#paginationGallery nav{
+    text-align: center;
+    
+    }
+    #paginationGallery ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    text-align: center;
+    }
+    
+    #paginationGallery ul li {
+        padding: 0;
+        margin: 0 10px;
+        display: inline-block;
+    }
+    
+    #paginationGallery ul li a{
+    display: inline;
+    vertical-align: middle;
+        text-align: center;
+        text-decoration: none;
+        color: rgb(236, 71, 200);	
+        font-weight: normal;
+        outline-style: solid;
+    outline-width: thin;
+    }
+    
+    #paginationGallery li a:hover, #paginationGallery li .current{
+        color: #C30;
+    }

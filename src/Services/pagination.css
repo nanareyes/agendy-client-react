@@ -1,0 +1,32 @@
+/* pagination */
+#pagination nav{
+text-align: center;
+
+}
+#pagination ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+text-align: center;
+}
+
+#pagination ul li {
+	padding: 0;
+	margin: 0 10px;
+	display: inline-block;
+}
+
+#pagination ul li a{
+display: inline;
+vertical-align: middle;
+	text-align: center;
+	text-decoration: none;
+	color: rgb(236, 71, 200);	
+	font-weight: normal;
+	outline-style: solid;
+outline-width: thin;
+}
+
+#pagination li a:hover, #paginacion li .current{
+	color: #C30;
+}
