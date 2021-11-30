@@ -3,6 +3,7 @@ import {CardGrid} from '../StyledComponents/CardGrid'
 import agenda from '../assets/imagesHome/agenda.jpg'
 import manosypies from '../assets/imagesHome/manosypies.jpg'
 import {NavBar} from '../NavBar/NavBar'
+import {Footer} from '../Footer/Footer'
 
 const Home = () => {
   const items = [
@@ -15,6 +16,7 @@ const Home = () => {
     <div>
       <NavBar />
       <CardGrid itemList={items} />
+      <Footer />
     </div>
   )
 }

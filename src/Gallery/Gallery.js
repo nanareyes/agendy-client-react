@@ -3,6 +3,7 @@ import PaginationGallery from './PaginationGallery'
 import axios from 'axios'
 import './Gallery.css'
 import CardsGalleryView from './CardsGallery'
+import {NavBar} from '../NavBar/NavBar'
 
 const Gallery = () => {
   const [CardsGallery, setCardsGallery] = useState([])
@@ -33,14 +34,17 @@ const Gallery = () => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber)
 
   return (
-    <div className="container mt-5">
-      <h3 className="text-secondary mb-6">GALERIA</h3>
-      <CardsGalleryView posts={currentCardsGallery} loading={loading} />
-      <PaginationGallery
-        cardsGalleryPerPage={cardsGalleryPerPage}
-        totalcardsGallery={12}
-        paginate={paginate}
-      />
+    <div>
+      <NavBar />
+      <div className="container mt-5">
+        <h3 className="text-secondary mb-6">GALERIA</h3>
+        <CardsGalleryView posts={currentCardsGallery} loading={loading} />
+        <PaginationGallery
+          cardsGalleryPerPage={cardsGalleryPerPage}
+          totalcardsGallery={12}
+          paginate={paginate}
+        />
+      </div>
     </div>
   )
 }
