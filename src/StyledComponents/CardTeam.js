@@ -1,6 +1,5 @@
 import React from 'react'
 import {Button} from 'primereact/button'
-import {NavLink} from 'react-router-dom'
 import styled from 'styled-components'
 
 const CardContainer = styled.div`
@@ -72,12 +71,12 @@ const CardTeam = ({itemList}) => {
             <p>{item.description}</p>
           </div>
           <div className="card-actions">
-            <NavLink to="">
+            <a href={item.linkedin} rel="noopener">
               <Button icon="pi pi-linkedin" className="p-button-rounded" />
-            </NavLink>
-            <NavLink to="">
+            </a>
+            <a href={item.github} rel="noopener">
               <Button icon="pi pi-github" className="p-button-rounded" />
-            </NavLink>
+            </a>
           </div>
         </div>
       )
