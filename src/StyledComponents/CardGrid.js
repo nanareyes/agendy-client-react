@@ -29,7 +29,7 @@ const CardContainer = styled.div`
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
-    padding: 1.5rem;
+    padding: 2.5rem;
 
     &-title {
       width: 100%;
