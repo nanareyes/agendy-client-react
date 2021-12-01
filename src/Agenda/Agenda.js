@@ -111,7 +111,7 @@ const Agenda = () => {
       })
       myHour = myHour.split('. ').join('').split('.')[0]
 
-      console.log('hora: ', `${myHour.toUpperCase()}M`)
+      console.log('hora: ', `${myHour.toUpperCase()}`)
     }
   })
 

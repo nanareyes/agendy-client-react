@@ -3,14 +3,26 @@ import React, {useState} from 'react'
 import {ToggleButton} from 'primereact/togglebutton'
 import styled from 'styled-components'
 
+// Styles
+const HoursGrid = styled.div`
+  display: grid;
+  grid-gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  grid-template-rows: repeat(auto-fill, minmax(50px, 1fr));
+
+  .p-togglebutton {
+    width: 100% !important;
+  }
+`
+
 const AvailableHours = () => {
   const hourList = [
     {hour: 1637499600, available: true},
-    {hour: 1637503200, available: true},
+    {hour: 1637503200, available: false},
     {hour: 1637506800, available: true},
-    {hour: 1637510400, available: true},
+    {hour: 1637510400, available: false},
     {hour: 1637521200, available: true},
-    {hour: 1637524800, available: true},
+    {hour: 1637524800, available: false},
   ]
 
   const [selectedHours, setSelectedHours] = useState(false)
@@ -44,18 +56,6 @@ const AvailableHours = () => {
   }
 
   const availableHours = returnAvailableHours(hourList)
-
-  // Styles
-  const HoursGrid = styled.div`
-    display: grid;
-    grid-gap: 2rem;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    grid-template-rows: repeat(auto-fill, minmax(50px, 1fr));
-
-    .p-togglebutton {
-      width: 100% !important;
-    }
-  `
 
   return <HoursGrid>{hourListTemplate(availableHours)}</HoursGrid>
 }
