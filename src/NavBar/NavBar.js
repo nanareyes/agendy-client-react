@@ -98,10 +98,13 @@ const NavBar = () => {
             <NavLink to="/services">Servicios</NavLink>
           </li>
           <li>
-            <NavLink to="/agenda">Mi Agenda</NavLink>
+            <NavLink to="/agenda">Mis Citas</NavLink>
           </li>
           <li>
             <NavLink to="/team">Equipo</NavLink>
+          </li>
+          <li>
+            <NavLink to="/stylist">Estilista</NavLink>
           </li>
         </ul>
         <Menu model={items} popup ref={menu} id="popup_menu" />
