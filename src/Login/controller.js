@@ -1,13 +1,14 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import axios from 'axios'
 import {useNavigate} from 'react-router-dom'
 import {useRecoilState} from 'recoil'
-import {userState} from '../atoms'
+import {userState, scheduleState} from '../atoms'
 import Swal from 'sweetalert2'
 
 const useLogin = () => {
   let navigate = useNavigate()
-  const [, setUser] = useRecoilState(userState)
+  const [user, setUser] = useRecoilState(userState)
+  const [, setSchedule] = useRecoilState(scheduleState)
 
   const [inputEmail, setInputEmail] = useState('')
   const [inputPassword, setInputPassword] = useState('')
@@ -27,6 +28,9 @@ const useLogin = () => {
           ...response.data.userDB,
           token: response.data.token,
         })
+        if (response.data?.userDB?.userType === 'Estilista'){
+          setSchedule(response.data?.userDB?.workingSchedule)
+        }
         navigate('home')
       })
       .catch(function (error) {

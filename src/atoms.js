@@ -1,20 +1,25 @@
-import {atom} from 'recoil';
+import {atom} from 'recoil'
 
 const userState = atom({
   key: 'userState',
   default: {
     isAuthenticaded: false,
-  }, 
-});
+  },
+})
 
 const fileState = atom({
   key: 'fileState',
-  default: undefined, 
-});
+  default: undefined,
+})
 
 const loadingState = atom({
   key: 'loadingState',
-  default: false, 
-});
+  default: false,
+})
 
-export { userState, fileState, loadingState };
+const scheduleState = atom({
+  key: 'scheduleState',
+  default: {},
+})
+
+export {userState, fileState, loadingState, scheduleState}

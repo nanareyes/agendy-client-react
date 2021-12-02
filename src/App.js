@@ -8,6 +8,7 @@ import {Agenda} from './Agenda/Agenda'
 import {Team} from './Team/Team'
 import Gallery from './Gallery/Gallery'
 import Services from './Services/Services'
+import {Schedule} from './Schedule/Schedule'
 
 // PrimeReact Imports
 import 'primereact/resources/themes/lara-light-indigo/theme.css'
@@ -34,6 +35,7 @@ function App() {
         <Route path="team" element={<Team />} />
         <Route path="gallery" element={<Gallery />} />
         <Route path="services" element={<Services />} />
+        <Route path="schedule" element={<Schedule />} />
       </Routes>
     </div>
   )

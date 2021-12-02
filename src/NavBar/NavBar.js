@@ -76,6 +76,17 @@ const NavBar = () => {
             navigate('/profile')
           },
         },
+        ...(user.userType === 'Estilista'
+          ? [
+              {
+                label: 'Mi Horario',
+                icon: 'pi pi-calendar',
+                command: (e) => {
+                  navigate('/schedule')
+                },
+              },
+            ]
+          : []),
         {
           label: 'Salir',
           icon: 'pi pi-sign-out',
@@ -102,6 +113,9 @@ const NavBar = () => {
           </li>
           <li>
             <NavLink to="/team">Equipo</NavLink>
+          </li>
+          <li>
+            <NavLink to="/schedule">Estilista</NavLink>
           </li>
         </ul>
         <Menu model={items} popup ref={menu} id="popup_menu" />
