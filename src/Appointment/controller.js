@@ -21,7 +21,7 @@ const useAppointment = () => {
       .get(
         `${process.env.REACT_APP_API_URL}/api/availability/${stylistId}?year=${year}&month=${month}`
       )
-      .then((response) => setAvailability(response.data))
+      .then((response) => setAvailability(response.data.availability))
     return availability
   }
 

@@ -57,7 +57,8 @@ const AvailableHours = () => {
 
   const availableHours = returnAvailableHours(hourList)
 
-  return <HoursGrid>{hourListTemplate(availableHours)}</HoursGrid>
+  // return <HoursGrid>{hourListTemplate(availableHours)}</HoursGrid>
+  return <HoursGrid></HoursGrid>
 }
 
 export {AvailableHours}

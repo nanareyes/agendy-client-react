@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {SectionTitle} from '../StyledComponents/SectionTitle'
 import {CustomCalendar} from './CustomCalendar'
 import {AvailableHours} from './AvailableHours'
@@ -9,7 +9,7 @@ import {Button} from 'primereact/button'
 import {Dropdown} from 'primereact/dropdown'
 
 import {useAppointment} from './controller'
-import {once} from '../utils/events'
+import {once, trigger} from '../utils/events'
 
 import styled from 'styled-components'
 
@@ -44,14 +44,26 @@ const SectionGroup = styled.div`
 const Appointment = () => {
   // controller
   const {stylists, getAvailability, availability} = useAppointment()
+  const [selectedDate, setSelectedDate] = useState(null)
+  //const [availableHours, setAvailableHours] = useState([])
 
-  const [test, setTest] = useState(null)
+  useEffect(() => {
+    console.log('availability object', availability)
+    returnMyHours()
+  }, [availability])
 
-  if (Object.values(availability).length) {
-    console.log(availability.days[0].day === test.day)
+  const returnMyHours = () => {
+    if (Object.values(availability).length) {
+      availability.forEach((item) => {
+        if (item.enabled && item.day === selectedDate.day) {
+          console.log('day', item.day)
+          console.log('hours', item.hours)
+        }
+      })
+    }
   }
 
-  //States
+  //Stylist state
   const [selectedStylist, setSelectedStylist] = useState(null)
 
   const mainLayout = {
@@ -63,10 +75,11 @@ const Appointment = () => {
   }
 
   once('emit-date', async (event) => {
+    event.stopPropagation()
     const dataDate = event.detail
     if (selectedStylist) {
       getAvailability(event, selectedStylist._id, dataDate.year, dataDate.month)
-      setTest(dataDate)
+      setSelectedDate(dataDate)
       event.stopImmediatePropagation()
     }
   })

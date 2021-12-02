@@ -12,12 +12,12 @@ const CustomCalendar = ({className, styles}) => {
   const [date, setDate] = useState(null)
 
   const onDateChange = (event) => {
+    event.stopPropagation()
     const selectedDate = event.value
-    console.log(selectedDate)
     const dateData = {
       year: selectedDate.getFullYear(),
       month: selectedDate.getMonth() + 1,
-      day: selectedDate.toISOString().split('T')[0],
+      day: selectedDate.toISOString(),
     }
 
     trigger('emit-date', dateData)
