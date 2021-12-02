@@ -19,6 +19,7 @@ import 'primeicons/primeicons.css'
 import 'primereact/resources/themes/lara-light-indigo/theme.css'
 import 'primereact/resources/primereact.min.css'
 import 'primeicons/primeicons.css'
+import Footer from './Footer/Footer'
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
         <Route path="gallery" element={<Gallery />} />
         <Route path="services" element={<Services />} />
         <Route path="schedule" element={<Schedule />} />
+        <Route path="footer" element={<Footer />} />
       </Routes>
     </div>
   )

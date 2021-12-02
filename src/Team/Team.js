@@ -6,7 +6,7 @@ import monica from '../assets/teamsPhoto/monica.jpeg'
 import natacha from '../assets/teamsPhoto/natacha.jpg'
 import sonia from '../assets/teamsPhoto/sonia.png'
 import {NavBar} from '../NavBar/NavBar'
-import {Footer} from '../Footer/Footer'
+import Footer from '../Footer/Footer'
 
 const Team = () => {
   const items = [

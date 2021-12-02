@@ -4,7 +4,7 @@ import calendar from '../assets/imagesHome/calendar.png'
 import manosypies from '../assets/imagesHome/manosypies.png'
 import gallery from '../assets/imagesHome/gallery.png'
 import {NavBar} from '../NavBar/NavBar'
-import {Footer} from '../Footer/Footer'
+import Footer from '../Footer/Footer'
 
 const Home = () => {
   const items = [

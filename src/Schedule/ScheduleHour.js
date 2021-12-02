@@ -12,11 +12,9 @@ const ScheduleHour = (props) => {
   const isSelectedHour = () => {
     const scheduleDay = schedule[day]
     if (scheduleDay) {
-      console.info("scheduleDay en isSelectedHour", scheduleDay)
+      console.info('scheduleDay en isSelectedHour', scheduleDay)
       const index = scheduleDay.findIndex((timeLapse) => {
-        return (
-          timeLapse.startHour <= hour && timeLapse.endHour > hour
-        )
+        return timeLapse.startHour <= hour && timeLapse.endHour > hour
       })
       return index > 0
     }
@@ -72,8 +70,8 @@ const ScheduleHour = (props) => {
             // Se seleccionó una hora que no se puede incluir en los
             // lapsos de hora existentes, se debe crear uno nuevo
             const startHour = currentSchedule[day][0].startHour
-            const numItems = currentSchedule[day].length
-            const endHour = currentSchedule[day][numItems - 1].endHour
+            // const numItems = currentSchedule[day].length
+            // const endHour = currentSchedule[day][numItems - 1].endHour
             if (hour < startHour) {
               newSchedule[day] = [
                 {

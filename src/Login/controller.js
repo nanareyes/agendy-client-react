@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react'
+import {useState} from 'react'
 import axios from 'axios'
 import {useNavigate} from 'react-router-dom'
 import {useRecoilState} from 'recoil'
@@ -7,7 +7,7 @@ import Swal from 'sweetalert2'
 
 const useLogin = () => {
   let navigate = useNavigate()
-  const [user, setUser] = useRecoilState(userState)
+  const [, setUser] = useRecoilState(userState)
   const [, setSchedule] = useRecoilState(scheduleState)
 
   const [inputEmail, setInputEmail] = useState('')
@@ -28,7 +28,7 @@ const useLogin = () => {
           ...response.data.userDB,
           token: response.data.token,
         })
-        if (response.data?.userDB?.userType === 'Estilista'){
+        if (response.data?.userDB?.userType === 'Estilista') {
           setSchedule(response.data?.userDB?.workingSchedule)
         }
         navigate('home')

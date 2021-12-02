@@ -1,5 +1,4 @@
 import React from 'react'
-import moment from 'moment'
 import {ScheduleHour} from './ScheduleHour'
 
 const ScheduleDay = (props) => {
