@@ -15,11 +15,11 @@ const useAppointment = () => {
       .then((response) => setStylists(response.data))
   }
 
-  const getAvailability = (event, stylistId, year, month) => {
+  const getAvailability = (event, stylistId, year, month, day) => {
     event.stopPropagation()
     axios
       .get(
-        `${process.env.REACT_APP_API_URL}/api/availability/${stylistId}?year=${year}&month=${month}`
+        `${process.env.REACT_APP_API_URL}/api/availability/${stylistId}?year=${year}&month=${month}&day=${day}`
       )
       .then((response) => setAvailability(response.data.availability))
     return availability

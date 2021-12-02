@@ -15,24 +15,14 @@ const HoursGrid = styled.div`
   }
 `
 
-const AvailableHours = () => {
-  const hourList = [
-    {hour: 1637499600, available: true},
-    {hour: 1637503200, available: false},
-    {hour: 1637506800, available: true},
-    {hour: 1637510400, available: false},
-    {hour: 1637521200, available: true},
-    {hour: 1637524800, available: false},
-  ]
-
+const AvailableHours = ({hourList}) => {
   const [selectedHours, setSelectedHours] = useState(false)
 
   const returnAvailableHours = (hourList) => {
     const available = hourList.filter((hour) => hour.available === true)
 
-    const hours = available.map((hour) => {
-      let date = new Date(hour.hour * 1000).toLocaleTimeString()
-      return date.replace(':00', '')
+    const hours = available.map((item) => {
+      return `${item.hour}:00`
     })
 
     return hours
@@ -57,8 +47,13 @@ const AvailableHours = () => {
 
   const availableHours = returnAvailableHours(hourList)
 
-  // return <HoursGrid>{hourListTemplate(availableHours)}</HoursGrid>
-  return <HoursGrid></HoursGrid>
+  return (
+    <HoursGrid>
+      {hourList.length
+        ? hourListTemplate(availableHours)
+        : 'Horas no disponibles'}
+    </HoursGrid>
+  )
 }
 
 export {AvailableHours}

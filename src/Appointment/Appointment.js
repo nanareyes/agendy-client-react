@@ -45,21 +45,26 @@ const Appointment = () => {
   // controller
   const {stylists, getAvailability, availability} = useAppointment()
   const [selectedDate, setSelectedDate] = useState(null)
-  //const [availableHours, setAvailableHours] = useState([])
+  const [availableHours, setAvailableHours] = useState([])
+
+  console.log('availableHours', availableHours)
 
   useEffect(() => {
-    console.log('availability object', availability)
-    returnMyHours()
-  }, [availability])
+    console.log('availability', availability)
+    setAvailableHours(returnMyHours() || [])
+  }, [availability, setAvailableHours])
 
   const returnMyHours = () => {
     if (Object.values(availability).length) {
-      availability.forEach((item) => {
-        if (item.enabled && item.day === selectedDate.day) {
-          console.log('day', item.day)
-          console.log('hours', item.hours)
-        }
-      })
+      return availability
+        .map((item) => {
+          if (item.enabled && item.day === selectedDate.day) {
+            return item.hours
+          }
+        })
+        .filter((item) => {
+          return item
+        })
     }
   }
 
@@ -78,7 +83,13 @@ const Appointment = () => {
     event.stopPropagation()
     const dataDate = event.detail
     if (selectedStylist) {
-      getAvailability(event, selectedStylist._id, dataDate.year, dataDate.month)
+      getAvailability(
+        event,
+        selectedStylist._id,
+        dataDate.year,
+        dataDate.month,
+        dataDate.day
+      )
       setSelectedDate(dataDate)
       event.stopImmediatePropagation()
     }
@@ -113,7 +124,11 @@ const Appointment = () => {
         />
         <SectionWrapper
           title="Horas disponibles"
-          children={<AvailableHours />}
+          children={
+            <AvailableHours
+              hourList={availableHours.length ? availableHours[0] : []}
+            />
+          }
         />
         <SectionWrapper
           title="Mi Ticket"
