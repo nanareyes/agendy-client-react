@@ -99,12 +99,16 @@ const Calendar = () => {
   dayName = dayName[0].toUpperCase() + dayName.substring(1)
 
   useEffect(() => {
-    const stylistId = user._id
     const startDate = moment(date).format('YYYYMMDD')
     const endDate = moment(date).format('YYYYMMDD')
+    const userParam =
+      user.userType === 'Estilista'
+        ? `stylistId=${user._id}`
+        : `clientId=${user._id}`
+
     axios
       .get(
-        `${process.env.REACT_APP_API_URL}/api/appointment?stylistId=${stylistId}&startDate=${startDate}&endDate=${endDate}`
+        `${process.env.REACT_APP_API_URL}/api/appointment?${userParam}&startDate=${startDate}&endDate=${endDate}`
       )
       .then(function (response) {
         console.log('appointment response', response.data)
