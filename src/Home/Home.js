@@ -10,7 +10,7 @@ const Home = () => {
   const items = [
     {title: 'MANOS Y PIES', image: manosypies, path: '/services'},
     {title: 'GALERÍA', image: gallery, path: '/gallery'},
-    {title: 'AGENDA', image: calendar, path: '/agenda'},
+    {title: 'AGENDA', image: calendar, path: '/appointment'},
   ]
 
   return (
