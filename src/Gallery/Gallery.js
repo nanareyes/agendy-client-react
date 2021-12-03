@@ -4,6 +4,7 @@ import axios from 'axios'
 import './Gallery.css'
 import CardsGalleryView from './CardsGallery'
 import {NavBar} from '../NavBar/NavBar'
+import {SectionTitle} from '../StyledComponents/SectionTitle'
 
 const Gallery = () => {
   const [CardsGallery, setCardsGallery] = useState([])
@@ -36,8 +37,8 @@ const Gallery = () => {
   return (
     <div>
       <NavBar />
+      <SectionTitle title="GALERIA" />
       <div className="container mt-5">
-        <h3 className="text-secondary mb-6">GALERIA</h3>
         <CardsGalleryView posts={currentCardsGallery} loading={loading} />
         <PaginationGallery
           cardsGalleryPerPage={cardsGalleryPerPage}

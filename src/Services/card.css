@@ -16,7 +16,7 @@
   overflow: hidden;
 }
 .card-title {
-  color: #690C17;
+  color:var(--vino);
   
 }
 .card-img-top {

@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import {NavBar} from '../NavBar/NavBar'
 import {ScheduleDays} from './ScheduleDays'
+import {SectionTitle} from '../StyledComponents/SectionTitle'
 
 const ScheduleContainer = styled.div`
   width: 80%;
@@ -12,7 +13,7 @@ const Schedule = () => {
   return (
     <div>
       <NavBar />
-      <h2>MI HORARIO </h2>
+      <SectionTitle title="MI HORARIO" />
       <ScheduleContainer>
         <ScheduleDays />
       </ScheduleContainer>

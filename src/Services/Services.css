@@ -1,5 +1,5 @@
 .Services {
-  font-family: 'Oxygen', sans-serif;
+  font-family: 'PT mono', 'Helvetica Neue', sans-serif !important;
   height: 100vh;
   background: #e5e5e5;
   
@@ -9,3 +9,12 @@ nav{
   text-align: center;
   
   }
+.text{
+  padding: 30px;
+  margin-left: 10px;
+  color: var(--black);
+  text-decoration: underline;
+  text-decoration-color: var(--fucsia);
+  padding-bottom: 0;
+ 
+}

@@ -74,7 +74,7 @@ function EditProfile(props) {
   return (
     <React.Fragment>
       <Row>
-        <Col sm="4"></Col>
+        <Col sm="3"></Col>
         <Col sm="7">
           <Card>
             <CardHeader tag="h3">COMPLETA TU PERFIL</CardHeader>
