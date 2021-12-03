@@ -105,6 +105,9 @@ const NavBar = () => {
         </NavLink>
         <ul className="link-list">
           <li>
+            <NavLink to="/home">Inicio</NavLink>
+          </li>
+          <li>
             <NavLink to="/services">Servicios</NavLink>
           </li>
           <li>
