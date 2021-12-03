@@ -51,7 +51,7 @@ function Register(props) {
     border: '2px solid var(--fucsia)',
   }
 
-  console.log('Este es el userType', inputUserType)
+  // console.log('Este es el userType', inputUserType)
   return (
     <React.Fragment>
       <Form style={formStyle} inline>

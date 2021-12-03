@@ -2,12 +2,14 @@ import {useState} from 'react'
 import axios from 'axios'
 import {useNavigate} from 'react-router-dom'
 import {useRecoilState} from 'recoil'
-import {userState} from '../atoms'
+import {userState, scheduleState} from '../atoms'
 import Swal from 'sweetalert2'
+import {scheduleObjToArray} from '../utils/schedule'
 
 const useLogin = () => {
   let navigate = useNavigate()
   const [, setUser] = useRecoilState(userState)
+  const [, setSchedule] = useRecoilState(scheduleState)
 
   const [inputEmail, setInputEmail] = useState('')
   const [inputPassword, setInputPassword] = useState('')
@@ -27,11 +29,16 @@ const useLogin = () => {
           ...response.data.userDB,
           token: response.data.token,
         })
+        if (response.data?.userDB?.userType === 'Estilista') {
+          setSchedule(
+            scheduleObjToArray(response.data?.userDB?.workingSchedule || {})
+          )
+        }
         navigate('home')
       })
       .catch(function (error) {
-        // console.log(error);
         console.log('Usuario no registrado')
+        console.info(error, 'no se loguea')
         Swal.fire({
           showConfirmButton: true,
           icon: 'error',

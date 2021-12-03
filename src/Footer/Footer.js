@@ -1,58 +1,9 @@
 import React from 'react'
 import logoFooter from '../assets/logoFooter.png'
-import styled from 'styled-components'
 import {StyledImage} from '../StyledComponents/StyledImage'
 
-const ContainerFooter = styled.div`
-  display: flex;
-  width: 100%;
-  align-items: center;
-  justify-content: space-between;
-  height: 170px;
-  opacity: 0.8;
-  width: 100%;
-  padding-bottom: 60px;
-  position: fixed;
-  bottom: 0;
-
-  .card {
-    display: flex;
-    justify-content: flex;
-    height: auto;
-    opacity: 0.8;
-    height: 170px;
-    width: 100%;
-    padding-bottom: 1rem;
-  }
-  .tittle {
-    color: var(--vino);
-  }
-`
-
-const ContainerLinks = styled.div`
-  .card-links {
-    display: flex;
-    justify-content: flex;
-    height: auto;
-    opacity: 0.8;
-    padding-bottom: 5px;
-    height: 30px;
-    width: 100%;
-    padding: 1rem;
-    background-color: #efbee7;
-    position: fixed;
-    bottom: 0;
-  }
-  .link-list {
-    all: unset;
-    display: flex;
-    margin: 2px;
-    align-items: center;
-    gap: 1rem;
-    list-style: none;
-    flex-grow: 1;
-  }
-`
+import {Box, Container, Row, Column, Heading} from './FooterStyles'
+import {Button} from 'primereact/button'
 
 const Footer = () => {
   const names = [
@@ -71,48 +22,58 @@ const Footer = () => {
   ]
 
   return (
-    <React.Fragment>
-      <ContainerFooter>
-        <div className="card tittle">
-          INFORMACIÓN SOBRE EL PROYECTO
-          <StyledImage src={logoFooter} size="180px" />
-        </div>
-        <div className="card tittle">
-          <ul>
-            <li>INTEGRANTES</li>
-          </ul>
-          {names.map((name) => (
-            <h6>{name} </h6>
-          ))}
-        </div>
-        <div className="card tittle">
-          <ul>
-            <li>CONTACTO</li>
-          </ul>
-
-          {phones.map((phone) => (
-            <h6>{phone} </h6>
-          ))}
-        </div>
-      </ContainerFooter>
-      <ContainerLinks>
-        <div className="card-links">
-          <a
-            className="link-list"
-            href="https://github.com/nanareyes/agendy-client-react"
-            rel="noopener">
-            Enlace a Git
-          </a>
-          <a
-            className="link-list"
-            href="http://agendy-client-react.herokuapp.com/"
-            rel="noopener">
-            Enlace a Heroku
-          </a>
-        </div>
-      </ContainerLinks>
-    </React.Fragment>
+    <Box>
+      <StyledImage src={logoFooter} align-items="left" size="400px" />
+      <Container>
+        <Row>
+          <Column></Column>
+          <Column>
+            <Heading>INTEGRANTES</Heading>
+            <div>
+              {names.map((name) => (
+                <h6>{name} </h6>
+              ))}
+            </div>
+          </Column>
+          <Column>
+            <Heading>CONTACTO</Heading>
+            <div>
+              {phones.map((phone) => (
+                <h6>{phone} </h6>
+              ))}
+            </div>
+          </Column>
+          <Column>
+            <Heading>INFORMACIÓN DEL PROYECTO</Heading>
+            <a href="https://agendy-client-react.herokuapp.com/" rel="noopener">
+              <Button
+                label="Enlace a Heroku"
+                icon="pi pi-cloud-upload"
+                className="p-button-outlined p-button-text p-button-secondary"
+              />
+            </a>
+            <a
+              href="https://github.com/nanareyes/agendy-client-react"
+              rel="noopener">
+              <Button
+                label="Enlace a Git Hub"
+                icon="pi pi-github"
+                className="p-button-outlined p-button-text p-button-secondary"
+              />
+            </a>
+            <a
+              href="https://drive.google.com/drive/u/1/folders/1f3YEgdKhNjnuHdIQe4F5cyCddnUjLuZd"
+              rel="noopener">
+              <Button
+                label="Enlace a la documentación"
+                icon="pi pi-book"
+                className="p-button-outlined p-button-text p-button-secondary"
+              />
+            </a>
+          </Column>
+        </Row>
+      </Container>
+    </Box>
   )
 }
-
-export {Footer}
+export default Footer

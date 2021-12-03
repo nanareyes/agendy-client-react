@@ -33,7 +33,7 @@ const useRegister = () => {
         Swal.fire({
           showConfirmButton: true,
           icon: 'success',
-          text: 'Registro exitoso.¡Bienvenido a Agendy Nails!',
+          text: 'Registro exitoso.¡Completa tu perfil y Bienvenido a Agendy Nails!',
         })
         setUser({
           isAuthenticaded: true,

@@ -5,7 +5,7 @@ import {userState} from '../atoms'
 const useNavBar = () => {
   const [user, setUser] = useRecoilState(userState)
   const navigate = useNavigate()
-  console.log('este es el user', user)
+  // console.log('este es el user', user)
   const userName = user.name
   const userPhoto = user.loginType === 'GOOGLE' ? user.imageUrl : user.photo
 

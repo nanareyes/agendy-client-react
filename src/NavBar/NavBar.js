@@ -56,7 +56,6 @@ const NavBar = () => {
   let navigate = useNavigate()
   const [user, setUser] = useRecoilState(userState)
 
-  console.log(setUser)
   const {userName, onLogout} = useNavBar()
   const menu = useRef(null)
   const items = [
@@ -76,6 +75,17 @@ const NavBar = () => {
             navigate('/profile')
           },
         },
+        ...(user.userType === 'Estilista'
+          ? [
+              {
+                label: 'Mi Horario',
+                icon: 'pi pi-calendar',
+                command: (e) => {
+                  navigate('/schedule')
+                },
+              },
+            ]
+          : []),
         {
           label: 'Salir',
           icon: 'pi pi-sign-out',
@@ -95,10 +105,13 @@ const NavBar = () => {
         </NavLink>
         <ul className="link-list">
           <li>
+            <NavLink to="/home">Inicio</NavLink>
+          </li>
+          <li>
             <NavLink to="/services">Servicios</NavLink>
           </li>
           <li>
-            <NavLink to="/agenda">Mi Agenda</NavLink>
+            <NavLink to="/calendar">Mis citas</NavLink>
           </li>
           <li>
             <NavLink to="/team">Equipo</NavLink>
