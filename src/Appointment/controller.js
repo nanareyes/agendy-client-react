@@ -1,4 +1,4 @@
-import {useEffect} from 'react'
+import {useEffect, useState} from 'react'
 import axios from 'axios'
 import {useRecoilState} from 'recoil'
 import moment from 'moment'
@@ -14,6 +14,7 @@ const useAppointment = () => {
   const [appointment, setAppointment] = useRecoilState(appointmentState)
   const [user] = useRecoilState(userState)
   const [isLoading, setIsLoading] = useRecoilState(loadingState)
+  const [isSaving, setIsSaving] = useState(false)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -106,17 +107,23 @@ const useAppointment = () => {
   }
 
   const saveAppointment = async () => {
-    setIsLoading(true)
+    setIsSaving(true)
     try {
       const response = await axios.post(
         `${process.env.REACT_APP_API_URL}/api/appointment`,
         getAppointmentData()
       )
+      if (response.data._id) {
+        setAppointment((currentAppointment) => ({
+          ...currentAppointment,
+          status: 'SAVED',
+        }))
+      }
     } catch (err) {
       // Handle Error Here
       console.error(err)
     } finally {
-      setIsLoading(false)
+      setIsSaving(false)
     }
   }
 
@@ -158,6 +165,15 @@ const useAppointment = () => {
     return appointmentData
   }
 
+  const getAppointmentExtraData = () => {
+    const appointmentExtraData = {
+      stylistAddress: appointment?.stylist.address,
+      stylistCity: appointment?.stylist.city,
+    }
+
+    return appointmentExtraData
+  }
+
   const clearAppointment = () => {
     setAppointment(getDefaultAppointmentState())
   }
@@ -175,8 +191,11 @@ const useAppointment = () => {
     isLoading,
     setIsLoading,
     getAppointmentData,
+    getAppointmentExtraData,
     clearAppointment,
     cancelAppointment,
+    isSaving,
+    setIsSaving,
   }
 }
 

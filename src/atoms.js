@@ -36,6 +36,7 @@ const scheduleState = atom({
 
 export const getDefaultAppointmentState = () => {
   return {
+    status: 'UNSAVED',
     stylists: [],
     stylist: {},
     serviceName: null,

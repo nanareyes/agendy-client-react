@@ -19,25 +19,34 @@ const TicketCard = styled.div`
 `
 moment.locale('es')
 const Ticket = () => {
-  const {getAppointmentData} = useAppointment()
+  const {getAppointmentData, getAppointmentExtraData} = useAppointment()
   const appointmentData = getAppointmentData()
+  const appointmentExtraData = getAppointmentExtraData()
+  console.log('stylist in ticket', appointmentData.stylist)
 
   return (
     <TicketCard>
       <header className="ticket-header">
         <h3>
-          {appointmentData?.serviceName}{' '}
+          {appointmentData?.serviceName}
           {/* <Button
             tooltip="Editar servicio"
             icon="pi pi-pencil"
             className="p-button-rounded p-button-outlined"
           /> */}
         </h3>
+        <h3>{appointmentData?.servicePrice}</h3>
         <p>
-          <strong>para:</strong> {appointmentData?.clientName}{' '}
+          <strong>Para:</strong> {appointmentData?.clientName}{' '}
         </p>
         <p>
-          <strong>de:</strong> {appointmentData?.stylistName}{' '}
+          <strong>De:</strong> {appointmentData?.stylistName}{' '}
+        </p>
+        <p>
+          <strong>Dirección:</strong>{' '}
+          {appointmentExtraData?.stylistAddress
+            ? `${appointmentExtraData?.stylistAddress}, ${appointmentExtraData?.stylistCity}`
+            : ''}
         </p>
       </header>
       <section className="ticket-section">
