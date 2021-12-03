@@ -1,21 +1,25 @@
-import React, {useState, useRef} from 'react'
+import React, {useState, useRef, useEffect} from 'react'
 import styled from 'styled-components'
 import {NavBar} from '../NavBar/NavBar'
 import {SectionTitle} from '../StyledComponents/SectionTitle'
-import {Calendar} from 'primereact/calendar'
+import {Calendar as PRCalendar} from 'primereact/calendar'
 import {OverlayPanel} from 'primereact/overlaypanel'
 import {Button} from 'primereact/button'
-import {FakeAppointments} from './FakeAppointment'
-import {getDateString} from './dateUtils'
-//import {Dropdown} from 'primereact/dropdown'
+import {Message} from 'primereact/message'
+import moment from 'moment'
+import {useRecoilState} from 'recoil'
+import 'moment/locale/es'
+import axios from 'axios'
+import {userState} from '../atoms'
+import {CalendarEvent} from './CalendarEvent'
 
-const AgendaContainer = styled.div`
+const CalendarContainer = styled.div`
   height: 100%;
   display: grid;
   justify-content: center;
   .agenda-frame {
     width: min(50vh, 600px);
-    height: 500px;
+    min-height: 500px;
     background-color: white;
     box-shadow: 1.272580623626709px 1.272580623626709px 11.453226089477539px 0px
       rgba(0, 0, 0, 0.15);
@@ -72,18 +76,15 @@ const AgendaContainer = styled.div`
   }
 `
 
-const AppointmentStylist = () => {
+const Calendar = () => {
+  moment.locale('es')
   const actualDate = new Date()
   const [date, setDate] = useState(actualDate)
-
-  const actualDateHeader = getDateString(actualDate)
-  const [dateHeader, setDateHeader] = useState(actualDateHeader)
+  const [events, setEvents] = useState([])
+  const [user] = useRecoilState(userState)
 
   const onDateChange = (event) => {
-    const timestamp = event.target.value.getTime()
-    const selectedDate = new Date(timestamp)
-
-    setDateHeader(getDateString(selectedDate))
+    const selectedDate = new Date(event.value)
     setDate(selectedDate)
     overlayPanelReference.current.hide()
   }
@@ -94,30 +95,35 @@ const AppointmentStylist = () => {
     overlayPanelReference.current.toggle(event)
   }
 
-  // Match date study
-  FakeAppointments.forEach((item) => {
-    const myDate = new Date(Number(item.date * 1000))
+  let dayName = moment(date).format('MMMM D')
+  dayName = dayName[0].toUpperCase() + dayName.substring(1)
 
-    if (getDateString(date) == getDateString(myDate)) {
-      console.log('servicio: ', item.service)
-      let myHour = myDate.toLocaleTimeString([], {
-        hour: '2-digit',
-        minute: '2-digit',
+  useEffect(() => {
+    const stylistId = user._id
+    const startDate = moment(date).format('YYYYMMDD')
+    const endDate = moment(date).format('YYYYMMDD')
+    axios
+      .get(
+        `${process.env.REACT_APP_API_URL}/api/appointment?stylistId=${stylistId}&startDate=${startDate}&endDate=${endDate}`
+      )
+      .then(function (response) {
+        console.log('appointment response', response.data)
+        setEvents(response.data)
       })
-      myHour = myHour.split('. ').join('').split('.')[0]
-
-      console.log('hora: ', `${myHour.toUpperCase()}`)
-    }
-  })
+      .catch(function (error) {
+        // console.log(error);
+        console.log('Error consultando citas')
+      })
+  }, [date])
 
   return (
     <div>
       <NavBar />
       <SectionTitle title="AGENDA DE USUARIO" />
-      <AgendaContainer>
+      <CalendarContainer>
         <div className="agenda-frame">
           <header className="agenda-header">
-            <p className="agenda-day"> {dateHeader} </p>
+            <p className="agenda-day"> {dayName} </p>
             <Button
               icon="pi pi-calendar"
               className="p-button-rounded"
@@ -127,24 +133,21 @@ const AppointmentStylist = () => {
               ref={overlayPanelReference}
               showCloseIcon
               id="overlay_panel">
-              <Calendar value={date} onChange={onDateChange} inline />
+              <PRCalendar value={date} onChange={onDateChange} inline />
             </OverlayPanel>
           </header>
-
           <section className="agenda-event-grid">
-            <div className="agenda-event">
-              <p className="agenda-event-title">MAQUILLAJE SEMIPERMANENTE</p>
-              <p className="agenda-event-time">2:00 PM</p>
-              <Button
-                icon="pi pi-times"
-                className="p-button-rounded p-button-outlined"
-                tooltip="cancelar cita"
-              />
-            </div>
+            {events.length > 0 &&
+              events.map((event) => <CalendarEvent {...event} />)}
+            {events.length === 0 && (
+              <Message
+                severity="info"
+                text="No tiene citas para esta fecha"></Message>
+            )}
           </section>
         </div>
-      </AgendaContainer>
+      </CalendarContainer>
     </div>
   )
 }
-export {AppointmentStylist}
+export {Calendar}

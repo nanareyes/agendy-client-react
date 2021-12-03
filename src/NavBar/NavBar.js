@@ -109,7 +109,7 @@ const NavBar = () => {
             <NavLink to="/services">Servicios</NavLink>
           </li>
           <li>
-            <NavLink to="/agenda">Mis citas</NavLink>
+            <NavLink to="/calendar">Mis citas</NavLink>
           </li>
           <li>
             <NavLink to="/team">Equipo</NavLink>

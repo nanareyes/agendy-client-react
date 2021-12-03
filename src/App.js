@@ -10,7 +10,7 @@ import Gallery from './Gallery/Gallery'
 import Services from './Services/Services'
 import {Schedule} from './Schedule/Schedule'
 import Footer from './Footer/Footer'
-import {AppointmentStylist} from './AppoinmentStylist/Agenda'
+import {Calendar} from './Calendar/Calendar'
 // PrimeReact Imports
 import 'primereact/resources/themes/lara-light-indigo/theme.css'
 import 'primereact/resources/primereact.min.css'
@@ -38,7 +38,7 @@ function App() {
         <Route path="services" element={<Services />} />
         <Route path="schedule" element={<Schedule />} />
         <Route path="footer" element={<Footer />} />
-        <Route path="agenda" element={<AppointmentStylist />} />
+        <Route path="calendar" element={<Calendar />} />
       </Routes>
     </div>
   )
