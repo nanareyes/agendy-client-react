@@ -76,6 +76,17 @@ const NavBar = () => {
             navigate('/profile')
           },
         },
+        ...(user.userType === 'Estilista'
+          ? [
+              {
+                label: 'Mi Horario',
+                icon: 'pi pi-calendar',
+                command: (e) => {
+                  navigate('/schedule')
+                },
+              },
+            ]
+          : []),
         {
           label: 'Salir',
           icon: 'pi pi-sign-out',
@@ -98,7 +109,7 @@ const NavBar = () => {
             <NavLink to="/services">Servicios</NavLink>
           </li>
           <li>
-            <NavLink to="/agenda">Mi Agenda</NavLink>
+            <NavLink to="/agenda">Mis citas</NavLink>
           </li>
           <li>
             <NavLink to="/team">Equipo</NavLink>
