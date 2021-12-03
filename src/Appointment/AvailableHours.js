@@ -1,26 +1,58 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
+import {ProgressSpinner} from 'primereact/progressspinner'
 //import {Button} from 'primereact/button'
 import {ToggleButton} from 'primereact/togglebutton'
+import {on, trigger} from '../utils/events'
 import styled from 'styled-components'
 
-const AvailableHours = () => {
-  const hourList = [
-    {hour: 1637499600, available: true},
-    {hour: 1637503200, available: true},
-    {hour: 1637506800, available: true},
-    {hour: 1637510400, available: true},
-    {hour: 1637521200, available: true},
-    {hour: 1637524800, available: true},
-  ]
+// Styles
+const HoursGrid = styled.div`
+  display: grid;
+  grid-gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  grid-template-rows: repeat(auto-fill, minmax(50px, 1fr));
 
-  const [selectedHours, setSelectedHours] = useState(false)
+  .p-togglebutton {
+    width: 100% !important;
+  }
+`
+
+const AvailableHours = ({hourList}) => {
+  const [selectedHours, setSelectedHours] = useState([])
+  const [isLoading, setLoading] = useState(false)
+
+  on('emit-date', () => {
+    setLoading(true)
+  })
+
+  useEffect(() => {
+    if (hourList.length > 0) {
+      hourList.forEach((obj) => (obj.isSelected = false))
+      const initialState = hourList.map((obj) => obj.isSelected)
+      setSelectedHours(initialState)
+    }
+  }, [hourList])
+
+  useEffect(() => {
+    if (selectedHours.length) {
+      setLoading(false)
+    }
+  }, [isLoading, selectedHours])
+
+  const handleSelectedHour = (event) => {
+    const id = event.target.id
+    const newArr = [...selectedHours]
+    newArr[id] = !newArr[id]
+    setSelectedHours(newArr)
+    console.log(hourList[id].hour)
+    trigger('hour-selected', {selectedHour: hourList[id].hour})
+  }
 
   const returnAvailableHours = (hourList) => {
     const available = hourList.filter((hour) => hour.available === true)
 
-    const hours = available.map((hour) => {
-      let date = new Date(hour.hour * 1000).toLocaleTimeString()
-      return date.replace(':00', '')
+    const hours = available.map((item) => {
+      return `${item.hour}:00`
     })
 
     return hours
@@ -29,10 +61,10 @@ const AvailableHours = () => {
   const hourListTemplate = (hourStringList) => {
     return hourStringList.map((string, key) => (
       <div key={key}>
-        {/* <Button label={string} onClick={() => console.log(key)} /> */}
         <ToggleButton
-          checked={selectedHours}
-          onChange={(event) => setSelectedHours(event.value)}
+          id={key}
+          checked={selectedHours[key]}
+          onChange={handleSelectedHour}
           onLabel={string}
           offLabel={string}
           onIcon="pi pi-check"
@@ -45,19 +77,11 @@ const AvailableHours = () => {
 
   const availableHours = returnAvailableHours(hourList)
 
-  // Styles
-  const HoursGrid = styled.div`
-    display: grid;
-    grid-gap: 2rem;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    grid-template-rows: repeat(auto-fill, minmax(50px, 1fr));
-
-    .p-togglebutton {
-      width: 100% !important;
-    }
-  `
-
-  return <HoursGrid>{hourListTemplate(availableHours)}</HoursGrid>
+  return (
+    <HoursGrid className="hours-grid">
+      {isLoading ? <ProgressSpinner /> : hourListTemplate(availableHours)}
+    </HoursGrid>
+  )
 }
 
 export {AvailableHours}

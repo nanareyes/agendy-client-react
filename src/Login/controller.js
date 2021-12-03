@@ -35,7 +35,6 @@ const useLogin = () => {
         navigate('home')
       })
       .catch(function (error) {
-        // console.log(error);
         console.log('Usuario no registrado')
         Swal.fire({
           showConfirmButton: true,
