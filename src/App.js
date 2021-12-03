@@ -9,17 +9,17 @@ import {Team} from './Team/Team'
 import Gallery from './Gallery/Gallery'
 import Services from './Services/Services'
 import {Schedule} from './Schedule/Schedule'
-
-// PrimeReact Imports
-import 'primereact/resources/themes/lara-light-indigo/theme.css'
-import 'primereact/resources/primereact.min.css'
-import 'primeicons/primeicons.css'
-
-// PrimeReact Imports
-import 'primereact/resources/themes/lara-light-indigo/theme.css'
-import 'primereact/resources/primereact.min.css'
-import 'primeicons/primeicons.css'
 import Footer from './Footer/Footer'
+import {AppointmentStylist} from './AppoinmentStylist/Agenda'
+// PrimeReact Imports
+import 'primereact/resources/themes/lara-light-indigo/theme.css'
+import 'primereact/resources/primereact.min.css'
+import 'primeicons/primeicons.css'
+
+// PrimeReact Imports
+import 'primereact/resources/themes/lara-light-indigo/theme.css'
+import 'primereact/resources/primereact.min.css'
+import 'primeicons/primeicons.css'
 
 function App() {
   return (
@@ -29,7 +29,7 @@ function App() {
         <Route path="/" element={<Landing />} />
         <Route path="register" element={<Landing />} />
         <Route path="profile" element={<Profile />} />
-        <Route path="agenda" element={<Agenda />} />
+        <Route path="agendas" element={<Agenda />} />
         <Route path="appointment" element={<Appointment />} />
         <Route path="forgotpassword" element={<Landing />} />
         <Route path="resetpassword/:id/:token" element={<Landing />} />
@@ -38,6 +38,7 @@ function App() {
         <Route path="services" element={<Services />} />
         <Route path="schedule" element={<Schedule />} />
         <Route path="footer" element={<Footer />} />
+        <Route path="agenda" element={<AppointmentStylist />} />
       </Routes>
     </div>
   )
