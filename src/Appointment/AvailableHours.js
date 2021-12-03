@@ -1,63 +1,68 @@
-import React, {useState} from 'react'
-//import {Button} from 'primereact/button'
+import React, {useState, useEffect} from 'react'
+import {ProgressSpinner} from 'primereact/progressspinner'
 import {ToggleButton} from 'primereact/togglebutton'
+import {useRecoilState} from 'recoil'
 import styled from 'styled-components'
+import {loadingState} from '../atoms'
+import {useAppointment} from './controller'
+import moment from 'moment'
+
+// Styles
+const HoursGrid = styled.div`
+  display: grid;
+  grid-gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  grid-template-rows: repeat(auto-fill, minmax(50px, 1fr));
+
+  .p-togglebutton {
+    width: 100% !important;
+  }
+`
 
 const AvailableHours = () => {
-  const hourList = [
-    {hour: 1637499600, available: true},
-    {hour: 1637503200, available: true},
-    {hour: 1637506800, available: true},
-    {hour: 1637510400, available: true},
-    {hour: 1637521200, available: true},
-    {hour: 1637524800, available: true},
-  ]
+  const {appointment, setAppointment} = useAppointment()
+  const [isLoading] = useRecoilState(loadingState)
+  const {selectedHour} = appointment
 
-  const [selectedHours, setSelectedHours] = useState(false)
-
-  const returnAvailableHours = (hourList) => {
-    const available = hourList.filter((hour) => hour.available === true)
-
-    const hours = available.map((hour) => {
-      let date = new Date(hour.hour * 1000).toLocaleTimeString()
-      return date.replace(':00', '')
-    })
-
-    return hours
+  const handleSelectedHour = (hour) => {
+    setAppointment((currentAppointment) => ({
+      ...currentAppointment,
+      selectedHour: hour,
+    }))
   }
 
-  const hourListTemplate = (hourStringList) => {
-    return hourStringList.map((string, key) => (
-      <div key={key}>
-        {/* <Button label={string} onClick={() => console.log(key)} /> */}
+  const {availability} = appointment
+  const availableHours = (availability?.hours || [])
+    .filter((hour) => hour.available)
+    .map((hour) => hour.hour)
+
+  const mDate = moment()
+  const hourList = availableHours.map((hour) => {
+    mDate.set({hour, minutes: 0, seconds: 0})
+    return (
+      <div key={hour}>
         <ToggleButton
-          checked={selectedHours}
-          onChange={(event) => setSelectedHours(event.value)}
-          onLabel={string}
-          offLabel={string}
+          checked={hour === selectedHour}
+          onChange={(e) => {
+            e.preventDefault()
+            handleSelectedHour(hour)
+          }}
+          onLabel={mDate.format('hh:mm a')}
+          offLabel={mDate.format('hh:mm a')}
           onIcon="pi pi-check"
           offIcon="pi pi-times"
           style={{width: '10em'}}
         />
       </div>
-    ))
-  }
+    )
+  })
 
-  const availableHours = returnAvailableHours(hourList)
-
-  // Styles
-  const HoursGrid = styled.div`
-    display: grid;
-    grid-gap: 2rem;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    grid-template-rows: repeat(auto-fill, minmax(50px, 1fr));
-
-    .p-togglebutton {
-      width: 100% !important;
-    }
-  `
-
-  return <HoursGrid>{hourListTemplate(availableHours)}</HoursGrid>
+  return (
+    <HoursGrid className="hours-grid">
+      {isLoading && <ProgressSpinner />}
+      {!isLoading && hourList}
+    </HoursGrid>
+  )
 }
 
 export {AvailableHours}

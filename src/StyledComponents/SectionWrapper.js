@@ -4,7 +4,7 @@ import {TaggedTitle} from './TaggedTitle'
 
 const SectionContainer = styled.section`
   display: inline-grid;
-  grid-template-rows: 0.1fr 1fr;
+  height: fit-content;
   padding: 1rem;
   gap: 1rem;
 

@@ -55,6 +55,12 @@ const CardContainer = styled.div`
       display: flex;
       gap: 1rem;
     }
+    .p-button {
+      background: violet;
+      transform: scale(0.6);
+      border: none;
+      color: var(--white);
+    }
   }
 `
 

@@ -1,6 +1,5 @@
 import React from 'react'
 import logoFooter from '../assets/logoFooter.png'
-import styled from 'styled-components'
 import {StyledImage} from '../StyledComponents/StyledImage'
 
 const ContainerFooter = styled.div`
@@ -110,5 +109,4 @@ const Footer = () => {
     </React.Fragment>
   )
 }
-
-export {Footer}
+export default Footer

@@ -74,7 +74,6 @@ const NavBar = () => {
   const [user, setUser] = useRecoilState(userState)
   const [visibleRight, setVisibleRight] = useState(false)
 
-  console.log(setUser)
   const {userName, onLogout} = useNavBar()
   const menu = useRef(null)
   const items = [
@@ -94,6 +93,17 @@ const NavBar = () => {
             navigate('/profile')
           },
         },
+        ...(user.userType === 'Estilista'
+          ? [
+              {
+                label: 'Mi Horario',
+                icon: 'pi pi-calendar',
+                command: (e) => {
+                  navigate('/schedule')
+                },
+              },
+            ]
+          : []),
         {
           label: 'Salir',
           icon: 'pi pi-sign-out',
@@ -107,7 +117,7 @@ const NavBar = () => {
 
   const links = [
     {text: 'Servicios', path: '/services'},
-    {text: 'Mi Agenda', path: '/agenda'},
+    {text: 'Mis citas', path: '/agenda'},
     {text: 'Equipo', path: '/team'},
   ]
 

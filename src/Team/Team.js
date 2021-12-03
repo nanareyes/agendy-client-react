@@ -6,7 +6,7 @@ import monica from '../assets/teamsPhoto/monica.jpeg'
 import natacha from '../assets/teamsPhoto/natacha.jpg'
 import sonia from '../assets/teamsPhoto/sonia.png'
 import {NavBar} from '../NavBar/NavBar'
-import {Footer} from '../Footer/Footer'
+import {SectionTitle} from '../StyledComponents/SectionTitle'
 
 const Team = () => {
   const items = [
@@ -46,7 +46,7 @@ const Team = () => {
     {
       title: 'YENNY NATACHA LIBREROS MONTES',
       image: natacha,
-      description: 'Diseñador gráfico especialista en ...',
+      description: 'Economista. Técnico en contabilidad y finanzas',
       github: 'https://github.com/Natacha7',
       linkedin:
         'https://www.linkedin.com/in/yenny-natacha-libreros-montes-47746410a/',
@@ -56,8 +56,8 @@ const Team = () => {
   return (
     <div>
       <NavBar />
+      <SectionTitle title="NUESTRO EQUIPO" />
       <CardTeam itemList={items} />
-      <Footer />
     </div>
   )
 }
