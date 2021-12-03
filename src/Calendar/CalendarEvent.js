@@ -10,29 +10,34 @@ const CalendarEvent = (props) => {
   return (
     <div className="agenda-event">
       <div>
-        <ul>
-          <li className="agenda-event-title">{props.serviceName}</li>
-        </ul>
-        <ul>
-          <li className="agenda-event-description">
+        <div>
+          <h5 className="agenda-event-title">{props.serviceName}</h5>
+        </div>
+        <div>
+          <h6>{user.userType === 'Estilista' ? 'Cliente: ' : 'Estilista: '}</h6>
+          <h6 className="agenda-event-description">
             {user.userType === 'Estilista'
               ? props.clientName
               : props.stylistName}
-          </li>
-        </ul>
+          </h6>
+        </div>
       </div>
       {/* <p className="agenda-event-title">{props.serviceName}</p> */}
-      <p className="agenda-event-time">
-        {moment(props.date).utc().format('hh:mm a')}
-      </p>
+      <div>
+        <h5 className="agenda-event-time">
+          {moment(props.date).utc().format('hh:mm a')}
+        </h5>
+      </div>
       {/* <div className="agenda-event-description">
         {user.userType === 'Estilista' ? props.clientName : props.stylistName}
       </div> */}
-      <Button
-        icon="pi pi-bars"
-        className="p-button-rounded p-button-outlined"
-        tooltip={props.servicePrice}
-      />
+      <div>
+        <Button
+          icon="pi pi-bars"
+          className="p-button-rounded p-button-outlined"
+          tooltip={`Precio: ${props.servicePrice}, Email: ${props.stylistEmail}, Teléfono: ${props.stylistPhone}`}
+        />
+      </div>
     </div>
   )
 }
