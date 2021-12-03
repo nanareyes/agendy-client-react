@@ -1,6 +1,8 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
+import {ProgressSpinner} from 'primereact/progressspinner'
 //import {Button} from 'primereact/button'
 import {ToggleButton} from 'primereact/togglebutton'
+import {on, trigger} from '../utils/events'
 import styled from 'styled-components'
 
 // Styles
@@ -16,7 +18,35 @@ const HoursGrid = styled.div`
 `
 
 const AvailableHours = ({hourList}) => {
-  const [selectedHours, setSelectedHours] = useState(false)
+  const [selectedHours, setSelectedHours] = useState([])
+  const [isLoading, setLoading] = useState(false)
+
+  on('emit-date', () => {
+    setLoading(true)
+  })
+
+  useEffect(() => {
+    if (hourList.length > 0) {
+      hourList.forEach((obj) => (obj.isSelected = false))
+      const initialState = hourList.map((obj) => obj.isSelected)
+      setSelectedHours(initialState)
+    }
+  }, [hourList])
+
+  useEffect(() => {
+    if (selectedHours.length) {
+      setLoading(false)
+    }
+  }, [isLoading, selectedHours])
+
+  const handleSelectedHour = (event) => {
+    const id = event.target.id
+    const newArr = [...selectedHours]
+    newArr[id] = !newArr[id]
+    setSelectedHours(newArr)
+    console.log(hourList[id].hour)
+    trigger('hour-selected', {selectedHour: hourList[id].hour})
+  }
 
   const returnAvailableHours = (hourList) => {
     const available = hourList.filter((hour) => hour.available === true)
@@ -31,10 +61,10 @@ const AvailableHours = ({hourList}) => {
   const hourListTemplate = (hourStringList) => {
     return hourStringList.map((string, key) => (
       <div key={key}>
-        {/* <Button label={string} onClick={() => console.log(key)} /> */}
         <ToggleButton
-          checked={selectedHours}
-          onChange={(event) => setSelectedHours(event.value)}
+          id={key}
+          checked={selectedHours[key]}
+          onChange={handleSelectedHour}
           onLabel={string}
           offLabel={string}
           onIcon="pi pi-check"
@@ -48,10 +78,8 @@ const AvailableHours = ({hourList}) => {
   const availableHours = returnAvailableHours(hourList)
 
   return (
-    <HoursGrid>
-      {hourList.length
-        ? hourListTemplate(availableHours)
-        : 'Horas no disponibles'}
+    <HoursGrid className="hours-grid">
+      {isLoading ? <ProgressSpinner /> : hourListTemplate(availableHours)}
     </HoursGrid>
   )
 }

@@ -45,14 +45,12 @@ const Appointment = () => {
   // controller
   const {stylists, getAvailability, availability} = useAppointment()
   const [selectedDate, setSelectedDate] = useState(null)
+  const [selectedHour, setSelectedHour] = useState(null)
   const [availableHours, setAvailableHours] = useState([])
 
-  console.log('availableHours', availableHours)
-
   useEffect(() => {
-    console.log('availability', availability)
     setAvailableHours(returnMyHours() || [])
-  }, [availability, setAvailableHours])
+  }, [availability])
 
   const returnMyHours = () => {
     if (Object.values(availability).length) {
@@ -83,17 +81,29 @@ const Appointment = () => {
     event.stopPropagation()
     const dataDate = event.detail
     if (selectedStylist) {
-      getAvailability(
-        event,
-        selectedStylist._id,
-        dataDate.year,
-        dataDate.month,
-        dataDate.day
-      )
+      getAvailability(event, selectedStylist._id, dataDate.year, dataDate.month)
       setSelectedDate(dataDate)
       event.stopImmediatePropagation()
     }
   })
+
+  once('hour-selected', (event) => {
+    event.stopPropagation()
+    setSelectedHour(event.detail.selectedHour)
+  })
+
+  const onSaveHandler = (event) => {
+    event.stopPropagation()
+    const data = {
+      stylistsId: '',
+      clientId: '',
+      date: selectedDate.day,
+      serviceName: '',
+      servicePrice: '',
+      hour: selectedHour,
+    }
+    console.log(data)
+  }
 
   return (
     <div style={mainLayout}>
@@ -136,8 +146,8 @@ const Appointment = () => {
             <Ticket
               service="UÑAS ACRILICAS"
               name="ARIS LOVE"
-              date={190002193}
-              hour={1203199003}
+              date={selectedDate?.day}
+              hour={selectedHour}
             />
           }
         />
@@ -154,6 +164,7 @@ const Appointment = () => {
                 label="Guardar"
                 icon="pi pi-save"
                 className="save-button"
+                onClick={onSaveHandler}
               />{' '}
               <Button
                 label="Cancelar"
