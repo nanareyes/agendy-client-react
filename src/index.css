@@ -2,7 +2,7 @@ body {
   margin: 0;
   overflow-x: hidden;
   font-family: 'PT mono', 'Helvetica Neue', sans-serif !important;
-  background-color: #F9EAFF;
+  background-color: #f9eaff;
   color: var(--vino);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -11,4 +11,8 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.dropdown-stylists li {
+  display: flex;
 }

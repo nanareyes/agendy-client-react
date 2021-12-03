@@ -7,9 +7,10 @@ import {SectionWrapper} from '../StyledComponents/SectionWrapper'
 import {NavBar} from '../NavBar/NavBar'
 import {Button} from 'primereact/button'
 import {Dropdown} from 'primereact/dropdown'
+import {Message} from 'primereact/message'
+import {useNavigate} from 'react-router-dom'
 
 import {useAppointment} from './controller'
-import {once, trigger} from '../utils/events'
 
 import styled from 'styled-components'
 
@@ -39,70 +40,66 @@ const SectionGroup = styled.div`
       border: 2px solid red;
     }
   }
+  .back-button {
+    background: white;
+    border: 2px solid var(--lila);
+    color: var(--vino);
+
+    &:hover {
+      background: white;
+      color: var(--vino);
+      border: 2px solid var(--fucsia);
+    }
+  }
 `
 
 const Appointment = () => {
   // controller
-  const {stylists, getAvailability, availability} = useAppointment()
-  const [selectedDate, setSelectedDate] = useState(null)
-  const [selectedHour, setSelectedHour] = useState(null)
-  const [availableHours, setAvailableHours] = useState([])
-
-  useEffect(() => {
-    setAvailableHours(returnMyHours() || [])
-  }, [availability])
-
-  const returnMyHours = () => {
-    if (Object.values(availability).length) {
-      return availability
-        .map((item) => {
-          if (item.enabled && item.day === selectedDate.day) {
-            return item.hours
-          }
-        })
-        .filter((item) => {
-          return item
-        })
-    }
-  }
-
-  //Stylist state
-  const [selectedStylist, setSelectedStylist] = useState(null)
+  const {
+    appointment,
+    setAppointment,
+    saveAppointment,
+    cancelAppointment,
+    isSaving,
+  } = useAppointment()
+  const navigate = useNavigate()
 
   const mainLayout = {
     display: 'grid',
   }
 
   const onStylistChange = (event) => {
-    setSelectedStylist(event.value)
+    setAppointment((currentAppointment) => ({
+      ...currentAppointment,
+      stylist: event.value,
+    }))
   }
 
-  once('emit-date', async (event) => {
-    event.stopPropagation()
-    const dataDate = event.detail
-    if (selectedStylist) {
-      getAvailability(event, selectedStylist._id, dataDate.year, dataDate.month)
-      setSelectedDate(dataDate)
-      event.stopImmediatePropagation()
-    }
-  })
+  const SavingResult = () => {
+    return (
+      <>
+        {appointment.status === 'SAVED' && (
+          <Message
+            severity="info"
+            text="Felicitaciones! Su cita fue asignada satisfactoriamente."></Message>
+        )}{' '}
+      </>
+    )
+  }
 
-  once('hour-selected', (event) => {
-    event.stopPropagation()
-    setSelectedHour(event.detail.selectedHour)
-  })
-
-  const onSaveHandler = (event) => {
-    event.stopPropagation()
-    const data = {
-      stylistsId: '',
-      clientId: '',
-      date: selectedDate.day,
-      serviceName: '',
-      servicePrice: '',
-      hour: selectedHour,
-    }
-    console.log(data)
+  const GoBack = () => {
+    return (
+      <>
+        {appointment.status === 'SAVED' && (
+          <Button
+            label="Volver"
+            icon="pi pi-arrow-left"
+            className="back-button"
+            onClick={() => navigate(-1)}
+          />
+        )}
+      </>
+    )
   }
 
   return (
@@ -110,70 +107,74 @@ const Appointment = () => {
       <NavBar />
       <SectionTitle title="AGENDAR CITA" />
       <SectionGroup>
-        <SectionWrapper
-          children={
-            <>
-              <SectionWrapper
-                title="Seleccionar estilista"
-                children={
-                  <Dropdown
-                    value={selectedStylist}
-                    options={stylists}
-                    onChange={onStylistChange}
-                    optionLabel="name"
-                    placeholder="Seleccionar un estilista"
+        {appointment.status === 'UNSAVED' && (
+          <>
+            <SectionWrapper
+              children={
+                <>
+                  <SectionWrapper
+                    title="Seleccionar estilista"
+                    children={
+                      <Dropdown
+                        panelClassName="dropdown-stylists"
+                        value={appointment?.stylist}
+                        options={appointment?.stylists}
+                        onChange={onStylistChange}
+                        optionLabel="name"
+                        placeholder="Seleccionar un estilista"
+                      />
+                    }
                   />
-                }
-              />
-              <SectionWrapper
-                title="Seleccionar Fecha"
-                children={<CustomCalendar />}
-              />
-            </>
-          }
-        />
-        <SectionWrapper
-          title="Horas disponibles"
-          children={
-            <AvailableHours
-              hourList={availableHours.length ? availableHours[0] : []}
+                  <SectionWrapper
+                    title="Seleccionar Fecha"
+                    children={<CustomCalendar />}
+                  />
+                </>
+              }
             />
-          }
-        />
+            <SectionWrapper
+              title="Horas disponibles"
+              children={<AvailableHours />}
+            />{' '}
+          </>
+        )}
         <SectionWrapper
           title="Mi Ticket"
           children={
-            <Ticket
-              service="UÑAS ACRILICAS"
-              name="ARIS LOVE"
-              date={selectedDate?.day}
-              hour={selectedHour}
-            />
+            <>
+              <Ticket />
+              <SavingResult />
+              <GoBack />
+            </>
           }
         />
-        <SectionWrapper
-          children={
-            <div
-              style={{
-                display: 'grid',
-                gap: '1rem',
-                padding: '1rem',
-                placeItems: 'center',
-              }}>
-              <Button
-                label="Guardar"
-                icon="pi pi-save"
-                className="save-button"
-                onClick={onSaveHandler}
-              />{' '}
-              <Button
-                label="Cancelar"
-                icon="pi pi-times"
-                className="cancel-button"
-              />
-            </div>
-          }
-        />
+        {appointment.status === 'UNSAVED' && (
+          <SectionWrapper
+            children={
+              <div
+                style={{
+                  display: 'grid',
+                  gap: '1rem',
+                  padding: '1rem',
+                  placeItems: 'center',
+                }}>
+                <Button
+                  label="Guardar"
+                  icon="pi pi-save"
+                  className="save-button"
+                  onClick={saveAppointment}
+                  loading={isSaving}
+                />{' '}
+                <Button
+                  label="Cancelar"
+                  icon="pi pi-times"
+                  className="cancel-button"
+                  onClick={cancelAppointment}
+                />
+              </div>
+            }
+          />
+        )}
       </SectionGroup>
     </div>
   )
