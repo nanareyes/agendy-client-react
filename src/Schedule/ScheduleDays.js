@@ -30,7 +30,7 @@ const CardContainer = styled.div`
   margin: 0 auto;
   .card {
     gap: 0.5rem;
-    padding: 1rem;
+    padding: 0.5rem;
     min-width: 160px;
   }
 
