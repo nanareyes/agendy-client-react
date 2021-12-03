@@ -5,27 +5,29 @@ import {StyledImage} from '../StyledComponents/StyledImage'
 
 const ContainerFooter = styled.div`
   display: flex;
+  flex-wrap: wrap;
   width: 100%;
   align-items: center;
   justify-content: space-between;
-  height: 170px;
+  height: fit-content;
   opacity: 0.8;
   width: 100%;
-  padding-bottom: 60px;
-  position: fixed;
-  bottom: 0;
 
-  .card {
+  .footer-card {
     display: flex;
-    justify-content: flex;
-    height: auto;
+    flex-direction: column;
+    justify-content: center;
     opacity: 0.8;
-    height: 170px;
     width: 100%;
-    padding-bottom: 1rem;
+    padding: 1rem;
+    border: 1px solid lightpink;
   }
-  .tittle {
+  .title {
     color: var(--vino);
+  }
+  p.info {
+    padding: 0;
+    margin-bottom: 0;
   }
 `
 
@@ -35,22 +37,20 @@ const ContainerLinks = styled.div`
     justify-content: flex;
     height: auto;
     opacity: 0.8;
-    padding-bottom: 5px;
-    height: 30px;
+    padding: 0, 5rem;
+    height: fit-content;
     width: 100%;
     padding: 1rem;
     background-color: #efbee7;
-    position: fixed;
-    bottom: 0;
   }
   .link-list {
     all: unset;
     display: flex;
-    margin: 2px;
     align-items: center;
+    justify-content: center;
     gap: 1rem;
-    list-style: none;
     flex-grow: 1;
+    cursor: pointer;
   }
 `
 
@@ -63,7 +63,7 @@ const Footer = () => {
     'Yenny Natacha Libreros Montes',
   ]
   const phones = [
-    '57 319 572 3583',
+    '+57 319 572 3583',
     '+57 320 748 3074',
     '+57 318 697 7658',
     '+34 600 715 253',
@@ -73,25 +73,25 @@ const Footer = () => {
   return (
     <React.Fragment>
       <ContainerFooter>
-        <div className="card tittle">
-          INFORMACIÓN SOBRE EL PROYECTO
-          <StyledImage src={logoFooter} size="180px" />
-        </div>
-        <div className="card tittle">
+        <div className="footer-card">
           <ul>
-            <li>INTEGRANTES</li>
+            <li className="title">INTEGRANTES</li>
           </ul>
-          {names.map((name) => (
-            <h6>{name} </h6>
+          {names.map((name, key) => (
+            <p className="info" key={key}>
+              {name}{' '}
+            </p>
           ))}
         </div>
-        <div className="card tittle">
+        <div className="footer-card">
           <ul>
-            <li>CONTACTO</li>
+            <li className="title">CONTACTO</li>
           </ul>
 
-          {phones.map((phone) => (
-            <h6>{phone} </h6>
+          {phones.map((phone, key) => (
+            <p className="info" key={key}>
+              {phone}{' '}
+            </p>
           ))}
         </div>
       </ContainerFooter>
@@ -100,14 +100,9 @@ const Footer = () => {
           <a
             className="link-list"
             href="https://github.com/nanareyes/agendy-client-react"
-            rel="noopener">
+            target="_blank">
+            <i className="pi pi-github"></i>
             Enlace a Git
-          </a>
-          <a
-            className="link-list"
-            href="http://agendy-client-react.herokuapp.com/"
-            rel="noopener">
-            Enlace a Heroku
           </a>
         </div>
       </ContainerLinks>

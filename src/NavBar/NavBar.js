@@ -8,7 +8,7 @@ import {Button} from 'primereact/button'
 import {Sidebar} from 'primereact/sidebar'
 import {StyledImage} from '../StyledComponents/StyledImage'
 import {userState} from '../atoms'
-import {useRecoilState, waitForNone} from 'recoil'
+import {useRecoilState} from 'recoil'
 import {AvatarNavbar} from '../StyledComponents/Avatar'
 import avatarDefault from '../assets/avatarDefault.jpg'
 
@@ -112,9 +112,9 @@ const NavBar = () => {
   ]
 
   const AppLinks = (items) => {
-    return items.map((item) => {
+    return items.map((item, key) => {
       return (
-        <li>
+        <li key={key}>
           <NavLink to={item.path}>{item.text}</NavLink>
         </li>
       )

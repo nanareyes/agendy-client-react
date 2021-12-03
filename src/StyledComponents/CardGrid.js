@@ -9,6 +9,7 @@ const CardContainer = styled.div`
   place-items: center;
   width: 70%;
   margin: 0 auto;
+  padding: 2rem 0rem;
   .nav-link {
     width: 100%;
   }
