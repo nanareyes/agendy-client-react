@@ -4,6 +4,7 @@ import {useNavigate} from 'react-router-dom'
 import {useRecoilState} from 'recoil'
 import {userState, scheduleState} from '../atoms'
 import Swal from 'sweetalert2'
+import {scheduleObjToArray} from "../utils/schedule"
 
 const useLogin = () => {
   let navigate = useNavigate()
@@ -29,7 +30,7 @@ const useLogin = () => {
           token: response.data.token,
         })
         if (response.data?.userDB?.userType === 'Estilista') {
-          setSchedule(response.data?.userDB?.workingSchedule)
+          setSchedule(scheduleObjToArray(response.data?.userDB?.workingSchedule))
         }
         navigate('home')
       })

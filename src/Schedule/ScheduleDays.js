@@ -5,6 +5,7 @@ import Swal from 'sweetalert2'
 import {Button, Spinner} from 'reactstrap'
 import {useRecoilState} from 'recoil'
 import {scheduleState, userState, loadingState} from '../atoms'
+import {scheduleArrToObj} from "../utils/schedule";
 
 import {ScheduleDay} from './ScheduleDay'
 
@@ -82,13 +83,10 @@ const ScheduleDays = () => {
   const [user, setUser] = useRecoilState(userState)
   const [loading, setLoading] = useRecoilState(loadingState)
 
-  console.log('user en scheduleDays', user)
-  console.log('schedule scheduleDays', schedule)
-
   const handleSaveSchedule = () => {
     axios
       .put(`${process.env.REACT_APP_API_URL}/api/user/${user._id}`, {
-        workingSchedule: schedule,
+        workingSchedule: scheduleArrToObj(schedule),
       })
       .then(function (response) {
         setUser((currentUser) => {
