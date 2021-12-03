@@ -24,6 +24,7 @@ const CalendarEvent = (props) => {
       </div>
       {/* <p className="agenda-event-title">{props.serviceName}</p> */}
       <div>
+        <h5>Hora</h5>
         <h5 className="agenda-event-time">
           {moment(props.date).utc().format('hh:mm a')}
         </h5>
