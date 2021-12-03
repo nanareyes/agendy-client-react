@@ -20,7 +20,7 @@ const paginationGallery = ({
       <ul>
         {pageNumbers.map((number) => (
           <li key={number}>
-            <a onClick={() => paginate(number)} href="!#">
+            <a onClick={() => paginate(number)} href="/gallery">
               {number}
             </a>
           </li>
