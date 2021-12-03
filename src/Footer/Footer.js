@@ -24,6 +24,7 @@ const ContainerFooter = styled.div`
   }
   .title {
     color: var(--vino);
+    font-size: 1.2rem;
   }
   p.info {
     padding: 0;
