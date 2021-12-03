@@ -8,11 +8,18 @@ import {Agenda} from './Agenda/Agenda'
 import {Team} from './Team/Team'
 import Gallery from './Gallery/Gallery'
 import Services from './Services/Services'
+import {Schedule} from './Schedule/Schedule'
 
 // PrimeReact Imports
 import 'primereact/resources/themes/lara-light-indigo/theme.css'
 import 'primereact/resources/primereact.min.css'
 import 'primeicons/primeicons.css'
+
+// PrimeReact Imports
+import 'primereact/resources/themes/lara-light-indigo/theme.css'
+import 'primereact/resources/primereact.min.css'
+import 'primeicons/primeicons.css'
+import Footer from './Footer/Footer'
 
 function App() {
   return (
@@ -29,6 +36,8 @@ function App() {
         <Route path="team" element={<Team />} />
         <Route path="gallery" element={<Gallery />} />
         <Route path="services" element={<Services />} />
+        <Route path="schedule" element={<Schedule />} />
+        <Route path="footer" element={<Footer />} />
       </Routes>
     </div>
   )
