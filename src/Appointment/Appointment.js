@@ -9,9 +9,9 @@ import {Button} from 'primereact/button'
 import {Dropdown} from 'primereact/dropdown'
 
 import {useAppointment} from './controller'
-import {once, trigger} from '../utils/events'
 
 import styled from 'styled-components'
+import moment from 'moment'
 
 const SectionGroup = styled.div`
   display: inherit;
@@ -43,66 +43,18 @@ const SectionGroup = styled.div`
 
 const Appointment = () => {
   // controller
-  const {stylists, getAvailability, availability} = useAppointment()
-  const [selectedDate, setSelectedDate] = useState(null)
-  const [selectedHour, setSelectedHour] = useState(null)
-  const [availableHours, setAvailableHours] = useState([])
-
-  useEffect(() => {
-    setAvailableHours(returnMyHours() || [])
-  }, [availability])
-
-  const returnMyHours = () => {
-    if (Object.values(availability).length) {
-      return availability
-        .map((item) => {
-          if (item.enabled && item.day === selectedDate.day) {
-            return item.hours
-          }
-        })
-        .filter((item) => {
-          return item
-        })
-    }
-  }
-
-  //Stylist state
-  const [selectedStylist, setSelectedStylist] = useState(null)
+  const {appointment, setAppointment, saveAppointment, cancelAppointment} =
+    useAppointment()
 
   const mainLayout = {
     display: 'grid',
   }
 
   const onStylistChange = (event) => {
-    setSelectedStylist(event.value)
-  }
-
-  once('emit-date', async (event) => {
-    event.stopPropagation()
-    const dataDate = event.detail
-    if (selectedStylist) {
-      getAvailability(event, selectedStylist._id, dataDate.year, dataDate.month)
-      setSelectedDate(dataDate)
-      event.stopImmediatePropagation()
-    }
-  })
-
-  once('hour-selected', (event) => {
-    event.stopPropagation()
-    setSelectedHour(event.detail.selectedHour)
-  })
-
-  const onSaveHandler = (event) => {
-    event.stopPropagation()
-    const data = {
-      stylistsId: '',
-      clientId: '',
-      date: selectedDate.day,
-      serviceName: '',
-      servicePrice: '',
-      hour: selectedHour,
-    }
-    console.log(data)
+    setAppointment((currentAppointment) => ({
+      ...currentAppointment,
+      stylist: event.value,
+    }))
   }
 
   return (
@@ -117,8 +69,9 @@ const Appointment = () => {
                 title="Seleccionar estilista"
                 children={
                   <Dropdown
-                    value={selectedStylist}
-                    options={stylists}
+                    panelClassName="dropdown-stylists"
+                    value={appointment?.stylist}
+                    options={appointment?.stylists}
                     onChange={onStylistChange}
                     optionLabel="name"
                     placeholder="Seleccionar un estilista"
@@ -134,23 +87,9 @@ const Appointment = () => {
         />
         <SectionWrapper
           title="Horas disponibles"
-          children={
-            <AvailableHours
-              hourList={availableHours.length ? availableHours[0] : []}
-            />
-          }
+          children={<AvailableHours />}
         />
-        <SectionWrapper
-          title="Mi Ticket"
-          children={
-            <Ticket
-              service="UÑAS ACRILICAS"
-              name="ARIS LOVE"
-              date={selectedDate?.day}
-              hour={selectedHour}
-            />
-          }
-        />
+        <SectionWrapper title="Mi Ticket" children={<Ticket />} />
         <SectionWrapper
           children={
             <div
@@ -164,12 +103,13 @@ const Appointment = () => {
                 label="Guardar"
                 icon="pi pi-save"
                 className="save-button"
-                onClick={onSaveHandler}
+                onClick={saveAppointment}
               />{' '}
               <Button
                 label="Cancelar"
                 icon="pi pi-times"
                 className="cancel-button"
+                onClick={cancelAppointment}
               />
             </div>
           }

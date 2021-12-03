@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
-import {trigger} from '../utils/events'
+import moment from 'moment'
+import {useAppointment} from './controller'
 
 // PrimeReact imports
 import 'primereact/resources/themes/lara-light-purple/theme.css'
@@ -9,24 +10,42 @@ import 'primeicons/primeicons.css'
 import {Calendar} from 'primereact/calendar'
 
 const CustomCalendar = ({className, styles}) => {
-  const [date, setDate] = useState(null)
+  const {appointment, setAppointment, getAvailability} = useAppointment()
+  const {
+    availabilityForMonth,
+    date: {iso},
+  } = appointment
 
   const onDateChange = (event) => {
     event.stopPropagation()
-    const selectedDate = event.value
-    const dateData = {
-      year: selectedDate.getFullYear(),
-      month: selectedDate.getMonth() + 1,
-      day: selectedDate.toISOString(),
+
+    const mDate = moment(event.value)
+    const date = {
+      iso: event.value,
+      year: mDate.year(),
+      month: mDate.month() + 1,
+      day: mDate.date(),
     }
 
-    trigger('emit-date', dateData)
-    setDate(event.value)
+    setAppointment((currentAppointment) => ({
+      ...currentAppointment,
+      date,
+    }))
   }
+
+  const disabledDates = availabilityForMonth
+    .filter((day) => !day.enabled)
+    .map((day) => new Date(day.day))
 
   return (
     <div className={className}>
-      <Calendar value={date} onChange={onDateChange} inline showWeek />
+      <Calendar
+        value={iso}
+        onChange={onDateChange}
+        disabledDates={disabledDates}
+        inline
+        showWeek
+      />
     </div>
   )
 }

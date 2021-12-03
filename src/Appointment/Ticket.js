@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import {Button} from 'primereact/button'
+import moment from 'moment'
+import {useAppointment} from './controller'
 
 const TicketCard = styled.div`
   background: white;
@@ -15,30 +17,44 @@ const TicketCard = styled.div`
     }
   }
 `
+moment.locale('es')
+const Ticket = () => {
+  const {getAppointmentData} = useAppointment()
+  const appointmentData = getAppointmentData()
 
-const Ticket = ({service, name, date, hour}) => {
   return (
     <TicketCard>
       <header className="ticket-header">
         <h3>
-          {service}{' '}
-          <Button
+          {appointmentData?.serviceName}{' '}
+          {/* <Button
             tooltip="Editar servicio"
             icon="pi pi-pencil"
             className="p-button-rounded p-button-outlined"
-          />
+          /> */}
         </h3>
         <p>
-          <strong>para:</strong> {name}{' '}
+          <strong>para:</strong> {appointmentData?.clientName}{' '}
+        </p>
+        <p>
+          <strong>de:</strong> {appointmentData?.stylistName}{' '}
         </p>
       </header>
       <section className="ticket-section">
         <h2>Fecha</h2>
-        <p>{date}</p>
+        <p>
+          {appointmentData?.date
+            ? moment(appointmentData?.date).utc().format('MMMM D YYYY')
+            : ''}
+        </p>
       </section>
       <section className="ticket-section">
-        <h2>Hour</h2>
-        <p>{hour}</p>
+        <h2>Hora</h2>
+        <p>
+          {appointmentData?.date
+            ? moment(appointmentData?.date).utc().format('hh:mm a')
+            : ''}
+        </p>
       </section>
     </TicketCard>
   )

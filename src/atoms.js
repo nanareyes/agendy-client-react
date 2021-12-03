@@ -20,18 +20,42 @@ const loadingState = atom({
 export const getDefaultScheduleState = () => {
   const defaultSchedule = {}
   const hours = []
-  for (let hour=0; hour<=23; hour++) {
-    hours.push({ hour, selected: false });
+  for (let hour = 0; hour <= 23; hour++) {
+    hours.push({hour, selected: false})
   }
-  for (let day=1; day<=7; day++) {
-    defaultSchedule[day] = [...hours];
+  for (let day = 1; day <= 7; day++) {
+    defaultSchedule[day] = [...hours]
   }
-  return defaultSchedule;
-};
+  return defaultSchedule
+}
 
 const scheduleState = atom({
   key: 'scheduleState',
   default: getDefaultScheduleState(),
 })
 
-export {userState, fileState, loadingState, scheduleState}
+export const getDefaultAppointmentState = () => {
+  return {
+    stylists: [],
+    stylist: {},
+    serviceName: null,
+    servicePrice: null,
+    selectedHour: null,
+    date: {
+      iso: null,
+      year: null,
+      month: null,
+      day: null,
+    },
+    shouldFetchMonth: true,
+    availabilityForMonth: [],
+    availability: {},
+  }
+}
+
+const appointmentState = atom({
+  key: 'appointmentState',
+  default: getDefaultAppointmentState(),
+})
+
+export {userState, fileState, loadingState, scheduleState, appointmentState}
