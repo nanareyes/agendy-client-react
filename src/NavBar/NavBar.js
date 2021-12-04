@@ -116,8 +116,9 @@ const NavBar = () => {
   ]
 
   const links = [
+    {text: 'Inicio', path: '/home'},
     {text: 'Servicios', path: '/services'},
-    {text: 'Mis citas', path: '/agenda'},
+    {text: 'Mis citas', path: '/calendar'},
     {text: 'Equipo', path: '/team'},
   ]
 
